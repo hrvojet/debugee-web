@@ -25,6 +25,6 @@ export class AppComponent {
 
   login() {
     console.log('changes are reflected?');
-    window.location.href = `http://192.168.99.101/oauth/authorize?client_id=${environment.clientId}&redirect_uri=http://192.168.0.222:8080/callback/gitlab&response_type=code&scope=openid profile email read_api`;
+    window.location.href = `http://192.168.99.101/oauth/authorize?client_id=${environment.clientId}&redirect_uri=http://192.168.0.212:8080/callback/gitlab&response_type=code&scope=openid profile email read_api`;
   }
 }
