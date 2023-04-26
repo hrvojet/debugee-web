@@ -1,0 +1,106 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// custom-colours:start
+$green-primary-palette-dbg: (
+  50 : #ecf6e8,
+  100 : #d0e9c7,
+  200 : #b1daa1,
+  300 : #91cb7b,
+  400 : #7ac05f,
+  500 : #62b543,
+  600 : #5aae3d,
+  700 : #50a534,
+  800 : #469d2c,
+  900 : #348d1e,
+  A100 : #d2ffc8,
+  A200 : #a8ff95,
+  A400 : #7eff62,
+  A700 : #69ff48,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$purp-secondary-palette-dbg: (
+  50 : #efe7f2,
+  100 : #d7c3de,
+  200 : #bc9bc8,
+  300 : #a172b2,
+  400 : #8c54a2,
+  500 : #783691,
+  600 : #703089,
+  700 : #65297e,
+  800 : #5b2274,
+  900 : #481662,
+  A100 : #db9cff,
+  A200 : #c869ff,
+  A400 : #b536ff,
+  A700 : #ac1cff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+// custom-colours:end
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$debugee-web-primary: mat.define-palette($green-primary-palette-dbg);
+//$debugee-web-accent: mat.define-palette($purp-secondary-palette-dbg, A200, A100, A400); default
+$debugee-web-accent: mat.define-palette($purp-secondary-palette-dbg);
+
+// The warn palette is optional (defaults to red).
+$debugee-web-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$debugee-web-theme: mat.define-light-theme((
+  color: (
+    primary: $debugee-web-primary,
+    accent: $debugee-web-accent,
+    warn: $debugee-web-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($debugee-web-theme);
+@include mat.all-component-colors($debugee-web-theme);
+

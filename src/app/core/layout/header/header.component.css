@@ -1,0 +1,24 @@
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  justify-content: left;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: right
+}
+
+mat-toolbar mat-toolbar-row {
+  color: #ffffff;
+}
+
+caption {
+  margin: 0 14px 0 14px;
+}

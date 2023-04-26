@@ -12,9 +12,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
     this.route.queryParams.subscribe(params => {
       debugger;
-      const token = params['token'];
+      const token = params["token"];
       if (token) {
-        localStorage.setItem('token', token)
+        localStorage.setItem('token', token);
       }
     });
 

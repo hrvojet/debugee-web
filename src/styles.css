@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  background-color: #1b1b1f;
+}
+
+.mat-toolbar {
+  background-color: rgb(40, 40, 44);
+}
+
+mat-toolbar-row {
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: rosybrown;
+}
+
+footer {
+}
