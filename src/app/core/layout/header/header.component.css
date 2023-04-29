@@ -1,4 +1,5 @@
 header {
+  width: inherit;
 	display: flex;
 	justify-content: space-between;
 }
