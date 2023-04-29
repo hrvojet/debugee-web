@@ -14,6 +14,7 @@
 		"no-input-rename": true,
 		"no-inputs-metadata-property": true,
 		"no-lifecycle-call": true,
+    "no-string-literal": false,
 		"no-output-native": true,
 		"no-output-on-prefix": true,
 		"no-output-rename": true,
