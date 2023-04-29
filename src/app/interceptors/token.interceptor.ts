@@ -9,10 +9,10 @@ export class TokenInterceptor implements HttpInterceptor {
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		this.route.queryParams.subscribe((params) => {
-			debugger;
-			const token = params['token'];
+			//debugger;
+			const token = params['access_token'];
 			if (token) {
-				localStorage.setItem('token', token);
+				localStorage.setItem('access_token', token);
 			}
 		});
 
