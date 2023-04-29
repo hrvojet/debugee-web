@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeScreenComponent } from './core/layout/welcome-screen/welcome-screen.component';
 import { PageNotFoundComponent } from './core/layout/page-not-found/page-not-found.component';
+import { ProjectComponent } from './pages/project/project.component';
 
 const routes: Routes = [
 	{
@@ -12,6 +13,10 @@ const routes: Routes = [
 	{
 		path: 'welcome',
 		component: WelcomeScreenComponent,
+	},
+	{
+		path: 'projects',
+		component: ProjectComponent,
 	},
 	{
 		path: '**',
