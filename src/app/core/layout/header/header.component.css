@@ -23,3 +23,7 @@ mat-toolbar mat-toolbar-row {
 caption {
 	margin: 0 14px 0 14px;
 }
+
+.home-button {
+  font-size: 22px;
+}

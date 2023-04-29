@@ -23,3 +23,7 @@ body {
 
 footer {
 }
+
+mat-icon {
+  vertical-align: middle;
+}

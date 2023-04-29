@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './core/layout/page-not-found/page-not-fou
 import { MatIconModule } from '@angular/material/icon';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
+import { PagesModule } from './pages/pages.module';
 
 export function tokenGetter() {
 	return localStorage.getItem('access_token');
@@ -34,6 +35,7 @@ export function tokenGetter() {
 				disallowedRoutes: [environment.gitLabDomain],
 			},
 		}),
+		PagesModule,
 		MatToolbarModule,
 		MatButtonToggleModule,
 		MatButtonModule,

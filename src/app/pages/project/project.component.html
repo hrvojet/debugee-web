@@ -1,1 +1,16 @@
-<p>project works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title style="height: 55px">
+      projects
+    </mat-card-title>
+  </mat-card-header>
+</mat-card>
+<mat-card *ngFor="let project of PROJECTS">
+  <mat-card-header>
+    <mat-card-title><mat-icon>book</mat-icon><span class="hoover-effect"> {{project?.title}}</span></mat-card-title>
+    <mat-card-subtitle>{{project?.description}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    {{project?.openedIssues + project?.closedIssues}} issues
+  </mat-card-actions>
+</mat-card>
