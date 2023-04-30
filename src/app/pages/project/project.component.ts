@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project/project.service';
+import { IProject } from '../../shared/models/project.model';
 
 @Component({
 	selector: 'app-project',
@@ -7,7 +8,7 @@ import { ProjectService } from '../../services/project/project.service';
 	styleUrls: ['./project.component.css'],
 })
 export class ProjectComponent implements OnInit {
-	PROJECTS: any;
+	PROJECTS?: IProject[];
 
 	constructor(private projectService: ProjectService) {}
 
