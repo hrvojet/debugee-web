@@ -20,7 +20,7 @@ const routes: Routes = [
 		component: ProjectComponent,
 	},
 	{
-		path: 'project/:projectId',
+		path: 'projects/:projectId',
 		component: IssueComponent,
 	},
 	{

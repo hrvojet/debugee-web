@@ -7,7 +7,7 @@
 </mat-card>
 <mat-card *ngFor="let project of PROJECTS">
   <mat-card-header>
-    <mat-card-title><mat-icon>book</mat-icon><a (click)="broadcastProject(project)" routerLink="/project/{{project.id}}"> {{project.title}}</a></mat-card-title>
+    <mat-card-title><mat-icon>book</mat-icon><a routerLink="/projects/{{project.id}}"> {{project.title}}</a></mat-card-title>
     <mat-card-subtitle>{{project.description}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions align="end">
