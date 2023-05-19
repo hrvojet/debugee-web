@@ -1,0 +1,26 @@
+mat-card {
+  background-color: #1b1b1f;
+  border-left: 1px solid #5aae3d;
+  border-bottom: 1px solid #5aae3d;
+  border-right: 1px solid #5aae3d;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 0;
+}
+
+mat-card:first-of-type {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-top: 1px solid #5aae3d;
+  margin-top: 64px;
+  background-color: #28282c;
+}
+
+mat-card:last-of-type {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+mat-card, mat-card-header, mat-card-subtitle {
+  color: #d0d0d0;
+}

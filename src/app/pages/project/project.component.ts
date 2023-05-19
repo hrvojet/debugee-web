@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../../services/project/project.service';
+import { ProjectService } from '../../shared/services/project.service';
 import { IProject } from '../../shared/models/project.model';
+import { DataService } from '../../shared/services/data.service';
 
 @Component({
 	selector: 'app-project',
@@ -9,8 +10,9 @@ import { IProject } from '../../shared/models/project.model';
 })
 export class ProjectComponent implements OnInit {
 	PROJECTS?: IProject[];
+	project?: IProject;
 
-	constructor(private projectService: ProjectService) {}
+	constructor(private projectService: ProjectService, private dataService: DataService) {}
 
 	ngOnInit(): void {
 		this.projectService.getProjects().subscribe((data) => {
@@ -18,5 +20,11 @@ export class ProjectComponent implements OnInit {
 			console.log(data);
 			console.log(this.PROJECTS);
 		});
+
+		this.dataService.currentProject.subscribe((project) => (this.project = project));
+	}
+
+	broadcastProject(project: IProject): void {
+		this.dataService.updateProject(project);
 	}
 }
