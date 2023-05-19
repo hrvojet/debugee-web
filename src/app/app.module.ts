@@ -3,9 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { CookieInterceptor } from './interceptors/cookie.interceptor';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -41,7 +39,6 @@ export function tokenGetter() {
 		MatButtonModule,
 		MatIconModule,
 	],
-	providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

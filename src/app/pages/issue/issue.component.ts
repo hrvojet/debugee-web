@@ -1,7 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { IssueService } from '../../shared/services/issue.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../../shared/services/data.service';
+import { ActivatedRoute } from '@angular/router';
 import { IProject } from '../../shared/models/project.model';
 import { ProjectService } from '../../shared/services/project.service';
 import { forkJoin } from 'rxjs';
@@ -19,7 +18,6 @@ export class IssueComponent implements OnInit, OnDestroy {
 	constructor(
 		private issueService: IssueService,
 		private route: ActivatedRoute,
-		private dataService: DataService,
 		private projectService: ProjectService
 	) {}
 
@@ -33,16 +31,4 @@ export class IssueComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {}
-
-	getIssues(id: number): void {
-		this.issueService.getIssues(Number(id)).subscribe((data) => {
-			this.ISSUES = data;
-		});
-	}
-
-	getProject(id: number) {
-		this.projectService.getProjectById(Number(id)).subscribe((data) => {
-			this.project = data;
-		});
-	}
 }
