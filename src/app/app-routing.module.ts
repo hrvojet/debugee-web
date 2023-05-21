@@ -4,6 +4,7 @@ import { WelcomeScreenComponent } from './core/layout/welcome-screen/welcome-scr
 import { PageNotFoundComponent } from './core/layout/page-not-found/page-not-found.component';
 import { ProjectComponent } from './pages/project/project.component';
 import { IssueComponent } from './pages/issue/issue.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
 
 const routes: Routes = [
 	{
@@ -18,10 +19,12 @@ const routes: Routes = [
 	{
 		path: 'projects',
 		component: ProjectComponent,
+		canActivate: [AuthenticationGuard],
 	},
 	{
 		path: 'projects/:projectId',
 		component: IssueComponent,
+		canActivate: [AuthenticationGuard],
 	},
 	{
 		path: '**',

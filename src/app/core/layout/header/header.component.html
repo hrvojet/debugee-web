@@ -5,7 +5,14 @@
 				<button mat-icon-button color="primary"><mat-icon>home</mat-icon> <span class="home-button">debugee</span> </button>
 			</div>
 			<div class="right">
-				<button mat-raised-button color="primary" (click)="login()">Login with GitLab</button>
+				<button mat-raised-button color="primary"
+                (click)="login()"
+                *ngIf="!isUserLogged">
+          Login with GitLab
+        </button>
+        <button *ngIf="isUserLogged" mat-raised-button color="accent" (click)="logout()">
+            logged baby!
+        </button>
 			</div>
 		</header>
 	</mat-toolbar-row>
