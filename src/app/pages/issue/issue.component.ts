@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProject } from '../../shared/models/project.model';
 import { ProjectService } from '../../shared/services/project.service';
 import { forkJoin } from 'rxjs';
+import { IIssue } from '../../shared/models/issue.model';
 
 @Component({
 	selector: 'app-issue',
@@ -11,8 +12,7 @@ import { forkJoin } from 'rxjs';
 	styleUrls: ['./issue.component.css'],
 })
 export class IssueComponent implements OnInit, OnDestroy {
-	ISSUES: any;
-	@Input() issues: any;
+	ISSUES?: IIssue[];
 	project?: IProject;
 
 	constructor(

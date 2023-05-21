@@ -10,7 +10,7 @@ export class ProjectService {
 	constructor(private http: HttpClient) {}
 
 	getProjects() {
-		return this.http.get<any>(environment.protocol + environment.debugeeDomain + '/projects');
+		return this.http.get<IProject[]>(environment.protocol + environment.debugeeDomain + '/projects');
 	}
 
 	getProjectById(id: number) {

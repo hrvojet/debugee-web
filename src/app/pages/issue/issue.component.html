@@ -7,7 +7,7 @@
 </mat-card>
 <mat-card *ngFor="let issue of ISSUES">
   <mat-card-header>
-    <mat-card-title><mat-icon>book</mat-icon><span class="hoover-effect"> {{issue?.title}}</span></mat-card-title>
+    <mat-card-title><mat-icon>book</mat-icon><a routerLink="{{issue.id}}" class="hoover-effect"> {{issue?.title}}</a></mat-card-title>
   </mat-card-header>
   <mat-card-actions align="end">
     {{issue?.commentNumber}} comments

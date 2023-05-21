@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title style="height: 55px">
+      {{issue?.title}}
+    </mat-card-title>
+  </mat-card-header>
+</mat-card>
+<mat-card *ngFor="let comment of comments">
+  <mat-card-header>
+    <mat-card-title><span class="hoover-effect"> {{comment?.text}}</span></mat-card-title>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    {{comment?.author?.username}}
+  </mat-card-actions>
+</mat-card>
