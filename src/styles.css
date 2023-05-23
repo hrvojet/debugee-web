@@ -18,7 +18,7 @@ mat-toolbar-row {
 body {
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
-	color: rosybrown;
+	color: #d0d0d0;
 }
 
 footer {
@@ -31,3 +31,5 @@ mat-icon {
 a {
   color: #427e2c;
 }
+
+.clear { clear: both; height: 70px; }
