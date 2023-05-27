@@ -7,3 +7,8 @@ export interface IComment {
 	edited: Date;
 	author: IUser;
 }
+
+export interface ICommentPost {
+	issueId: number;
+	text: string;
+}

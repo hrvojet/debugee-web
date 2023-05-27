@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
-import { forkJoin } from 'rxjs';
+import { catchError, forkJoin } from 'rxjs';
 import { IComment } from '../../shared/models/comment.model';
 import { IIssue } from '../../shared/models/issue.model';
 
@@ -15,11 +15,12 @@ import { IIssue } from '../../shared/models/issue.model';
 export class CommentComponent implements OnInit {
 	issue?: IIssue;
 	comments?: IComment[];
-	markdown: any;
+	markdown?: string;
 
 	constructor(
 		private commentService: CommentService,
 		private route: ActivatedRoute,
+		private router: Router,
 		private issueService: IssueService
 	) {}
 
@@ -35,5 +36,18 @@ export class CommentComponent implements OnInit {
 				console.log(res[1]);
 			}
 		);
+	}
+
+	saveComment() {
+		this.commentService
+			.postComment(Number(this.route.snapshot.paramMap.get('issueId')), this.markdown!)
+			.subscribe((res) => {
+				console.log(this.markdown + ' has been saved');
+				this.comments?.push(res);
+			});
+	}
+
+	handleErr() {
+		console.log('error');
 	}
 }
