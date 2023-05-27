@@ -1,7 +1,7 @@
-:host {
+app-comment {
   max-width: 900px;
   display: block;
-  margin: 0 auto;
+  margin: 15px auto;
 }
 
 .fade-color {
@@ -55,6 +55,53 @@ img {
 
 .text-wrapper p {
   padding: 8px 22px 8px 22px;
+}
+
+.mat-tab-label, .mat-tab-link {
+  color: white;
+}
+/* tab-headers start */
+.mat-tab-label, .mat-tab-labels {
+  background-color: #28282c;
+}
+
+.mat-tab-label.mat-tab-label-active {
+  background-color: #1b1b1f;
+}
+
+mat-tab-header {
+}
+/* tab-headers end */
+
+.text-area-wrapper {
+  padding: 22px;
+}
+
+mat-tab-group {
+  min-height: 160px;
+}
+
+textarea {
+  background-color: #151515;
+  color: white;
+  border-radius: 4px;
+  width: 98%;
+  min-height: 100px;
+  box-sizing: border-box;
+  margin: 6px 0 0 1%;
+  border: 1px solid #5aae3d;
+  resize: vertical;
+  overflow: auto;
+}
+
+.asdf {
+  margin-top: 990px !important;
+
+}
+
+button {
+  float:right;
+  margin: 8px !important;
 }
 
 /*

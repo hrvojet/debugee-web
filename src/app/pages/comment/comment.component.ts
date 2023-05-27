@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
@@ -10,10 +10,12 @@ import { IIssue } from '../../shared/models/issue.model';
 	selector: 'app-comment',
 	templateUrl: './comment.component.html',
 	styleUrls: ['./comment.component.css'],
+	encapsulation: ViewEncapsulation.None,
 })
 export class CommentComponent implements OnInit {
 	issue?: IIssue;
 	comments?: IComment[];
+	markdown: any;
 
 	constructor(
 		private commentService: CommentService,

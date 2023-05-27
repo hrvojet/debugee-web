@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
 import { PagesModule } from './pages/pages.module';
+import { MarkdownModule } from 'ngx-markdown';
 
 export function tokenGetter() {
 	return localStorage.getItem('access_token');
@@ -38,6 +39,7 @@ export function tokenGetter() {
 		MatButtonToggleModule,
 		MatButtonModule,
 		MatIconModule,
+		MarkdownModule.forRoot(),
 	],
 	bootstrap: [AppComponent],
 })
