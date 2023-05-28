@@ -44,6 +44,7 @@ export class CommentComponent implements OnInit {
 			.subscribe((res) => {
 				console.log(this.markdown + ' has been saved');
 				this.comments?.push(res);
+				this.markdown = '';
 			});
 	}
 
