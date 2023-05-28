@@ -5,6 +5,8 @@ import { IssueService } from '../../shared/services/issue.service';
 import { catchError, forkJoin } from 'rxjs';
 import { IComment } from '../../shared/models/comment.model';
 import { IIssue } from '../../shared/models/issue.model';
+import { UserService } from '../../shared/services/user.service';
+import { IUser } from '../../shared/models/user.model';
 
 @Component({
 	selector: 'app-comment',
@@ -16,17 +18,20 @@ export class CommentComponent implements OnInit {
 	issue?: IIssue;
 	comments?: IComment[];
 	markdown?: string;
+	currentUser?: IUser;
 
 	constructor(
 		private commentService: CommentService,
 		private route: ActivatedRoute,
 		private router: Router,
-		private issueService: IssueService
+		private issueService: IssueService,
+		private userService: UserService
 	) {}
 
 	ngOnInit(): void {
 		const id = Number(this.route.snapshot.paramMap.get('issueId'));
 		console.log(id);
+		this.currentUser = this.userService.getCurrentUser();
 
 		forkJoin([this.issueService.getIssueById(id), this.commentService.getCommentsForSpecificIssue(id)]).subscribe(
 			(res) => {

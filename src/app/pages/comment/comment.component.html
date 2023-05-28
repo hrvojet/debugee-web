@@ -5,7 +5,7 @@
 </p>
 </h1>
 <article *ngFor="let comment of comments" class="comment">
-  <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="{{comment?.author?.username}}">
+  <img src="{{comment?.author?.avatar_url}}" alt="{{comment?.author?.username}}">
   <div class="text-wrapper">
     <h3 class="sub-header">{{comment?.author?.username}}<span class="fade-color"> commented on {{comment?.created | date}}</span></h3>
     <markdown [data]="comment?.text">
@@ -13,7 +13,7 @@
   </div>
 </article>
 <article class="userInput">
-  <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="username">
+  <img src="{{currentUser?.avatar_url}}" alt="username">
   <div class="text-wrapper">
     <mat-tab-group animationDuration="0ms" dynamicHeight color="transparent">
       <mat-tab label="Write">
