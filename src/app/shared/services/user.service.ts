@@ -9,6 +9,13 @@ export class UserService {
 	constructor(private jwtService: JwtService) {}
 
 	public getCurrentUser(): IUser {
-		return this.jwtService.decodeAccessToken();
+		const token = this.jwtService.decodeAccessToken();
+		return {
+			id: Number(token.sub),
+			avatar_url: token.avatar_url,
+			email: token.email,
+			username: token.username,
+			web_url: '',
+		};
 	}
 }

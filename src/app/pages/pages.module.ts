@@ -12,6 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
 	declarations: [ProjectComponent, IssueComponent, CommentComponent],
@@ -26,6 +27,7 @@ import { MatListModule } from '@angular/material/list';
 		BrowserAnimationsModule,
 		MatButtonModule,
 		MatListModule,
+		MatMenuModule,
 	],
 })
 export class PagesModule {}

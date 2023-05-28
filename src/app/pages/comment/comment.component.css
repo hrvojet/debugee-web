@@ -107,15 +107,53 @@ markdown {
   padding: 8px 22px 8px 22px;
 }
 
-button {
+.submit-button {
   float:right;
   margin: 8px !important;
 }
 
-button:disabled {
+.submit-button:disabled {
   color: white !important;
   background-color: #783691 !important;
   opacity: 0.3 !important;
+}
+
+.more-horiz {
+  font-size: 18px;
+}
+
+.button-width:hover {
+  color: #5aae3d !important;
+}
+
+.button-delete {
+  color: #fc7272 !important;
+}
+
+.button-delete:hover {
+  color: white !important;
+  background-color: #783691 !important;
+}
+
+.mat-menu-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  background-color: #28282c;
+}
+
+.mat-menu-panel {
+  background-color: #28282c !important;
+  height: inherit;
+  min-height: 48px !important;
+}
+
+.mat-menu-item{
+  line-height:35px;
+  height:35px;
+  color: white;
+  background-color: #28282c;
 }
 
 /*
