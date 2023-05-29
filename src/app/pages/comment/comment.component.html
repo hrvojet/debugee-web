@@ -4,59 +4,62 @@
   {{issue?.originalPoster?.username}} opened this issue on {{comments?.[0]?.created | date}} &#x2022; {{comments?.length}} comments
 </p>
 </h1>
-<article *ngFor="let comment of comments" class="comment">
-  <img src="{{comment?.author?.avatar_url}}" alt="{{comment?.author?.username}}">
-  <div class="text-wrapper">
-    <h3 class="sub-header">{{comment?.author?.username}}<span class="fade-color"> commented on {{comment?.created | date}}</span>
-      <button
-        class="button-width"
-        mat-button
-        [matMenuTriggerFor]="menu"
-        style="float: right">
-        <mat-icon class="more-horiz">more_horiz</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <span>Quote reply</span>
+<main>
+  <article *ngFor="let comment of comments" class="comment">
+    <img src="{{comment?.author?.avatar_url}}" alt="{{comment?.author?.username}}">
+    <div class="text-wrapper">
+      <h3 class="sub-header">{{comment?.author?.username}}<span class="fade-color"> commented on {{comment?.created | date}}</span>
+        <button
+          class="button-width"
+          mat-button
+          [matMenuTriggerFor]="menu"
+          style="float: right">
+          <mat-icon class="more-horiz">more_horiz</mat-icon>
         </button>
-        <ng-container *ngIf="currentUser?.id === comment?.author?.id">
-          <button mat-menu-item class="button-delete">
-            <span>Delete</span>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <span>Quote reply</span>
           </button>
-        </ng-container>
-      </mat-menu>
-    </h3>
-    <markdown [data]="comment?.text">
-    </markdown>
-  </div>
-</article>
-<article class="userInput">
-  <img src="{{currentUser?.avatar_url}}" alt="username">
-  <div class="text-wrapper">
-    <mat-tab-group animationDuration="0ms" dynamicHeight color="transparent">
-      <mat-tab label="Write">
-        <textarea
-          [(ngModel)]="markdown"
-          placeholder="Write a comment"
-        >
-        </textarea>
-      </mat-tab>
-      <mat-tab label="Preview">
-        <ng-template matTabContent>
-          <markdown
-            [data]="markdown"
+          <ng-container *ngIf="currentUser?.id === comment?.author?.id">
+            <button mat-menu-item class="button-delete">
+              <span>Delete</span>
+            </button>
+          </ng-container>
+        </mat-menu>
+      </h3>
+      <markdown [data]="comment?.text">
+      </markdown>
+    </div>
+  </article>
+  <article class="userInput">
+    <img src="{{currentUser?.avatar_url}}" alt="username">
+    <div class="text-wrapper">
+      <mat-tab-group animationDuration="0ms" dynamicHeight color="transparent">
+        <mat-tab label="Write">
+          <textarea
+            [(ngModel)]="markdown"
+            placeholder="Write a comment"
           >
-            Nothing to preview
-          </markdown>
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
-  <button class="submit-button"
-    mat-raised-button
-    color="accent"
-    (click)="saveComment()"
-    [disabled]="!markdown"
-  >Submit</button>
-  </div>
-</article>
+          </textarea>
+        </mat-tab>
+        <mat-tab label="Preview">
+          <ng-template matTabContent>
+            <markdown
+              [data]="markdown"
+            >
+              Nothing to preview
+            </markdown>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    <button class="submit-button"
+      mat-raised-button
+      color="accent"
+      (click)="saveComment()"
+      [disabled]="!markdown"
+    >Submit</button>
+    </div>
+  </article>
+</main>
+<aside>asd</aside>
 <div class="clear"></div>

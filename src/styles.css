@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
+html {
 	height: 100%;
 	background-color: #1b1b1f;
 }
@@ -19,6 +18,8 @@ body {
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
 	color: #d0d0d0;
+  position: relative;
+  min-height: 100%;
 }
 
 footer {

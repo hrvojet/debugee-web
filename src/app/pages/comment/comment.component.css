@@ -23,6 +23,10 @@ mat-card {
   width: 100%;
 }
 
+main {
+  /* TODO comments are wrapped in main, set aside for additional content (two columns)*/
+}
+
 article {
   margin-bottom: 15px;
   width: 80%;
