@@ -17,4 +17,8 @@ export class CommentService {
 	postComment(issueId: number, text: string) {
 		return this.http.post<IComment>(environment.protocol + environment.debugeeDomain + '/comments', { issueId, text });
 	}
+
+	deleteComment(commentId: number) {
+		return this.http.delete<void>(environment.protocol + environment.debugeeDomain + '/comments/' + commentId);
+	}
 }

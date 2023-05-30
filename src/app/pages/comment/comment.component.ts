@@ -53,7 +53,10 @@ export class CommentComponent implements OnInit {
 			});
 	}
 
-	handleErr() {
-		console.log('error');
+	deleteOwnComment(comment: IComment): void {
+		this.commentService.deleteComment(comment?.id).subscribe(() => {
+			const indexToDelete: number = this.comments?.map((e) => e.id).indexOf(comment.id)!;
+			this.comments?.splice(indexToDelete, 1);
+		});
 	}
 }

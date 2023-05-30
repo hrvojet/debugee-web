@@ -21,7 +21,11 @@
             <span>Quote reply</span>
           </button>
           <ng-container *ngIf="currentUser?.id === comment?.author?.id">
-            <button mat-menu-item class="button-delete">
+            <button
+              mat-menu-item
+              class="button-delete"
+              (click)="deleteOwnComment(comment)"
+            >
               <span>Delete</span>
             </button>
           </ng-container>
