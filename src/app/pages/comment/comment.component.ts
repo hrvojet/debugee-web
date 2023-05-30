@@ -59,4 +59,8 @@ export class CommentComponent implements OnInit {
 			this.comments?.splice(indexToDelete, 1);
 		});
 	}
+
+	quoteComment(comment: IComment): void {
+		this.markdown = '> ' + comment.text;
+	}
 }
