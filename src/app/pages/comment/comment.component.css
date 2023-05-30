@@ -1,5 +1,5 @@
 app-comment {
-  max-width: 900px;
+  max-width: 1000px;
   display: block;
   margin: 15px auto;
 }
@@ -25,11 +25,11 @@ mat-card {
 
 main {
   /* TODO comments are wrapped in main, set aside for additional content (two columns)*/
+  width: 70%;
 }
 
 article {
   margin-bottom: 15px;
-  width: 80%;
   border-radius: 6px;
   display: flex;
 }
