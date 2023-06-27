@@ -1,7 +1,7 @@
 app-comment {
   max-width: 1000px;
   display: block;
-  margin: 15px auto;
+  margin: 15px auto 0;
 }
 
 .fade-color {
