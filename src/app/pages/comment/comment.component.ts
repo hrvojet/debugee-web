@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
@@ -7,6 +7,7 @@ import { IComment } from '../../shared/models/comment.model';
 import { IIssue } from '../../shared/models/issue.model';
 import { UserService } from '../../shared/services/user.service';
 import { IUser } from '../../shared/models/user.model';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
 	selector: 'app-comment',
@@ -19,6 +20,9 @@ export class CommentComponent implements OnInit {
 	comments?: IComment[];
 	markdown?: string;
 	currentUser?: IUser;
+	participants?: Set<IUser>;
+
+	usersHooverInfo: Map<number, IUser>;
 
 	constructor(
 		private commentService: CommentService,
@@ -26,19 +30,19 @@ export class CommentComponent implements OnInit {
 		private router: Router,
 		private issueService: IssueService,
 		private userService: UserService
-	) {}
+	) {
+		this.usersHooverInfo = new Map<number, IUser>();
+	}
 
 	ngOnInit(): void {
 		const id = Number(this.route.snapshot.paramMap.get('issueId'));
-		console.log(id);
 		this.currentUser = this.userService.getCurrentUser();
 
 		forkJoin([this.issueService.getIssueById(id), this.commentService.getCommentsForSpecificIssue(id)]).subscribe(
 			(res) => {
-				console.log(res[0]);
 				this.issue = res[0];
 				this.comments = res[1];
-				console.log(res[1]);
+				this.participants = this.mapDistinctUsers(this.comments!);
 			}
 		);
 	}
@@ -62,5 +66,24 @@ export class CommentComponent implements OnInit {
 
 	quoteComment(comment: IComment): void {
 		this.markdown = '> ' + comment.text;
+	}
+
+	private mapDistinctUsers(comments: IComment[]): Set<IUser> {
+		const usersMap = new Map<number, IUser>();
+		for (const comment of comments) {
+			const userID = comment.author.id;
+			if (!usersMap.has(userID)) {
+				usersMap.set(userID, comment.author);
+			}
+		}
+		return new Set(usersMap.values());
+	}
+
+	getUserInfo(user: IUser) {
+		if (!this.usersHooverInfo?.has(user.id)) {
+			this.userService.getUserByID(user.id).subscribe((fetchedUser) => {
+				this.usersHooverInfo!.set(fetchedUser.id, fetchedUser);
+			});
+		}
 	}
 }

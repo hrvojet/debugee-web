@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { JwtService } from './jwt.service';
 import { IUser } from '../models/user.model';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UserService {
-	constructor(private jwtService: JwtService) {}
+	constructor(private jwtService: JwtService, private http: HttpClient) {}
 
 	public getCurrentUser(): IUser {
 		const token = this.jwtService.decodeAccessToken();
@@ -17,5 +19,9 @@ export class UserService {
 			username: token.username,
 			web_url: '',
 		};
+	}
+
+	public getUserByID(id: number) {
+		return this.http.get<IUser>(environment.protocol + environment.debugeeDomain + '/user/' + id);
 	}
 }

@@ -1,12 +1,19 @@
 <h1 class="main-header">
   {{issue?.title}} <span class="fade-color"> #{{issue?.id}}</span>
 <p class="fade-color">
-  {{issue?.originalPoster?.username}} opened this issue on {{comments?.[0]?.created | date}} &#x2022; {{comments?.length}} comments
+  {{issue?.originalPoster?.username}} opened this issue on<!-- TODO i18n --> {{comments?.[0]?.created | date}} &#x2022; {{comments?.length}} comments
 </p>
 </h1>
 <main>
   <article *ngFor="let comment of comments" class="comment">
-    <img src="{{comment?.author?.avatar_url}}" alt="{{comment?.author?.username}}">
+    <span
+      (mouseover)="getUserInfo(comment.author)"
+      matTooltip="{{usersHooverInfo.get(comment.author.id) ? usersHooverInfo.get(comment.author.id)?.username : 'user'}}"
+      [matTooltipPosition]="'right'"
+      style="height: min-content"
+    >
+      <img src="{{comment?.author?.avatar_url}}" alt="{{comment?.author?.username}}">
+    </span>
     <div class="text-wrapper">
       <h3 class="sub-header">{{comment?.author?.username}}<span class="fade-color"> commented on {{comment?.created | date}}</span>
         <button
@@ -68,5 +75,15 @@
     </div>
   </article>
 </main>
-<aside>asd</aside>
+<aside>
+  <span
+    *ngFor="let user of participants"
+    style="margin: 0 4px"
+    (mouseover)="getUserInfo(user)"
+    matTooltip="{{usersHooverInfo.get(user.id) ? usersHooverInfo.get(user.id)?.username : 'user'}}">
+    <img src="{{user?.avatar_url}}"
+         alt="{{user.username}}"
+    >
+  </span>
+</aside>
 <div class="clear"></div>

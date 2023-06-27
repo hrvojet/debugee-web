@@ -26,6 +26,12 @@ mat-card {
 main {
   /* TODO comments are wrapped in main, set aside for additional content (two columns)*/
   width: 70%;
+  float: left;
+}
+
+aside {
+  width: 28%;
+  float: right;
 }
 
 article {
@@ -157,6 +163,10 @@ markdown {
   line-height:35px;
   height:35px;
   color: white;
+  background-color: #28282c;
+}
+
+.mat-tooltip {
   background-color: #28282c;
 }
 
