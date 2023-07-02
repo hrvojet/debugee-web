@@ -7,4 +7,5 @@ export interface IIssue {
 	commentNumber: number;
 	issueType: string;
 	originalPoster: IUser;
+	opened: boolean;
 }

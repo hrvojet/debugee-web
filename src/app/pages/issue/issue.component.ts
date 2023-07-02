@@ -5,6 +5,7 @@ import { IProject } from '../../shared/models/project.model';
 import { ProjectService } from '../../shared/services/project.service';
 import { forkJoin } from 'rxjs';
 import { IIssue } from '../../shared/models/issue.model';
+import { IPage } from '../../shared/models/page/page.model';
 
 @Component({
 	selector: 'app-issue',
@@ -12,7 +13,7 @@ import { IIssue } from '../../shared/models/issue.model';
 	styleUrls: ['./issue.component.css'],
 })
 export class IssueComponent implements OnInit, OnDestroy {
-	ISSUES?: IIssue[];
+	ISSUES?: IPage<IIssue>;
 	project?: IProject;
 
 	constructor(
