@@ -206,3 +206,10 @@ userInput {
 mat-card, mat-card-header, mat-card-subtitle {
   color: #d0d0d0;
 }
+
+hr {
+  background-color: #5aae3d;
+  margin: 18px 0 18px;
+  height: 1px;
+  border: none;
+}

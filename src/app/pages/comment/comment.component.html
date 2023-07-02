@@ -76,14 +76,22 @@
   </article>
 </main>
 <aside>
-  <span
-    *ngFor="let user of participants"
-    style="margin: 0 4px"
-    (mouseover)="getUserInfo(user)"
-    matTooltip="{{usersHooverInfo.get(user.id) ? usersHooverInfo.get(user.id)?.username : 'user'}}">
-    <img src="{{user?.avatar_url}}"
-         alt="{{user.username}}"
-    >
-  </span>
+  <div>
+    <h4 class="fade-color">Labels</h4>
+    <span>None yet</span>
+  </div>
+  <hr>
+  <div>
+    <h4 class="fade-color">Participants</h4>
+    <span
+      *ngFor="let user of participants"
+      style="margin: 0 4px"
+      (mouseover)="getUserInfo(user)"
+      matTooltip="{{usersHooverInfo.get(user.id) ? usersHooverInfo.get(user.id)?.username : 'user'}}">
+      <img src="{{user?.avatar_url}}"
+           alt="{{user.username}}"
+      >
+    </span>
+  </div>
 </aside>
 <div class="clear"></div>
