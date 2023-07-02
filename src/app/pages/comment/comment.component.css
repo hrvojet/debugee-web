@@ -8,8 +8,11 @@ app-comment {
   color: #939393;
 }
 
+.mat-typography h1 {
+  margin: 12px 0 46px;
+}
+
 .main-header {
-  margin: 12px 0 32px;
   border-bottom: 1px solid #5aae3d;
 }
 
