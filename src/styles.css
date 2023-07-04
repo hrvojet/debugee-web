@@ -2,11 +2,11 @@
 
 html {
 	height: 100%;
-	background-color: #1b1b1f;
+	background-color: #37373c;
 }
 
 .mat-toolbar {
-	background-color: rgb(40, 40, 44);
+	background-color: #28282CFF;
 }
 
 mat-toolbar-row {
@@ -30,7 +30,7 @@ mat-icon {
 }
 
 a {
-  color: #427e2c;
+  color: #ffffff;
 }
 
 .clear { clear: both; height: 70px; }

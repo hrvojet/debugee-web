@@ -17,6 +17,13 @@ export class IssueService {
 		);
 	}
 
+	getIssuesPage(projectId: number, sort: string, order: string, page: number) {
+		// TODO add pagination params
+		return this.http.get<IPage<IIssue>>(
+			environment.protocol + environment.debugeeDomain + '/issues?projectId=' + projectId
+		);
+	}
+
 	getIssueById(issueId: number) {
 		return this.http.get<IIssue>(environment.protocol + environment.debugeeDomain + '/issues/' + issueId);
 	}

@@ -1,26 +1,67 @@
-mat-card {
-  background-color: #1b1b1f;
-  border-left: 1px solid #5aae3d;
-  border-bottom: 1px solid #5aae3d;
-  border-right: 1px solid #5aae3d;
-  width: 50%;
-  margin: 0 auto;
-  border-radius: 0;
+app-issue {
+  max-width: 1220px;
+  display: block;
+  margin: 46px auto 0;
+  border: 1px solid #5aae3d;
+  border-radius: 6px;
+  overflow: auto;
 }
 
-mat-card:first-of-type {
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  border-top: 1px solid #5aae3d;
-  margin-top: 64px;
+h2 {
   background-color: #28282c;
+  margin-bottom: 0 !important;
+  border-bottom: 1px solid #5aae3d;
+  padding: 12px 0 12px 12px;
 }
 
-mat-card:last-of-type {
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+table {
+  width: 100%;
 }
 
-mat-card, mat-card-header, mat-card-subtitle {
-  color: #d0d0d0;
+app-issue table td.mat-cell {
+  color: white;
+  background-color: #37373c;
+}
+
+td {
+  border-bottom: 1px solid #37373c;
+  height: 67px;
+}
+
+td:last-child {
+  width: 5%;
+}
+
+td .mat-icon {
+  display: inline;
+  font-size: 15px;
+}
+
+td.mat-cell {
+  border-bottom: 1px solid #5aae3d;
+}
+
+cdk-row .mat-row:hover {
+  background-color: red;
+}
+
+.mat-paginator {
+  background-color: #37373c;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+/**/
+
+.fade-color {
+  color: #939393;
+}
+
+@media only screen and (max-width: 1220px) {
+  app-issue {
+    width: 96%;
+  }
 }
