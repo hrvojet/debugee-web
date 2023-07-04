@@ -63,7 +63,9 @@ img {
   padding: 5px 22px 5px;
   border-bottom: 1px solid #5aae3d;
   font-size: 14px;
-  background-color: #28282c;
+  background-color: #3e3e45;
+  margin-bottom: 0;
+  color: white;
 }
 
 .mat-tab-label, .mat-tab-link {
@@ -118,6 +120,11 @@ textarea {
 markdown {
   display: block;
   padding: 8px 22px 8px 22px;
+  background-color: #333339;
+}
+
+markdown p {
+  margin-top: 12px !important;
 }
 
 .submit-button {
@@ -215,4 +222,10 @@ hr {
   margin: 18px 0 18px;
   height: 1px;
   border: none;
+}
+
+@media only screen and (max-width: 1280px) {
+  app-comment {
+    width: 96%;
+  }
 }
