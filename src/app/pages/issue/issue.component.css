@@ -8,10 +8,11 @@ app-issue {
 }
 
 h2 {
-  background-color: #28282c;
+  background-color: #3e3e45;
   margin-bottom: 0 !important;
   border-bottom: 1px solid #5aae3d;
-  padding: 12px 0 12px 12px;
+  padding: 12px 0 12px 22px;
+  color: #939393;
 }
 
 table {
@@ -20,7 +21,7 @@ table {
 
 app-issue table td.mat-cell {
   color: white;
-  background-color: #37373c;
+  background-color: #333339;
 }
 
 td {
@@ -54,10 +55,15 @@ a {
   text-decoration: none;
 }
 
-/**/
+/*Effects*/
 
 .fade-color {
   color: #939393;
+}
+
+.hoover-effect:hover {
+  color: #5aae3d;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1280px) {
