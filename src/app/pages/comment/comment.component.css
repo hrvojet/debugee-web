@@ -5,7 +5,7 @@ app-comment {
 }
 
 .fade-color {
-  color: #939393;
+  color: var(--text-fade-color);
 }
 
 .mat-typography h1 {
@@ -13,17 +13,11 @@ app-comment {
 }
 
 .main-header {
-  border-bottom: 1px solid #5aae3d;
+  border-bottom: 1px solid var(--main-green-color);
 }
 
 .main-header p {
   font-size: 14px;
-}
-
-mat-card {
-  background-color: #1b1b1f;
-  border: 1px solid #5aae3d;
-  width: 100%;
 }
 
 main {
@@ -51,7 +45,7 @@ img {
 }
 
 .text-wrapper {
-  border: 1px solid #5aae3d;
+  border: 1px solid var(--main-green-color);
   width: 100%;
   margin-left: 9px;
   margin-bottom: 22px;
@@ -61,24 +55,24 @@ img {
 
 .text-wrapper .sub-header {
   padding: 5px 22px 5px;
-  border-bottom: 1px solid #5aae3d;
+  border-bottom: 1px solid var(--main-green-color);
   font-size: 14px;
-  background-color: #3e3e45;
+  background-color: var(--item-background-color);
   margin-bottom: 0;
   color: white;
 }
 
 .mat-tab-label, .mat-tab-link {
-  color: #ffffff;
+  color: white;
 }
 
 .mat-tab-label:hover, .mat-tab-link:hover {
-  color: #a4a4a4;
+  color: var(--main-green-color);
 }
 
 /* tab-headers start */
 .mat-tab-label, .mat-tab-labels {
-  background-color: #28282c;
+  background-color: var(--mat-menu-background-color);
 }
 
 .mat-tab-label.mat-tab-label-active {
@@ -110,7 +104,7 @@ textarea {
   min-height: 100px;
   box-sizing: border-box;
   margin: 6px 0 0 1%;
-  border: 1px solid #5aae3d;
+  border: 1px solid var(--main-green-color);
   resize: vertical;
   overflow: auto;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -134,7 +128,7 @@ markdown p {
 
 .submit-button:disabled {
   color: white !important;
-  background-color: #783691 !important;
+  background-color: var(--main-purple-color) !important;
   opacity: 0.3 !important;
 }
 
@@ -143,7 +137,7 @@ markdown p {
 }
 
 .button-width:hover {
-  color: #5aae3d !important;
+  color: var(--main-green-color) !important;
 }
 
 .button-delete {
@@ -152,7 +146,7 @@ markdown p {
 
 .button-delete:hover {
   color: white !important;
-  background-color: #783691 !important;
+  background-color: var(--main-purple-color) !important;
 }
 
 .mat-menu-content {
@@ -160,11 +154,11 @@ markdown p {
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
   color: white;
-  background-color: #28282c;
+  background-color: var(--mat-menu-background-color);
 }
 
 .mat-menu-panel {
-  background-color: #28282c !important;
+  background-color: var(--mat-menu-background-color) !important;
   height: inherit;
   min-height: 48px !important;
 }
@@ -173,21 +167,14 @@ markdown p {
   line-height:35px;
   height:35px;
   color: white;
-  background-color: #28282c;
+  background-color: var(--mat-menu-background-color);
 }
 
 .mat-tooltip {
-  background-color: #28282c;
+  background-color: var(--mat-menu-background-color);
 }
 
 /*
-mat-card {
-  background-color: #1b1b1f;
-  border: 1px solid #5aae3d;
-  margin: 0 auto 33px;
-  border-radius: 6px;
-  width: 75%;
-}
 
 mat-card-header {
   margin: 0;
@@ -213,12 +200,9 @@ userInput {
 }
 
 */
-mat-card, mat-card-header, mat-card-subtitle {
-  color: #d0d0d0;
-}
 
 hr {
-  background-color: #5aae3d;
+  background-color: var(--main-green-color);
   margin: 18px 0 18px;
   height: 1px;
   border: none;

@@ -3,14 +3,14 @@ app-project {
   display: block;
   margin: 46px auto 0;
   overflow: auto;
-  border: 1px solid #5aae3d;
+  border: 1px solid var(--main-green-color);
 }
 
 /* TODO add TABLE!*/
 
 .mat-card {
-  background-color: #28282c;
-  border-bottom: 1px solid #5aae3d;
+  background-color: var(--mat-menu-background-color);
+  border-bottom: 1px solid var(--main-green-color);
 }
 
 mat-card:first-of-type {
@@ -32,7 +32,7 @@ mat-icon {
 }
 
 .hoover-effect:hover {
-  border-bottom: 2px solid #5aae3d;
+  border-bottom: 2px solid var(--main-green-color);
 }
 
 @media only screen and (max-width: 1280px) {
