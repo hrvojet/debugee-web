@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProjectService } from '../../shared/services/project.service';
 import { IProject } from '../../shared/models/project.model';
 
@@ -6,6 +6,7 @@ import { IProject } from '../../shared/models/project.model';
 	selector: 'app-project',
 	templateUrl: './project.component.html',
 	styleUrls: ['./project.component.css'],
+	encapsulation: ViewEncapsulation.None,
 })
 export class ProjectComponent implements OnInit {
 	PROJECTS?: IProject[];
