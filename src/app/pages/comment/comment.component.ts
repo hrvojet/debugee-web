@@ -13,7 +13,6 @@ import { MatTooltip } from '@angular/material/tooltip';
 	selector: 'app-comment',
 	templateUrl: './comment.component.html',
 	styleUrls: ['./comment.component.css'],
-	encapsulation: ViewEncapsulation.None,
 })
 export class CommentComponent implements OnInit {
 	issue?: IIssue;

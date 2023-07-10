@@ -1,4 +1,4 @@
-app-comment {
+:host(app-comment) {
   max-width: 1220px;
   display: block;
   margin: 15px auto 0;
@@ -8,7 +8,7 @@ app-comment {
   color: var(--text-fade-color);
 }
 
-.mat-typography h1 {
+.main-header {
   margin: 12px 0 46px;
 }
 
@@ -62,36 +62,32 @@ img {
   color: white;
 }
 
-.mat-tab-label, .mat-tab-link {
+:host ::ng-deep .mat-tab-label, :host ::ng-deep .mat-tab-link {
   color: white;
 }
 
-.mat-tab-label:hover, .mat-tab-link:hover {
+:host ::ng-deep .mat-tab-label:hover, :host ::ng-deep .mat-tab-link:hover {
   color: var(--main-green-color);
 }
 
 /* tab-headers start */
-.mat-tab-label, .mat-tab-labels {
-  background-color: var(--mat-menu-background-color);
+:host ::ng-deep .mat-tab-label, :host ::ng-deep .mat-tab-labels {
+  background-color: var(--item-background-color);
 }
 
-.mat-tab-label.mat-tab-label-active {
+:host ::ng-deep .mat-tab-label.mat-tab-label-active {
   background-color: #1b1b1f;
   border-top-left-radius: 9px;
   border-top-right-radius: 9px;
 }
 
-.mat-ink-bar {
+:host ::ng-deep .mat-ink-bar {
   transition: none !important;
   display: none !important;
 }
 /* tab-headers end */
 
-.text-area-wrapper {
-  padding: 22px;
-}
-
-mat-tab-group {
+:host ::ng-deep mat-tab-group {
   min-height: 160px;
   border-bottom: none;
 }
@@ -111,14 +107,14 @@ textarea {
   font-size: 14px;
 }
 
-markdown {
+:host ::ng-deep markdown {
   display: block;
   padding: 8px 22px 8px 22px;
   background-color: #333339;
 }
 
-markdown p {
-  margin-top: 12px !important;
+:host ::ng-deep markdown > * {
+  margin: 12px 4px 12px 0;
 }
 
 .submit-button {
@@ -149,7 +145,7 @@ markdown p {
   background-color: var(--main-purple-color) !important;
 }
 
-.mat-menu-content {
+:host ::ng-deep .mat-menu-content {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
@@ -157,49 +153,22 @@ markdown p {
   background-color: var(--mat-menu-background-color);
 }
 
-.mat-menu-panel {
+:host ::ng-deep .mat-menu-panel {
   background-color: var(--mat-menu-background-color) !important;
   height: inherit;
   min-height: 48px !important;
 }
 
-.mat-menu-item{
+:host ::ng-deep .mat-menu-item{
   line-height:35px;
   height:35px;
   color: white;
   background-color: var(--mat-menu-background-color);
 }
 
-.mat-tooltip {
+:host ::ng-deep .mat-tooltip {
   background-color: var(--mat-menu-background-color);
 }
-
-/*
-
-mat-card-header {
-  margin: 0;
-}
-
-mat-card mat-card-title {
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.mat-card-avatar {
-  height: 28px;
-  width: 28px;
-}
-
-mat-card-content {
-  font-size: 16px;
-}
-
-userInput {
-  border-bottom-left-radius: 61px;
-  border-bottom-right-radius: 6px;
-}
-
-*/
 
 hr {
   background-color: var(--main-green-color);
@@ -209,7 +178,7 @@ hr {
 }
 
 @media only screen and (max-width: 1280px) {
-  app-comment {
+  :host(app-comment) {
     width: 96%;
   }
 }
