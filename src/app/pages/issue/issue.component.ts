@@ -16,7 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 	styleUrls: ['./issue.component.css'],
 	encapsulation: ViewEncapsulation.None,
 })
-export class IssueComponent implements AfterViewInit, OnDestroy {
+export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	project?: IProject;
 
 	resultsLength = 0;
@@ -33,13 +33,15 @@ export class IssueComponent implements AfterViewInit, OnDestroy {
 		private projectService: ProjectService
 	) {}
 
+	ngOnInit() {
+		this.dataSource.paginator = this.paginator;
+		this.dataSource.sort = this.sort;
+	}
+
 	ngAfterViewInit(): void {
 		const id = Number(this.route.snapshot.paramMap.get('projectId'));
 
-		this.dataSource.paginator = this.paginator;
-		this.dataSource.sort = this.sort;
-
-		this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 1));
+		this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
 		forkJoin([this.issueService.getIssues(id), this.projectService.getProjectById(id)]).subscribe((res) => {
 			// this.ISSUES = res[0];
@@ -50,7 +52,13 @@ export class IssueComponent implements AfterViewInit, OnDestroy {
 			.pipe(
 				startWith({}),
 				switchMap(() => {
-					return this.issueService.getIssuesPage(id, this.sort.active, 'ASC', this.paginator.pageIndex);
+					return this.issueService.getIssuesPage(
+						id,
+						this.sort.active,
+						'ASC',
+						this.paginator.pageIndex,
+						this.paginator.pageSize
+					);
 				}),
 				map((data) => {
 					if (data === null) {
@@ -61,7 +69,9 @@ export class IssueComponent implements AfterViewInit, OnDestroy {
 					return data.content;
 				})
 			)
-			.subscribe((data) => (this.dataSource.data = data));
+			.subscribe((data) => {
+				this.dataSource.data = data;
+			});
 	}
 
 	ngOnDestroy(): void {}

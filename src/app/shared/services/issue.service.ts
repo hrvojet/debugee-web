@@ -17,11 +17,10 @@ export class IssueService {
 		);
 	}
 
-	getIssuesPage(projectId: number, sort: string, order: string, page: number) {
+	getIssuesPage(projectId: number, sort: string, order: string, page: number, size: number) {
+		const params = 'projectId=' + projectId + '&page=' + page + '&size=' + size + '&sortBy=' + order;
 		// TODO add pagination params
-		return this.http.get<IPage<IIssue>>(
-			environment.protocol + environment.debugeeDomain + '/issues?projectId=' + projectId
-		);
+		return this.http.get<IPage<IIssue>>(environment.protocol + environment.debugeeDomain + '/issues?' + params);
 	}
 
 	getIssueById(issueId: number) {
