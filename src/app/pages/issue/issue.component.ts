@@ -14,7 +14,6 @@ import { MatTableDataSource } from '@angular/material/table';
 	selector: 'app-issue',
 	templateUrl: './issue.component.html',
 	styleUrls: ['./issue.component.css'],
-	encapsulation: ViewEncapsulation.None,
 })
 export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	project?: IProject;
