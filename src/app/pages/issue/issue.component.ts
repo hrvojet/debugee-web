@@ -19,6 +19,7 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	project?: IProject;
 
 	resultsLength = 0;
+	projectID!: number;
 
 	displayedColumns: string[] = ['title', 'commentNumber'];
 
@@ -38,11 +39,15 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	ngAfterViewInit(): void {
-		const id = Number(this.route.snapshot.paramMap.get('projectId'));
+		// TODO persist table order after page render in localStorage
+		this.projectID = Number(this.route.snapshot.paramMap.get('projectId'));
 
 		this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
-		forkJoin([this.issueService.getIssues(id), this.projectService.getProjectById(id)]).subscribe((res) => {
+		forkJoin([
+			this.issueService.getIssues(this.projectID),
+			this.projectService.getProjectById(this.projectID),
+		]).subscribe((res) => {
 			// this.ISSUES = res[0];
 			this.project = res[1];
 		});
@@ -52,7 +57,7 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 				startWith({}),
 				switchMap(() => {
 					return this.issueService.getIssuesPage(
-						id,
+						this.projectID,
 						this.sort.active,
 						'ASC',
 						this.paginator.pageIndex,
@@ -74,4 +79,14 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {}
+
+	sortDataSource(id: string, start: string) {
+		this.sort.active = id;
+		this.issueService
+			.getIssuesPage(this.projectID, this.sort.active, start, 0, this.paginator.pageSize)
+			.subscribe((data) => {
+				this.resultsLength = data.totalElements;
+				this.dataSource.data = data.content;
+			});
+	}
 }

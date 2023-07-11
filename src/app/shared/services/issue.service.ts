@@ -17,8 +17,8 @@ export class IssueService {
 		);
 	}
 
-	getIssuesPage(projectId: number, sort: string, order: string, page: number, size: number) {
-		const params = 'projectId=' + projectId + '&page=' + page + '&size=' + size + '&sortBy=' + order;
+	getIssuesPage(projectId: number, id: string, order: string, page: number, size: number) {
+		const params = 'projectId=' + projectId + '&page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
 		// TODO add pagination params
 		return this.http.get<IPage<IIssue>>(environment.protocol + environment.debugeeDomain + '/issues?' + params);
 	}

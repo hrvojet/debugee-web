@@ -15,6 +15,18 @@
       <mat-menu #menu="matMenu">
         <button
           mat-menu-item
+          (click)="sortDataSource('title', 'asc')"
+        >
+          <span>Ascending</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="sortDataSource('title', 'desc')"
+        >
+          <span>Descending</span>
+        </button>
+        <button
+          mat-menu-item
         >
           <span>Newest</span>
         </button>
@@ -25,11 +37,13 @@
         </button>
         <button
           mat-menu-item
+          (click)="sortDataSource('commentNumber', 'desc')"
         >
           <span>Most commented</span>
         </button>
         <button
           mat-menu-item
+          (click)="sortDataSource('commentNumber', 'asc')"
         >
           <span>Least commented</span>
         </button>
