@@ -1,5 +1,85 @@
 <h2>
+  <div class="left">
   {{project?.title}} issues
+  </div>
+  <div class="right">
+    <div>
+      <button
+        class="button-width"
+        mat-button
+        [matMenuTriggerFor]="menu"
+        style="float: right">
+        Sort
+        <mat-icon class="expand_more">expand_more</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+        >
+          <span>Newest</span>
+        </button>
+        <button
+          mat-menu-item
+        >
+          <span>Oldest</span>
+        </button>
+        <button
+          mat-menu-item
+        >
+          <span>Most commented</span>
+        </button>
+        <button
+          mat-menu-item
+        >
+          <span>Least commented</span>
+        </button>
+      </mat-menu>
+    </div>
+    <div>
+      <button
+        class="button-width"
+        mat-button
+        [matMenuTriggerFor]="menu"
+        style="float: right">
+        Labels
+        <mat-icon class="expand_more">expand_more</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+        >
+          <span>Bug</span>
+        </button>
+        <button
+          mat-menu-item
+        >
+          <span>Issue</span>
+        </button>
+      </mat-menu>
+    </div>
+    <div>
+      <button
+        class="button-width"
+        mat-button
+        [matMenuTriggerFor]="menu"
+        style="float: right">
+        Author
+        <mat-icon class="expand_more">expand_more</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+        >
+          <span>hrvojet</span>
+        </button>
+        <button
+          mat-menu-item
+        >
+          <span>htrcak</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
 </h2>
 <div class="example-table-container">
   <table mat-table

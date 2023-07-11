@@ -13,6 +13,20 @@ h2 {
   border-bottom: 1px solid var(--main-green-color);
   padding: 12px 0 12px 22px;
   color: var(--text-fade-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+h2 .left {
+  flex: 3;
+  display: flex;
+  justify-content: left;
+}
+
+h2 .right {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 table {
