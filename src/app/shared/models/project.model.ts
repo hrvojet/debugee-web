@@ -4,6 +4,8 @@ export interface IProject {
 	id: number;
 	title: string;
 	description: string;
+	created: Date;
+	edited: Date;
 	openedIssues: number;
 	closedIssues: number;
 	owner: IUser;
