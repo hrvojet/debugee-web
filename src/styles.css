@@ -47,3 +47,27 @@ a {
 }
 
 .clear { clear: both; height: 70px; }
+
+.mat-menu-content {
+  background-color: var(--mat-menu-background-color) !important;
+  padding: 0 !important;
+}
+
+.mat-menu-panel {
+  min-height: inherit !important;
+}
+
+button.mat-menu-item {
+  height: 32px;
+  line-height: 32px;
+  color: var(--text-fade-color) !important;
+  background-color: var(--item-background-color);
+}
+
+button.mat-menu-item:hover {
+  height: 32px;
+  line-height: 32px;
+  color: var(--main-green-color) !important;
+  background-color: var(--item-background-color) !important;
+}
+
