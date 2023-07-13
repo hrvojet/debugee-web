@@ -44,6 +44,12 @@ img {
   border-radius: 50%;
 }
 
+.underline-date:hover {
+  cursor: pointer;
+  color: var(--main-green-color);
+  border-bottom: 1px solid var(--main-green-color);
+}
+
 .text-wrapper {
   border: 1px solid var(--main-green-color);
   width: 100%;
