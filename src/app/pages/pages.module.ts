@@ -17,9 +17,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
 
 @NgModule({
-	declarations: [ProjectComponent, IssueComponent, CommentComponent],
+	declarations: [ProjectComponent, IssueComponent, CommentComponent, DateAgoPipe],
 	imports: [
 		CommonModule,
 		MatCardModule,
