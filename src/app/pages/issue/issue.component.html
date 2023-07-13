@@ -27,11 +27,13 @@
         </button>
         <button
           mat-menu-item
+          (click)="sortDataSource('created', 'asc')"
         >
           <span>Newest</span>
         </button>
         <button
           mat-menu-item
+          (click)="sortDataSource('created', 'desc')"
         >
           <span>Oldest</span>
         </button>
