@@ -4,6 +4,27 @@ header {
 	justify-content: space-between;
 }
 
+img {
+  margin-top: 3px;
+  margin-right: 40px;
+  width: 36px;
+  height: 36px;
+  border-radius: 49%;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.logout-button {
+  color: #fc7272 !important;
+}
+
+.logout-button:hover {
+  color: white !important;
+  background-color: var(--main-purple-color) !important;
+}
+
 .left {
 	flex: 1;
 	display: flex;

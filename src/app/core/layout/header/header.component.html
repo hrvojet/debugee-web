@@ -5,14 +5,31 @@
 				<button mat-icon-button color="primary"><mat-icon>home</mat-icon> <span class="home-button">debugee</span> </button>
 			</div>
 			<div class="right">
-				<button mat-raised-button color="primary"
+        <button *ngIf="!isUserLogged; else loggedOut" mat-raised-button color="accent" (click)="login()">
+          Login with GitLab
+        </button>
+        <ng-template #loggedOut>
+          <img [matMenuTriggerFor]="userMenu" src="{{currentUser?.avatar_url}}" alt="{{currentUser?.username}}">
+          <mat-menu #userMenu="matMenu">
+            <button
+              mat-menu-item
+            >
+              <span>Settings</span>
+            </button>
+            <button
+              mat-menu-item
+              (click)="logout()"
+              class="logout-button"
+            >
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </ng-template>
+				<!--<button mat-raised-button color="primary"
                 (click)="login()"
                 *ngIf="!isUserLogged">
           Login with GitLab
-        </button>
-        <button *ngIf="isUserLogged" mat-raised-button color="accent" (click)="logout()">
-            logged baby!
-        </button>
+        </button>-->
 			</div>
 		</header>
 	</mat-toolbar-row>
