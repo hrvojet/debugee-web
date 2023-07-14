@@ -2,7 +2,6 @@ import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '
 import { ProjectService } from '../../shared/services/project.service';
 import { IProject } from '../../shared/models/project.model';
 import { MatTableDataSource } from '@angular/material/table';
-import { IIssue } from '../../shared/models/issue.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map, merge, startWith, switchMap } from 'rxjs';
@@ -11,13 +10,10 @@ import { map, merge, startWith, switchMap } from 'rxjs';
 	selector: 'app-project',
 	templateUrl: './project.component.html',
 	styleUrls: ['./project.component.css'],
-	encapsulation: ViewEncapsulation.None,
 })
 export class ProjectComponent implements OnInit, AfterViewInit {
-	PROJECTS?: IProject[];
-
 	resultsLength = 0;
-	displayedColumns: string[] = ['title'];
+	displayedColumns: string[] = ['title', 'created'];
 
 	dataSource = new MatTableDataSource<IProject>();
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -31,7 +27,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		debugger;
 		this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
 		merge(this.sort.sortChange, this.paginator.page)
