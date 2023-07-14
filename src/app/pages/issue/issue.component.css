@@ -70,10 +70,6 @@ a {
 
 /*Effects*/
 
-.fade-color {
-  color: var(--text-fade-color);
-}
-
 .hoover-effect:hover {
   color: var(--main-green-color);
   cursor: pointer;

@@ -71,3 +71,6 @@ button.mat-menu-item:hover {
   background-color: var(--item-background-color) !important;
 }
 
+.fade-color {
+  color: var(--text-fade-color);
+}

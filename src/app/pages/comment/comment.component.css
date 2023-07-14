@@ -4,10 +4,6 @@
   margin: 15px auto 0;
 }
 
-.fade-color {
-  color: var(--text-fade-color);
-}
-
 .main-header {
   margin: 12px 0 46px;
 }
