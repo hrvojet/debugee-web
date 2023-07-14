@@ -44,12 +44,8 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
-		forkJoin([
-			this.issueService.getIssues(this.projectID),
-			this.projectService.getProjectById(this.projectID),
-		]).subscribe((res) => {
-			// this.ISSUES = res[0];
-			this.project = res[1];
+		this.projectService.getProjectById(this.projectID).subscribe((res) => {
+			this.project = res;
 		});
 
 		merge(this.sort.sortChange, this.paginator.page)
