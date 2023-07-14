@@ -33,7 +33,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 			.pipe(
 				startWith({}),
 				switchMap(() => {
-					return this.projectService.getProjects();
+					return this.projectService.getProjectsPage(
+						this.sort.active,
+						'DESC',
+						this.paginator.pageIndex,
+						this.paginator.pageSize
+					);
 				}),
 				map((data) => {
 					if (data === null) {

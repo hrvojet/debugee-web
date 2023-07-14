@@ -14,6 +14,11 @@ export class ProjectService {
 		return this.http.get<IPage<IProject>>(environment.protocol + environment.debugeeDomain + '/projects');
 	}
 
+	getProjectsPage(id: string, order: string, page: number, size: number) {
+		const params = '?page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
+		return this.http.get<IPage<IProject>>(environment.protocol + environment.debugeeDomain + '/projects' + params);
+	}
+
 	getProjectById(id: number) {
 		return this.http.get<IProject>(environment.protocol + environment.debugeeDomain + '/projects/' + id);
 	}
