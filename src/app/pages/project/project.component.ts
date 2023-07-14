@@ -13,7 +13,7 @@ import { map, merge, startWith, switchMap } from 'rxjs';
 })
 export class ProjectComponent implements OnInit, AfterViewInit {
 	resultsLength = 0;
-	displayedColumns: string[] = ['title', 'created'];
+	displayedColumns: string[] = ['title'];
 
 	dataSource = new MatTableDataSource<IProject>();
 	@ViewChild(MatPaginator) paginator!: MatPaginator;

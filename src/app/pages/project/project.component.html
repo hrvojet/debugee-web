@@ -14,15 +14,15 @@
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>
     <td mat-cell *matCellDef="let row">
-      <mat-icon>book</mat-icon><a routerLink="/projects/{{row.id}}"> {{row.title}}</a>
-      <p>{{row.description}}</p>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="created">
-    <th mat-header-cell *matHeaderCellDef>created</th>
-    <td mat-cell *matCellDef="let row">
-      <a routerLink="/projects/{{row.id}}"> {{row.created | dateAgo}}</a>
+      <h2><a routerLink="/projects/{{row.id}}"> {{row.title}}</a></h2>
+      <div class="fade-color">
+        <p style="margin-bottom: 14px">{{row.description}}</p>
+        <p>
+          <mat-icon title="Opened issues">archive</mat-icon>{{row.openedIssues}}&nbsp;&nbsp;
+          <mat-icon title="Closed issues">inventory_2</mat-icon>{{row.closedIssues}}&nbsp;&nbsp;
+          <span title="{{row!.created | date: 'dd/MM/YYYY, HH:mm'}}">Created {{row.created | dateAgo}}</span>
+        </p>
+      </div>
     </td>
   </ng-container>
 
