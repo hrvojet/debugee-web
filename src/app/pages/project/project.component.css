@@ -51,8 +51,21 @@ mat-icon {
 }
 
 .mat-paginator {
-  background-color: #37373c;
+  background-color: var(--main-background-color);
   color: white;
+}
+
+:host ::ng-deep .mat-paginator-icon {
+  color: var(--main-green-color);
+}
+
+:host ::ng-deep .mat-paginator-container {
+  justify-content: center;
+  color: white;
+}
+
+:host ::ng-deep .mat-paginator-range-label {
+  display: none !important;
 }
 
 @media only screen and (max-width: 1280px) {

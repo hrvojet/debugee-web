@@ -28,7 +28,15 @@
 
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-<mat-paginator
-  [length]="resultsLength"
-  hidePageSize
-></mat-paginator>
+<div>
+  <mat-paginator
+    [length]="resultsLength"
+    hidePageSize
+    aria-label="Select page"
+  ></mat-paginator><!-- TODO hide when resultsLength is less than 50 -->
+</div>
+
+<!--
+[ngStyle]="{'background-color': (resultsLength > 1) ? 'red' : 'blue'}"
+[ngStyle]="{'visibility': (resultsLength > 1) ? 'hidden' : 'show'}"
+-->
