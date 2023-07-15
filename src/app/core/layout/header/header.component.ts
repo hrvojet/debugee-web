@@ -24,7 +24,6 @@ export class HeaderComponent implements OnChanges, OnInit, AfterViewInit {
 			if (params[`access_token`]) {
 				localStorage.setItem('access_token', params[`access_token`]);
 				void this.router.navigate(['/projects']).then(() => {
-					console.log("I'm in this shit");
 					this.isUserLogged = this.sessionService.isUserLoggedIn(); // TODO observable that checks for local storage, no need to reload on init
 					this.currentUser = this.userService.getCurrentUser();
 				});
