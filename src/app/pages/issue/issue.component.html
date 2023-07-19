@@ -1,6 +1,5 @@
-<header style="margin: 13px 0 13px">
-  <input type="text">
-</header>
+<app-issue-header (stringToSearch)="onSearchKeyPressed($event)">
+</app-issue-header>
 <h2>
   <div class="left">
   {{project?.title}} issues

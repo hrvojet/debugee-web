@@ -23,6 +23,16 @@ export class IssueService {
 		return this.http.get<IPage<IIssue>>(environment.protocol + environment.debugeeDomain + '/issues?' + params);
 	}
 
+	searchIssue(title: string, projectId: number, id: string, order: string, page: number, size: number) {
+		const params = '?page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
+		return this.http.post<IPage<IIssue>>(
+			environment.protocol + environment.debugeeDomain + '/issues/search/' + projectId + params,
+			{
+				title,
+			}
+		);
+	}
+
 	getIssueById(issueId: number) {
 		return this.http.get<IIssue>(environment.protocol + environment.debugeeDomain + '/issues/' + issueId);
 	}

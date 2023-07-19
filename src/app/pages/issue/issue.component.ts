@@ -85,4 +85,13 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 				this.dataSource.data = data.content;
 			});
 	}
+
+	onSearchKeyPressed($event: { title: string }) {
+		this.issueService
+			.searchIssue($event.title, this.projectID, this.sort.active, this.sort.direction, 0, this.paginator.pageSize)
+			.subscribe((data) => {
+				this.resultsLength = data.totalElements;
+				this.dataSource.data = data.content;
+			});
+	}
 }

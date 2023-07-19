@@ -18,9 +18,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
+import { IssueHeaderComponent } from './issue/issue-header/issue-header.component';
 
 @NgModule({
-	declarations: [ProjectComponent, IssueComponent, CommentComponent, DateAgoPipe],
+	declarations: [ProjectComponent, IssueComponent, CommentComponent, DateAgoPipe, IssueHeaderComponent],
 	imports: [
 		CommonModule,
 		MatCardModule,
