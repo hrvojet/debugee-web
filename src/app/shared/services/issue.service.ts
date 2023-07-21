@@ -24,9 +24,9 @@ export class IssueService {
 	}
 
 	searchIssue(title: string, projectId: number, id: string, order: string, page: number, size: number) {
-		const params = '?page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
+		const params = 'projectId=' + projectId + '&page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
 		return this.http.post<IPage<IIssue>>(
-			environment.protocol + environment.debugeeDomain + '/issues/search/' + projectId + params,
+			environment.protocol + environment.debugeeDomain + '/issues/search?' + params,
 			{
 				title,
 			}
