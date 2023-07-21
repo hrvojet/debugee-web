@@ -9,7 +9,7 @@
   mat-table
   [dataSource]="dataSource"
   matSort
-  matSortActive="created"
+  matSortActive="edited"
 >
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>
@@ -20,7 +20,10 @@
         <p>
           <mat-icon title="Opened issues">archive</mat-icon>{{row.openedIssues}}&nbsp;&nbsp;
           <mat-icon title="Closed issues">inventory_2</mat-icon>{{row.closedIssues}}&nbsp;&nbsp;
-          <span title="{{row!.created | date: 'dd/MM/YYYY, HH:mm'}}">Created {{row.created | dateAgo}}</span>
+          <span title="{{row!.edited | date: 'dd/MM/YYYY, HH:mm'}}">
+            <span *ngIf="row!.edited !== row!.created; else created">Updated</span>
+            <ng-template #created>Created</ng-template>
+            {{row.edited | dateAgo}}</span>
         </p>
       </div>
     </td>
