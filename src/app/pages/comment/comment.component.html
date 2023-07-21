@@ -15,7 +15,11 @@
       <img src="{{comment?.author?.avatar_url}}" alt="{{comment?.author?.username}}">
     </span>
     <div class="text-wrapper">
-      <h3 class="sub-header">{{comment?.author?.username}}<span class="fade-color"> commented <span class="underline-date" title="{{comment!.created | date: 'dd/MM/YYYY, HH:mm'}}">{{comment!.created | dateAgo}}</span></span>
+      <h3 class="sub-header">{{comment?.author?.username}}<span class="fade-color">
+         <span *ngIf="comment!.edited !== comment!.created; else commented"> edited <span class="underline-date" title="{{comment!.edited | date: 'dd/MM/YYYY, HH:mm'}}">{{comment!.edited | dateAgo}}</span></span></span>
+        <ng-template #commented>
+          commented <span class="underline-date" title="{{comment!.created | date: 'dd/MM/YYYY, HH:mm'}}">{{comment!.created | dateAgo}}</span>
+        </ng-template>
         <button
           class="button-width"
           mat-button
