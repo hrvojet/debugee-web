@@ -58,8 +58,8 @@ td.mat-cell {
   border-bottom: 1px solid var(--main-green-color);
 }
 
-cdk-row .mat-row:hover {
-  background-color: red;
+table .mat-row:hover > .mat-cell {
+  background-color: var(--item-background-color);
 }
 
 .mat-paginator {
