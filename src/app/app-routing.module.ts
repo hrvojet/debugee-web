@@ -6,6 +6,7 @@ import { ProjectComponent } from './pages/project/project.component';
 import { IssueComponent } from './pages/issue/issue.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { CommentComponent } from './pages/comment/comment.component';
+import { NewIssueComponent } from './pages/issue/new-issue/new-issue.component';
 
 const routes: Routes = [
 	{
@@ -25,6 +26,11 @@ const routes: Routes = [
 	{
 		path: 'projects/:projectId',
 		component: IssueComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: 'projects/:projectId/new',
+		component: NewIssueComponent,
 		canActivate: [AuthenticationGuard],
 	},
 	{

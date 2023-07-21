@@ -1,0 +1,41 @@
+<main>
+  <h3>
+    <input
+      type="text"
+      [(ngModel)]="title"
+      placeholder="Title"
+    >
+  </h3>
+  <article>
+    <img src="{{currentUser.avatar_url}}" alt="username">
+    <div class="text-wrapper">
+      <mat-tab-group animationDuration="0ms" dynamicHeight color="transparent">
+        <mat-tab label="Write">
+          <textarea
+            [(ngModel)]="markdown"
+            placeholder="Write a comment"
+          >
+          </textarea>
+        </mat-tab>
+        <mat-tab label="Preview">
+          <ng-template matTabContent>
+            <markdown
+              [data]="markdown"
+            >
+              Nothing to preview
+            </markdown>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+      <button class="submit-button"
+              mat-raised-button
+              (click)="submitNewIssue()"
+              color="accent"
+              [disabled]="!markdown || !title"
+      >Submit</button>
+    </div>
+  </article>
+</main>
+<aside>
+  placeholder
+</aside>

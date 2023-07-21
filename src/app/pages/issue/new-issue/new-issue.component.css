@@ -1,0 +1,142 @@
+:host(app-new-issue) {
+  max-width: 1220px;
+  display: block;
+  margin: 36px auto 0;
+  overflow: auto;
+}
+
+main {
+  /* TODO comments are wrapped in main, set aside for additional content (two columns)*/
+  width: 70%;
+  float: left;
+}
+
+aside {
+  width: 28%;
+  float: right;
+}
+
+img {
+  margin-top: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+article {
+  margin-bottom: 15px;
+  border-radius: 6px;
+  display: flex;
+}
+
+h3 {
+  margin-left: 43px;
+}
+
+input {
+  height: 30px;
+  flex: 1;
+  border: 1px solid var(--main-green-color);
+  margin-right: 2%;
+  border-radius: 4px;
+  background-color: var(--item-background-color);
+  color: white;
+  text-indent: 4px;
+  width: 99%;
+}
+
+input:focus {
+  height: 28px;
+  border: 2px solid var(--main-green-color);
+  outline: none;
+}
+
+.text-wrapper {
+  border: 1px solid var(--main-green-color);
+  width: 100%;
+  margin-left: 9px;
+  margin-bottom: 22px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.text-wrapper .sub-header {
+  padding: 5px 22px 5px;
+  border-bottom: 1px solid var(--main-green-color);
+  font-size: 14px;
+  background-color: var(--item-background-color);
+  margin-bottom: 0;
+  color: white;
+}
+
+:host ::ng-deep .mat-tab-label, :host ::ng-deep .mat-tab-link {
+  color: white;
+}
+
+:host ::ng-deep .mat-tab-label:hover, :host ::ng-deep .mat-tab-link:hover {
+  color: var(--main-green-color);
+}
+
+/* tab-headers start */
+:host ::ng-deep .mat-tab-label, :host ::ng-deep .mat-tab-labels {
+  background-color: var(--item-background-color);
+}
+
+:host ::ng-deep .mat-tab-label.mat-tab-label-active {
+  background-color: #1b1b1f;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}
+
+:host ::ng-deep .mat-ink-bar {
+  transition: none !important;
+  display: none !important;
+}
+/* tab-headers end */
+
+:host ::ng-deep mat-tab-group {
+  min-height: 190px;
+  border-bottom: none;
+}
+
+textarea {
+  background-color: #151515;
+  color: white;
+  border-radius: 4px;
+  width: 98%;
+  min-height: 195px;
+  box-sizing: border-box;
+  margin: 6px 0 0 1%;
+  border: 1px solid var(--main-green-color);
+  resize: vertical;
+  overflow: auto;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+:host ::ng-deep markdown {
+  display: block;
+  padding: 8px 22px 8px 22px;
+  background-color: #333339;
+}
+
+:host ::ng-deep markdown > * {
+  margin: 12px 4px 12px 0;
+}
+
+.submit-button {
+  float:right;
+  margin: 8px !important;
+}
+
+.submit-button:disabled {
+  color: white !important;
+  background-color: var(--main-purple-color) !important;
+  opacity: 0.3 !important;
+}
+
+@media only screen and (max-width: 1280px) {
+  :host(app-new-issue) {
+    width: 96%;
+  }
+}

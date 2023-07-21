@@ -36,4 +36,11 @@ export class IssueService {
 	getIssueById(issueId: number) {
 		return this.http.get<IIssue>(environment.protocol + environment.debugeeDomain + '/issues/' + issueId);
 	}
+
+	postNewIssue(projectId: number, title: string, firstComment: string) {
+		return this.http.post<IIssue>(environment.protocol + environment.debugeeDomain + '/issues/' + projectId, {
+			title,
+			firstComment,
+		});
+	}
 }

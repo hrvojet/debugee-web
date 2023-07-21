@@ -19,9 +19,18 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
 import { IssueHeaderComponent } from './issue/issue-header/issue-header.component';
+import { NewIssueComponent } from './issue/new-issue/new-issue.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-	declarations: [ProjectComponent, IssueComponent, CommentComponent, DateAgoPipe, IssueHeaderComponent],
+	declarations: [
+		ProjectComponent,
+		IssueComponent,
+		CommentComponent,
+		DateAgoPipe,
+		IssueHeaderComponent,
+		NewIssueComponent,
+	],
 	imports: [
 		CommonModule,
 		MatCardModule,
@@ -38,6 +47,7 @@ import { IssueHeaderComponent } from './issue/issue-header/issue-header.componen
 		MatPaginatorModule,
 		MatTableModule,
 		MatSortModule,
+		MatInputModule,
 	],
 })
 export class PagesModule {}
