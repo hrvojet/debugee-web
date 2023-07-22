@@ -78,14 +78,19 @@ input:focus {
 }
 
 /* tab-headers start */
+
+:host ::ng-deep .mat-tab-nav-bar, :host ::ng-deep .mat-tab-header {
+  border-bottom: none;
+}
+
 :host ::ng-deep .mat-tab-label, :host ::ng-deep .mat-tab-labels {
-  background-color: var(--item-background-color);
+  background-color: var(--main-background-color);
 }
 
 :host ::ng-deep .mat-tab-label.mat-tab-label-active {
-  background-color: #1b1b1f;
-  border-top-left-radius: 9px;
-  border-top-right-radius: 9px;
+  background-color: var(--item-background-color);
+  text-decoration: solid underline var(--main-green-color);
+  border-radius: 6px;
 }
 
 :host ::ng-deep .mat-ink-bar {
@@ -117,7 +122,7 @@ textarea {
 :host ::ng-deep markdown {
   display: block;
   padding: 8px 22px 8px 22px;
-  background-color: #333339;
+  background-color: var(--main-background-color);
 }
 
 :host ::ng-deep markdown > * {
