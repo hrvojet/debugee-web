@@ -7,6 +7,7 @@ import { IssueComponent } from './pages/issue/issue.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { CommentComponent } from './pages/comment/comment.component';
 import { NewIssueComponent } from './pages/issue/new-issue/new-issue.component';
+import { NewProjectComponent } from './pages/project/new-project/new-project.component';
 
 const routes: Routes = [
 	{
@@ -21,6 +22,11 @@ const routes: Routes = [
 	{
 		path: 'projects',
 		component: ProjectComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: 'projects/new',
+		component: NewProjectComponent,
 		canActivate: [AuthenticationGuard],
 	},
 	{

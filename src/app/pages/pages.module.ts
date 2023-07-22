@@ -21,6 +21,7 @@ import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
 import { IssueHeaderComponent } from './issue/issue-header/issue-header.component';
 import { NewIssueComponent } from './issue/new-issue/new-issue.component';
 import { MatInputModule } from '@angular/material/input';
+import { NewProjectComponent } from './project/new-project/new-project.component';
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
 		DateAgoPipe,
 		IssueHeaderComponent,
 		NewIssueComponent,
+		NewProjectComponent,
 	],
 	imports: [
 		CommonModule,
