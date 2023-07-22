@@ -119,7 +119,12 @@
           {{row.title}}
         </a>
         <br>
-        <span class="fade-color"> #{{row.id}} opened by <span class="hoover-effect">user</span> {{row.created | dateAgo}}</span>
+        <span class="fade-color">
+          #{{row.id}} opened by
+          <span class="hoover-effect">
+            {{row.originalPoster.username}}
+          </span> <span title="{{row!.edited | date: 'dd/MM/YYYY, HH:mm'}}">{{row.created | dateAgo}}</span>
+        </span>
       </td>
     </ng-container>
 
