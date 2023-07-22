@@ -4,16 +4,20 @@ header {
 	justify-content: space-between;
 }
 
-img {
-  margin-top: 3px;
-  margin-right: 40px;
-  width: 36px;
-  height: 36px;
-  border-radius: 49%;
+.right button {
+  margin-left: 12px;
 }
 
-img:hover {
-  cursor: pointer;
+.new-menu {
+  background-color: var(--item-background-color);
+  background-repeat: no-repeat;
+}
+
+.user-menu {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 .logout-button {
