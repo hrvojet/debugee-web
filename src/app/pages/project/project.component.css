@@ -25,6 +25,15 @@ h2 a:hover {
   text-decoration: underline;
 }
 
+h2 mat-icon {
+  float: right;
+  color: var(--text-fade-color);
+}
+
+h2 mat-icon:hover {
+  color: white;
+}
+
 p {
   margin-bottom: 0;
 }
