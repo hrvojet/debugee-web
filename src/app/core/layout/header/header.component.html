@@ -9,36 +9,47 @@
           Login with GitLab
         </button>
         <ng-template #loggedIn>
-          <button class="new-menu" [matMenuTriggerFor]="newMenu" mat-mini-fab>
-            <mat-icon>add
-            </mat-icon>
-          </button>
-          <mat-menu #newMenu="matMenu">
-            <button mat-menu-item>
-              New project
-            </button>
-          </mat-menu>
-          <button class="user-menu" [matMenuTriggerFor]="userMenu" mat-mini-fab [style.background-image]="'url(' + currentUser?.avatar_url + ')'">
-            <!--<img src="{{currentUser?.avatar_url}}" alt="{{currentUser?.username}}">-->
-          </button>
-          <mat-menu #userMenu="matMenu">
-            <button mat-menu-item>
-              <span>Settings</span>
-            </button>
+          <div ngbDropdown>
             <button
-              mat-menu-item
-              (click)="logout()"
-              class="logout-button"
-            >
-              <span>Logout</span>
+              ngbDropdownToggle
+              class="new-menu"
+              mat-mini-fab>
+              <mat-icon>add</mat-icon>
             </button>
-          </mat-menu>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem>
+                New project
+              </button>
+              <button ngbDropdownItem>
+                New User
+              </button>
+              <button ngbDropdownItem>
+                New placeholder
+              </button>
+            </div>
+          </div>
+          <div ngbDropdown>
+            <button
+              ngbDropdownToggle
+              class="user-menu"
+              mat-mini-fab
+              [style.background-image]="'url(' + currentUser?.avatar_url + ')'">
+              <!--<img src="{{currentUser?.avatar_url}}" alt="{{currentUser?.username}}">-->
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem>
+                <span>Settings</span>
+              </button>
+              <button
+                ngbDropdownItem
+                (click)="logout()"
+                class="logout-button"
+              >
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
         </ng-template>
-				<!--<button mat-raised-button color="primary"
-                (click)="login()"
-                *ngIf="!isUserLogged">
-          Login with GitLab
-        </button>-->
 			</div>
 		</header>
 	</mat-toolbar-row>

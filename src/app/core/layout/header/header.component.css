@@ -4,7 +4,7 @@ header {
 	justify-content: space-between;
 }
 
-.right button {
+.new-menu, .user-menu {
   margin-left: 12px;
 }
 
