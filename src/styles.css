@@ -3,6 +3,7 @@
   --main-background-color: #313136;
   --toolbar-background-color: #28282CFF;
   --item-background-color: #3e3e45;
+  --item-light-background-color: #60606b;
 
   --text-focus-color: #d0d0d0;
   --text-fade-color: #939393;
@@ -15,7 +16,6 @@
 
 html {
 	height: 100%;
-	background-color: var(--main-background-color);
 }
 
 .mat-toolbar {
@@ -31,6 +31,7 @@ body {
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
 	color: var(--text-focus-color);
+  background-color: var(--main-background-color);
   position: relative;
   min-height: 100%;
 }

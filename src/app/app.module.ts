@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { PagesModule } from './pages/pages.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { MatMenuModule } from '@angular/material/menu';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function tokenGetter() {
 	return localStorage.getItem('access_token');
@@ -42,6 +43,7 @@ export function tokenGetter() {
 		MatIconModule,
 		MarkdownModule.forRoot(),
 		MatMenuModule,
+		NgbModule,
 	],
 	bootstrap: [AppComponent],
 })
