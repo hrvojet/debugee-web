@@ -16,7 +16,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
 import { PagesModule } from './pages/pages.module';
 import { MarkdownModule } from 'ngx-markdown';
-import { MatMenuModule } from '@angular/material/menu';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function tokenGetter() {
@@ -42,7 +41,6 @@ export function tokenGetter() {
 		MatButtonModule,
 		MatIconModule,
 		MarkdownModule.forRoot(),
-		MatMenuModule,
 		NgbModule,
 	],
 	bootstrap: [AppComponent],
