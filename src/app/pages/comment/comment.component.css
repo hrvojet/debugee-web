@@ -46,6 +46,15 @@ img {
   border-bottom: 1px solid var(--main-green-color);
 }
 
+.ngb-menu-item {
+  display: inline-block;
+  float: right;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: var(--item-background-color);
+}
+
 .text-wrapper {
   border: 1px solid var(--main-green-color);
   width: 100%;

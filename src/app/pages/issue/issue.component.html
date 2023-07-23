@@ -5,97 +5,97 @@
   {{project?.title}} issues
   </div>
   <div class="right">
-    <div>
+    <div ngbDropdown>
       <button
-        class="button-width"
+        ngbDropdownToggle
         mat-button
-        [matMenuTriggerFor]="menu"
+        class="button-width"
         style="float: right">
         Sort
         <mat-icon class="expand_more">expand_more</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
+      <div ngbDropdownMenu>
         <button
-          mat-menu-item
+          ngbDropdownItem
           (click)="sortDataSource('title', 'asc')"
         >
           <span>Ascending</span>
         </button>
         <button
-          mat-menu-item
+          ngbDropdownItem
           (click)="sortDataSource('title', 'desc')"
         >
           <span>Descending</span>
         </button>
         <button
-          mat-menu-item
+          ngbDropdownItem
           (click)="sortDataSource('created', 'asc')"
         >
           <span>Newest</span>
         </button>
         <button
-          mat-menu-item
+          ngbDropdownItem
           (click)="sortDataSource('created', 'desc')"
         >
           <span>Oldest</span>
         </button>
         <button
-          mat-menu-item
+          ngbDropdownItem
           (click)="sortDataSource('commentNumber', 'desc')"
         >
           <span>Most commented</span>
         </button>
         <button
-          mat-menu-item
+          ngbDropdownItem
           (click)="sortDataSource('commentNumber', 'asc')"
         >
           <span>Least commented</span>
         </button>
-      </mat-menu>
+      </div>
     </div>
-    <div>
+    <div ngbDropdown>
       <button
-        class="button-width"
+        ngbDropdownToggle
         mat-button
-        [matMenuTriggerFor]="menu"
+        class="button-width"
         style="float: right">
         Labels
         <mat-icon class="expand_more">expand_more</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
+      <div ngbDropdownMenu>
         <button
-          mat-menu-item
+          ngbDropdownItem
         >
           <span>Bug</span>
         </button>
         <button
-          mat-menu-item
+          ngbDropdownItem
         >
           <span>Issue</span>
         </button>
-      </mat-menu>
+      </div>
     </div>
-    <div>
+    <div ngbDropdown>
       <button
-        class="button-width"
+        ngbDropdownToggle
         mat-button
-        [matMenuTriggerFor]="menu"
+        class="button-width"
         style="float: right">
         Author
         <mat-icon class="expand_more">expand_more</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
+      <div ngbDropdownMenu>
         <button
-          mat-menu-item
+          ngbDropdownItem
         >
           <span>hrvojet</span>
         </button>
         <button
-          mat-menu-item
+          ngbDropdownItem
         >
           <span>htrcak</span>
         </button>
-      </mat-menu>
+      </div>
     </div>
   </div>
 </h2>

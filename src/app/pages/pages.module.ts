@@ -22,6 +22,7 @@ import { IssueHeaderComponent } from './issue/issue-header/issue-header.componen
 import { NewIssueComponent } from './issue/new-issue/new-issue.component';
 import { MatInputModule } from '@angular/material/input';
 import { NewProjectComponent } from './project/new-project/new-project.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 	declarations: [
@@ -50,6 +51,7 @@ import { NewProjectComponent } from './project/new-project/new-project.component
 		MatTableModule,
 		MatSortModule,
 		MatInputModule,
+		NgbDropdownModule,
 	],
 })
 export class PagesModule {}

@@ -20,30 +20,36 @@
         <ng-template #commented>
           commented <span class="underline-date" title="{{comment!.created | date: 'dd/MM/YYYY, HH:mm'}}">{{comment!.created | dateAgo}}</span>
         </ng-template>
-        <button
-          class="button-width"
-          mat-button
-          [matMenuTriggerFor]="menu"
-          style="float: right">
-          <mat-icon class="more-horiz">more_horiz</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
+        <div ngbDropdown container="body" class="ngb-menu-item">
           <button
-            mat-menu-item
-            (click)="quoteComment(comment)"
-          >
-            <span>Quote reply</span>
+            class="button-width"
+            mat-button
+            ngbDropdownToggle>
+            <mat-icon class="more-horiz">more_horiz</mat-icon>
           </button>
-          <ng-container *ngIf="currentUser?.id === comment?.author?.id">
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <button
-              mat-menu-item
-              class="button-delete"
-              (click)="deleteOwnComment(comment)"
+              ngbDropdownItem
+              (click)="quoteComment(comment)"
             >
-              <span>Delete</span>
+              <span>Quote reply</span>
             </button>
-          </ng-container>
-        </mat-menu>
+            <ng-container *ngIf="currentUser?.id === comment?.author?.id">
+              <button
+                ngbDropdownItem
+              >
+                <span>Edit</span>
+              </button>
+              <button
+                ngbDropdownItem
+                class="button-delete"
+                (click)="deleteOwnComment(comment)"
+              >
+                <span>Delete</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
       </h3>
       <markdown [data]="comment?.text">
       </markdown>
