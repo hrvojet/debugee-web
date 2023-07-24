@@ -1,4 +1,5 @@
 import { IUser } from './user.model';
+import { ILabel } from './label.model';
 
 export interface IIssue {
 	id: number;
@@ -10,4 +11,5 @@ export interface IIssue {
 	issueType: string;
 	originalPoster: IUser;
 	opened: boolean;
+	labels: ILabel[];
 }
