@@ -31,6 +31,11 @@ export class HeaderComponent implements OnChanges, OnInit, AfterViewInit {
 		});
 	}
 
+	ngAfterViewInit(): void {
+		this.currentUser = this.userService.getCurrentUser();
+		this.isUserLogged = this.sessionService.isUserLoggedIn();
+	}
+
 	login() {
 		//window.location.href = `http://192.168.99.101/oauth/authorize?client_id=${environment.clientId}&redirect_uri=http://192.168.0.212:8080/callback/gitlab&response_type=code&scope=openid profile email read_api`;
 		this.sessionService.login();
@@ -44,8 +49,7 @@ export class HeaderComponent implements OnChanges, OnInit, AfterViewInit {
 		this.sessionService.logoutUser();
 	}
 
-	ngAfterViewInit(): void {
-		this.currentUser = this.userService.getCurrentUser();
-		this.isUserLogged = this.sessionService.isUserLoggedIn();
+	goToNewProject() {
+		void this.router.navigate(['projects/new']);
 	}
 }
