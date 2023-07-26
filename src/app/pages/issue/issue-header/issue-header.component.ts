@@ -22,4 +22,8 @@ export class IssueHeaderComponent implements OnInit {
 	goToNewIssue() {
 		void this.router.navigate([`projects/${Number(this.route.snapshot.paramMap.get('projectId'))}/new`]);
 	}
+
+	goToLabels() {
+		void this.router.navigate([`projects/${Number(this.route.snapshot.paramMap.get('projectId'))}/labels`]);
+	}
 }

@@ -6,7 +6,7 @@
 }
 
 input {
-  height: 32px;
+  height: 36px;
   flex: 1;
   border: 1px solid var(--main-green-color);
   margin-right: 2%;
@@ -17,7 +17,7 @@ input {
 }
 
 input:focus {
-  height: 30px;
+  height: 36px;
   border: 2px solid var(--main-green-color);
   outline: none;
 }
@@ -25,6 +25,10 @@ input:focus {
 button {
   background-color: var(--main-green-color);
   color: white !important;
+}
+
+button:last-of-type {
+  margin-left: 18px;
 }
 
 

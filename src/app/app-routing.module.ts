@@ -8,6 +8,7 @@ import { AuthenticationGuard } from './guards/authentication.guard';
 import { CommentComponent } from './pages/comment/comment.component';
 import { NewIssueComponent } from './pages/issue/new-issue/new-issue.component';
 import { NewProjectComponent } from './pages/project/new-project/new-project.component';
+import { LabelComponent } from './pages/label/label.component';
 
 const routes: Routes = [
 	{
@@ -37,6 +38,11 @@ const routes: Routes = [
 	{
 		path: 'projects/:projectId/new',
 		component: NewIssueComponent,
+		canActivate: [AuthenticationGuard],
+	},
+	{
+		path: 'projects/:projectId/labels',
+		component: LabelComponent,
 		canActivate: [AuthenticationGuard],
 	},
 	{

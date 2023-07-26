@@ -4,3 +4,9 @@ export interface ILabel {
 	description: string;
 	colorHex: string;
 }
+
+export interface ILabelPost {
+	name: string;
+	description: string;
+	colorHex: string;
+}

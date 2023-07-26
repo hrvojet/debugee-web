@@ -22,6 +22,8 @@ import { NewIssueComponent } from './issue/new-issue/new-issue.component';
 import { MatInputModule } from '@angular/material/input';
 import { NewProjectComponent } from './project/new-project/new-project.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { LabelComponent } from './label/label.component';
+import { LabelDialogComponent } from './label/label-dialog/label-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -32,6 +34,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 		IssueHeaderComponent,
 		NewIssueComponent,
 		NewProjectComponent,
+		LabelComponent,
+		LabelDialogComponent,
 	],
 	imports: [
 		CommonModule,

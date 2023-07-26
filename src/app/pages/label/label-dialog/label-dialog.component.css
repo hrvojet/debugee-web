@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+
+.color input {
+  width: 46%;
+}

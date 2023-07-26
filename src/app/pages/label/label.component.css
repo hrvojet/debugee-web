@@ -1,0 +1,49 @@
+:host(app-label) {
+  max-width: 1220px;
+  display: block;
+  margin: 46px auto 0;
+  overflow: auto;
+}
+
+.table-wrapper {
+  border-radius: 99px;
+}
+
+table {
+  width: 100%;
+  border: 1px solid var(--main-green-color);
+  border-radius: 6px;
+}
+
+
+td.mat-cell {
+  color: white;
+  background-color: #333339;
+}
+
+.mat-header-cell {
+  border-bottom: 1px solid var(--main-green-color);
+  background-color: var(--item-background-color);
+  color: white;
+}
+
+td:last-child {
+  width: 25%;
+}
+
+td.mat-cell {
+  border-bottom: 1px solid var(--main-green-color);
+}
+
+button {
+  background-color: var(--main-purple-color);
+  margin-left: 12px;
+  height: 28px;
+  line-height: 28px;
+}
+
+@media only screen and (max-width: 1280px) {
+  :host(app-label) {
+    width: 96%;
+  }
+}

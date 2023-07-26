@@ -3,6 +3,10 @@
   (keyup.enter)="searchByName()"
   [(ngModel)]="title"
 >
+<button
+  mat-button
+  (click)="goToLabels()"
+>Labels</button>
   <button
     mat-button
     (click)="goToNewIssue()"
