@@ -1,22 +1,62 @@
 <ng-container *ngIf="labels" class="table-wrapper">
-  <table mat-table [dataSource]="labels">
+  <table mat-table [dataSource]="labels" multiTemplateDataRows>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let row">{{row.name}}</td>
     </ng-container>
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Description</th>
-      <td mat-cell *matCellDef="let row">{{row.description}}</td>
+      <td mat-cell
+          *matCellDef="let row"><span [ngStyle]="{'visibility': expandedElement ? 'hidden' : 'visible'}">{{row.description}}</span></td>
     </ng-container>
-    <ng-container matColumnDef="buttons">
-      <th mat-header-cell *matHeaderCellDef>Color</th>
-      <td mat-cell *matCellDef="let row">
-        <button mat-button (click)="openDialog(row)">Edit</button>
-        <button mat-button>Delete</button>
+    <ng-container matColumnDef="expand">
+      <td mat-cell *matCellDef="let element" aria-label="expand row">
+        <div class="shown-buttons">
+          <button mat-button
+                  style="background-color: var(--main-green-color)"
+                  [ngStyle]="{'visibility': expandedElement !== element ? 'visible' : 'hidden'}"
+                  aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()"
+          >Edit element
+          </button>
+          <button mat-button
+                  style="background-color: var(--main-purple-color)"
+                  (click)="deleteRow(element)">Delete</button>
+        </div>
       </td>
     </ng-container>
 
-    <tr mat-row *matRowDef="let row; columns: displayedCoumns"></tr>
+    <!-- expanded element column-->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumnsWithExpand.length">
+        <div class="element-detail"
+             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="expanded-element-shown">
+            <label>Name
+            <input type="text" value="{{ element.name }}" />
+            </label>
+            <label>
+              Description
+            <input type="text" value="{{ element.description }}" />
+            </label>
+            <label>
+              Color
+            <input type="text" value="{{ element.colorHex }}" />
+            </label>
+            <div class="expanded-buttons">
+              <button mat-button
+                      style="background-color: var(--main-green-color)"
+                      (click)="expandedElement = expandedElement === element ? null : element">Save</button>
+              <button mat-button
+                      style="background-color: var(--item-light-background-color)"
+                      (click)="expandedElement = expandedElement === element ? null : element">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let element; columns: displayedColumnsWithExpand;"
+        class="element-row"
+    ></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="edit-row"></tr>
   </table>
 </ng-container>

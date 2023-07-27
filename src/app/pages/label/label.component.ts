@@ -1,18 +1,28 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { LabelService } from '../../shared/services/label.service';
-import { ILabel, ILabelPost } from '../../shared/models/label.model';
+import { ILabel } from '../../shared/models/label.model';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LabelDialogComponent } from './label-dialog/label-dialog.component';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'app-label',
 	templateUrl: './label.component.html',
 	styleUrls: ['./label.component.css'],
+	animations: [
+		trigger('detailExpand', [
+			state('collapsed', style({ height: '0px', minHeight: '0' })),
+			state('expanded', style({ height: '*' })),
+			transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+		]),
+	],
 })
 export class LabelComponent implements OnInit, AfterViewInit {
 	labels: ILabel[] | undefined;
-	displayedCoumns: string[] = ['name', 'description', 'buttons'];
+	displayedColumns: string[] = ['name', 'description'];
+	displayedColumnsWithExpand = [...this.displayedColumns, 'expand'];
+	expandedElement!: ILabel | null;
 	hexValue = '#fff';
 
 	constructor(private labelService: LabelService, private route: ActivatedRoute, private dialog: MatDialog) {}
@@ -34,6 +44,11 @@ export class LabelComponent implements OnInit, AfterViewInit {
 			},
 			width: '450px',
 		});
+	}
+
+	deleteRow(row: ILabel) {
+		// TODO deletion dialog
+		console.log('delete row: ' + row.name);
 	}
 
 	/*openDialog(row: ILabel) {

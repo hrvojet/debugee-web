@@ -36,10 +36,68 @@ td.mat-cell {
 }
 
 button {
-  background-color: var(--main-purple-color);
   margin-left: 12px;
+  margin-right: 12px;
   height: 28px;
   line-height: 28px;
+}
+
+.shown-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.expanded-buttons {
+  display: flex;
+  align-items: flex-end;
+}
+
+.expanded-buttons button {
+  height: 34px;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.edit-row {
+  height: 0;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
+  padding-right: 0;
+}
+
+.expanded-element-shown {
+  margin: 2px 0 15px;
+  display: flex;
+  justify-content: space-between;
+  border-top: none;
+  width: 100%;
+}
+
+label {
+  display: block;
+}
+
+.expanded-element-shown input {
+  display: block;
+  height: 32px;
+  border: 1px solid var(--main-green-color);
+  background-color: var(--item-background-color);
+  border-radius: 6px;
+  color: white;
+}
+
+.expanded-element-shown input:focus {
+  height: 32px;
+  border: 2px solid var(--main-green-color);
+  outline: none;
 }
 
 @media only screen and (max-width: 1280px) {
