@@ -15,6 +15,10 @@ table {
   border-radius: 6px;
 }
 
+.mat-column-name {
+  flex: none;
+  width: 280px;
+}
 
 td.mat-cell {
   color: white;
