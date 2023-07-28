@@ -27,7 +27,7 @@ export class LabelComponent implements OnInit, AfterViewInit {
 	labels: ILabel[] | undefined;
 	displayedColumns: string[] = ['name', 'description'];
 	displayedColumnsWithExpand = [...this.displayedColumns, 'expand'];
-	expandedElement!: ILabel | null;
+	expandedLabel!: ILabel | null;
 	currentlyEditingLabel: ILabel | undefined;
 
 	constructor(private labelService: LabelService, private route: ActivatedRoute, private dialog: MatDialog) {}

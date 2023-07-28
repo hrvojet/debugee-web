@@ -63,7 +63,7 @@ button {
   height: 34px;
 }
 
-.element-detail {
+.label-detail {
   overflow: hidden;
   display: flex;
 }
@@ -72,7 +72,7 @@ button {
   height: 0;
 }
 
-.element-row td {
+.label-row td {
   border-bottom-width: 0;
 }
 
@@ -80,7 +80,7 @@ th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
   padding-right: 0;
 }
 
-.expanded-element-shown {
+.expanded-label-shown {
   margin: 2px 0 15px;
   display: flex;
   justify-content: space-between;
@@ -92,7 +92,7 @@ label {
   display: block;
 }
 
-.expanded-element-shown input {
+.expanded-label-shown input {
   display: block;
   height: 32px;
   border: 1px solid var(--main-green-color);
@@ -101,7 +101,7 @@ label {
   color: white;
 }
 
-.expanded-element-shown input:focus {
+.expanded-label-shown input:focus {
   height: 32px;
   border: 2px solid var(--main-green-color);
   outline: none;
