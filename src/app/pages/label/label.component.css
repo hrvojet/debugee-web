@@ -35,6 +35,13 @@ td.mat-cell {
   border-bottom: 1px solid var(--main-green-color);
 }
 
+.label-badge {
+  display: inline-block;
+  border: 1px;
+  padding: 1px 13px 1px 13px;
+  border-radius: 25px;
+}
+
 button {
   margin-left: 12px;
   margin-right: 12px;

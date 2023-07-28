@@ -23,7 +23,7 @@ export class LabelComponent implements OnInit, AfterViewInit {
 	displayedColumns: string[] = ['name', 'description'];
 	displayedColumnsWithExpand = [...this.displayedColumns, 'expand'];
 	expandedElement!: ILabel | null;
-	hexValue = '#fff';
+	currentlyEditingLabel: ILabel | undefined;
 
 	constructor(private labelService: LabelService, private route: ActivatedRoute, private dialog: MatDialog) {}
 
@@ -49,6 +49,35 @@ export class LabelComponent implements OnInit, AfterViewInit {
 	deleteRow(row: ILabel) {
 		// TODO deletion dialog
 		console.log('delete row: ' + row.name);
+	}
+
+	onNameInputChange(name: string): void {
+		/*console.log(this.cachedLabel);*/
+		const value = name;
+		this.currentlyEditingLabel!.name = value ? value : 'Preview';
+	}
+
+	onDescriptionInputChange(description: string): void {
+		const value = description;
+		this.currentlyEditingLabel!.description = value ? value : '';
+	}
+
+	onColorInputChange(event: Event): void {
+		console.log(this.labels);
+		this.currentlyEditingLabel!.colorHex = (event.target as HTMLInputElement).value;
+	}
+
+	setCurrentlyEditingLabel(label: ILabel): void {
+		// this.currentlyEditingLabel = label; // bug sending pass by reference!!! need pass by value
+		this.currentlyEditingLabel = JSON.parse(JSON.stringify(label));
+	}
+
+	saveLabel(): void {
+		console.log('saved: ' + JSON.stringify(this.currentlyEditingLabel));
+	}
+
+	cancelLabelEdit(element: ILabel | null): void {
+		this.currentlyEditingLabel = undefined;
 	}
 
 	/*openDialog(row: ILabel) {
