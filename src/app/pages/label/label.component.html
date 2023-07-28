@@ -71,7 +71,7 @@
             <div class="expanded-buttons">
               <button mat-button
                       style="background-color: var(--main-green-color)"
-                      (click)="expandedLabel = expandedLabel === label ? null : label; saveLabel()">Save</button>
+                      (click)="expandedLabel = expandedLabel === label ? null : label; updateLabel(label.id)">Save</button>
               <button mat-button
                       style="background-color: var(--item-light-background-color)"
                       (click)="expandedLabel = expandedLabel === label ? null : label; cancelLabelEdit()">Cancel</button>

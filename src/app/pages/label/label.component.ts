@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { LabelService } from '../../shared/services/label.service';
 import { ILabel } from '../../shared/models/label.model';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LabelDialogComponent } from './label-dialog/label-dialog.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 @Component({
 	selector: 'app-label',
@@ -24,6 +25,7 @@ export class LabelComponent implements OnInit, AfterViewInit {
 	description = new FormControl('');
 	colorHex = new FormControl('');
 
+	@ViewChild(MatTable) table!: MatTable<ILabel>;
 	labels: ILabel[] | undefined;
 	displayedColumns: string[] = ['name', 'description'];
 	displayedColumnsWithExpand = [...this.displayedColumns, 'expand'];
@@ -73,14 +75,29 @@ export class LabelComponent implements OnInit, AfterViewInit {
 
 	setCurrentlyEditingLabel(label: ILabel): void {
 		// this.currentlyEditingLabel = label; // bug sending pass by reference!!! need pass by value
+		console.log(this.labels);
 		this.currentlyEditingLabel = JSON.parse(JSON.stringify(label));
 		this.name.setValue(this.currentlyEditingLabel!.name);
 		this.description.setValue(this.currentlyEditingLabel!.description);
 		this.colorHex.setValue(this.currentlyEditingLabel!.colorHex);
 	}
 
-	saveLabel(): void {
-		console.log('saved: ' + JSON.stringify(this.currentlyEditingLabel));
+	updateLabel(labelID: number): void {
+		const updateLabelIndex = this.labels?.map((l) => l.id).indexOf(labelID);
+
+		if (this.currentlyEditingLabel && updateLabelIndex !== undefined) {
+			this.labelService
+				.editLabel(labelID, {
+					name: this.currentlyEditingLabel.name,
+					description: this.currentlyEditingLabel.description,
+					colorHex: this.currentlyEditingLabel.colorHex,
+				})
+				.subscribe((res) => {
+					console.log(res);
+					this.labels![updateLabelIndex] = res;
+					this.table.renderRows();
+				});
+		}
 	}
 
 	cancelLabelEdit(): void {
