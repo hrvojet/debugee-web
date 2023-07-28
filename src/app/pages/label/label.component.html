@@ -9,7 +9,7 @@
           [style.background-color]="row.colorHex + '49'"
           [style.color]="row.colorHex  + 'ff'"
           [style.border]="'1px solid' + row.colorHex"
-        >{{row.name}} div
+        >{{row.name}}
         </div>
         <ng-template #editingLabel>
           <div
@@ -17,7 +17,7 @@
             [style.background-color]="currentlyEditingLabel!.colorHex + '49'"
             [style.color]="currentlyEditingLabel!.colorHex  + 'ff'"
             [style.border]="'1px solid' + currentlyEditingLabel!.colorHex"
-          >{{currentlyEditingLabel!.name}} template
+          >{{currentlyEditingLabel!.name}}
           </div>
         </ng-template>
       </td>
@@ -51,23 +51,21 @@
           <div class="expanded-element-shown">
             <label>Name
             <input type="text"
-                   #name
-                   (input)="onNameInputChange(name.value)"
-                   value="{{ element.name }}" />
+                   [formControl]="name"
+                   (input)="onNameInputChange(name)"
+                   />
             </label>
             <label>
               Description
             <input type="text"
-                   #description
-                   (input)="onDescriptionInputChange(description.value)"
-                   value="{{ element.description }}" />
+                   [formControl]="description"
+                   (input)="onDescriptionInputChange(description)"/>
             </label>
             <label>
               Color
             <input type="text"
-                   #colorHex
-                   (input)="onColorInputChange($event)"
-                   value="{{ element.colorHex }}" />
+                   [formControl]="colorHex"
+                   (input)="onColorInputChange(colorHex)"/>
             </label>
             <div class="expanded-buttons">
               <button mat-button
@@ -75,7 +73,7 @@
                       (click)="expandedElement = expandedElement === element ? null : element; saveLabel()">Save</button>
               <button mat-button
                       style="background-color: var(--item-light-background-color)"
-                      (click)="expandedElement = expandedElement === element ? null : element; cancelLabelEdit(expandedElement)">Cancel</button>
+                      (click)="expandedElement = expandedElement === element ? null : element; cancelLabelEdit()">Cancel</button>
             </div>
           </div>
         </div>

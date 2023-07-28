@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLinkWithHref } from '@angular/router';
 import { CommentComponent } from './comment/comment.component';
 import { MarkdownModule } from 'ngx-markdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -54,6 +54,7 @@ import { LabelDialogComponent } from './label/label-dialog/label-dialog.componen
 		MatSortModule,
 		MatInputModule,
 		NgbDropdownModule,
+		ReactiveFormsModule,
 	],
 })
 export class PagesModule {}
