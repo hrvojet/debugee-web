@@ -1,3 +1,35 @@
+<button mat-button
+        class="new-label-button"
+        (click)="showNewLabelDIV = !showNewLabelDIV">New label</button>
+<div *ngIf="showNewLabelDIV"
+     [formGroup]="newLabelForm"
+     class="expanded-label-shown new-label">
+  <label>Name
+    <input type="text"
+           maxlength="33"
+           formControlName="newName"
+    />
+  </label>
+  <label>
+    Description
+    <input type="text"
+           formControlName="newDescription"/>
+  </label>
+  <label>
+    Color
+    <input type="text"
+           formControlName="newColorHex"/>
+  </label>
+  <div class="expanded-buttons">
+    <button mat-button
+            [disabled]="!newLabelForm.valid"
+            (click)="showNewLabelDIV = !showNewLabelDIV; saveNewLabel()"
+            style="background-color: var(--main-green-color)">Save</button>
+    <button mat-button
+            (click)="showNewLabelDIV = !showNewLabelDIV; resetNewLabel()"
+            style="background-color: var(--item-light-background-color)">Cancel</button>
+  </div>
+</div>
 <ng-container *ngIf="labels" class="table-wrapper">
   <table mat-table [dataSource]="labels" multiTemplateDataRows>
 

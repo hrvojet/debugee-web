@@ -25,6 +25,10 @@ export class LabelComponent implements OnInit, AfterViewInit {
 	description = new FormControl('');
 	colorHex = new FormControl('');
 
+	newLabelForm: FormGroup;
+
+	showNewLabelDIV = false;
+
 	@ViewChild(MatTable) table!: MatTable<ILabel>;
 	labels: ILabel[] | undefined;
 	displayedColumns: string[] = ['name', 'description'];
@@ -32,7 +36,18 @@ export class LabelComponent implements OnInit, AfterViewInit {
 	expandedLabel!: ILabel | null;
 	currentlyEditingLabel: ILabel | undefined;
 
-	constructor(private labelService: LabelService, private route: ActivatedRoute, private dialog: MatDialog) {}
+	constructor(
+		private labelService: LabelService,
+		private route: ActivatedRoute,
+		private dialog: MatDialog,
+		private fb: FormBuilder
+	) {
+		this.newLabelForm = fb.group({
+			newName: ['', [Validators.required]],
+			newDescription: [''],
+			newColorHex: ['', [Validators.required]],
+		});
+	}
 
 	ngOnInit(): void {}
 
@@ -54,8 +69,10 @@ export class LabelComponent implements OnInit, AfterViewInit {
 	}
 
 	deleteRow(row: ILabel) {
-		// TODO deletion dialog
-		console.log('delete row: ' + row.name);
+		this.labelService.deleteLabel(row.id).subscribe(() => {
+			this.labels = this.labels?.filter((l) => l.id !== row.id);
+			this.table.renderRows();
+		});
 	}
 
 	onNameInputChange(name: FormControl): void {
@@ -115,4 +132,22 @@ export class LabelComponent implements OnInit, AfterViewInit {
 			},
 		});
 	}*/
+
+	resetNewLabel() {
+		this.newLabelForm.reset();
+	}
+
+	saveNewLabel() {
+		this.labelService
+			.saveLabelForProject(Number(this.route.snapshot.paramMap.get('projectId')), {
+				name: this.newLabelForm.controls['newName'].value,
+				description: this.newLabelForm.controls['newDescription'].value,
+				colorHex: this.newLabelForm.controls['newColorHex'].value,
+			})
+			.subscribe((res) => {
+				this.labels?.push(res);
+				this.table.renderRows();
+				this.newLabelForm.reset();
+			});
+	}
 }

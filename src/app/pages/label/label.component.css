@@ -92,6 +92,28 @@ th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
   width: 100%;
 }
 
+.new-label-button {
+  background-color: var(--main-green-color);
+  color: white;
+  float: right;
+  margin-bottom: 14px;
+}
+
+.new-label {
+  background-color: var(--item-background-color);
+  padding: 18px 0 18px;
+  border-radius: 6px;
+  color: white;
+}
+
+.new-label button:last-of-type {
+  background-color: var(--item-light-background-color) !important;
+}
+
+.new-label label:first-child {
+  padding-left: 24px;
+}
+
 label {
   display: block;
 }
