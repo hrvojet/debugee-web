@@ -88,7 +88,16 @@
 <aside>
   <div>
     <h4 class="fade-color">Labels</h4>
-    <span>None yet</span>
+    <span *ngIf="containsLabels; else showLabels">None yet</span>
+    <ng-template #showLabels>
+    <div *ngFor="let label of issue?.labels"
+      class="label-badge"
+      [style.background-color]="label!.colorHex + '49'"
+      [style.color]="label!.colorHex  + 'ff'"
+      [style.border]="'1px solid' + label!.colorHex"
+    >{{label!.name}}
+    </div>
+    </ng-template>
   </div>
   <hr>
   <div>

@@ -27,6 +27,13 @@ aside {
   float: right;
 }
 
+aside .label-badge {
+  display: inline-block;
+  border: 1px;
+  padding: 1px 13px 1px 13px;
+  border-radius: 25px;
+}
+
 article {
   margin-bottom: 15px;
   border-radius: 6px;

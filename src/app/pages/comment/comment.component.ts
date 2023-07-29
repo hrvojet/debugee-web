@@ -20,7 +20,7 @@ export class CommentComponent implements OnInit {
 	markdown?: string;
 	currentUser?: IUser;
 	participants?: Set<IUser>;
-
+	containsLabels!: boolean;
 	usersHooverInfo: Map<number, IUser>;
 
 	constructor(
@@ -42,6 +42,12 @@ export class CommentComponent implements OnInit {
 				this.issue = res[0];
 				this.comments = res[1];
 				this.participants = this.mapDistinctUsers(this.comments!);
+				if (this.issue) {
+					this.containsLabels = res[0].labels.length === 0;
+				}
+			},
+			() => {
+				this.containsLabels = false;
 			}
 		);
 	}
