@@ -31,6 +31,7 @@ aside .label-badge {
   display: inline-block;
   border: 1px;
   padding: 1px 13px 1px 13px;
+  margin: 0 2px 0 2px;
   border-radius: 25px;
 }
 
@@ -198,6 +199,16 @@ hr {
   margin: 18px 0 18px;
   height: 1px;
   border: none;
+}
+
+/* Effects */
+.hoover-effect:hover {
+  color: var(--main-green-color);
+  cursor: pointer;
+}
+
+h4 mat-icon {
+  transform: scale(0.85);
 }
 
 @media only screen and (max-width: 1280px) {

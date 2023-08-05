@@ -87,7 +87,7 @@
 </main>
 <aside>
   <div>
-    <h4 class="fade-color">Labels</h4>
+    <h4 class="fade-color hoover-effect" (click)="openLabelDialog()">Labels <mat-icon style="float: right">settings</mat-icon></h4>
     <span *ngIf="containsLabels; else showLabels">None yet</span>
     <ng-template #showLabels>
     <div *ngFor="let label of issue?.labels"

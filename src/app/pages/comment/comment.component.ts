@@ -7,7 +7,8 @@ import { IComment } from '../../shared/models/comment.model';
 import { IIssue } from '../../shared/models/issue.model';
 import { UserService } from '../../shared/services/user.service';
 import { IUser } from '../../shared/models/user.model';
-import { MatTooltip } from '@angular/material/tooltip';
+import { MatDialog } from '@angular/material/dialog';
+import { ManageLabelsDialogComponent } from './manage-labels-dialog/manage-labels-dialog.component';
 
 @Component({
 	selector: 'app-comment',
@@ -28,7 +29,8 @@ export class CommentComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private issueService: IssueService,
-		private userService: UserService
+		private userService: UserService,
+		private dialog: MatDialog
 	) {
 		this.usersHooverInfo = new Map<number, IUser>();
 	}
@@ -90,5 +92,15 @@ export class CommentComponent implements OnInit {
 				this.usersHooverInfo!.set(fetchedUser.id, fetchedUser);
 			});
 		}
+	}
+
+	openLabelDialog(): void {
+		this.dialog.open(ManageLabelsDialogComponent, {
+			data: {
+				issue: this.issue,
+			},
+			panelClass: 'label-dialog-class',
+			minWidth: '330px',
+		});
 	}
 }

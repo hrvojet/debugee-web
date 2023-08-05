@@ -10,3 +10,8 @@ export interface ILabelPost {
 	description: string;
 	colorHex: string;
 }
+
+export interface ILabelUpdateIssue {
+	addLabelsWithID: number[];
+	removeLabelsWithID: number[];
+}

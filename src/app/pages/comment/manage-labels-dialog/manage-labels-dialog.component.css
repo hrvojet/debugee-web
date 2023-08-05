@@ -1,0 +1,40 @@
+ul {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+  line-height: 16px;
+  font-size: 16px;
+}
+
+p.description {
+  color: var(--text-fade-color);
+  font-size: 14px;
+}
+
+li {
+  color: var(--text-focus-color);
+}
+
+:host ::ng-deep .mat-checkbox-inner-container {
+  color: white;
+}
+
+:host ::ng-deep .mat-checkbox-frame {
+  border-color: var(--item-light-background-color);
+}
+
+span {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  line-height: 14px;
+}
+
+button {
+  float: right;
+  margin-top: 14px;
+  background-color: var(--main-purple-color);
+}

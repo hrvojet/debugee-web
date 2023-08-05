@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ILabel, ILabelPost } from '../models/label.model';
+import { ILabel, ILabelPost, ILabelUpdateIssue } from '../models/label.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -34,6 +34,13 @@ export class LabelService {
 	removeLabelFromIssue(labelID: number, issueID: number) {
 		return this.http.delete(
 			environment.protocol + environment.debugeeDomain + '/label/' + labelID + '/issue/' + issueID
+		);
+	}
+
+	updateLabelsForIssue(issueID: number, labelUpdateIssue: ILabelUpdateIssue) {
+		return this.http.post(
+			environment.protocol + environment.debugeeDomain + '/label/update-issue/' + issueID,
+			labelUpdateIssue
 		);
 	}
 

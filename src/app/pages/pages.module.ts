@@ -24,6 +24,8 @@ import { NewProjectComponent } from './project/new-project/new-project.component
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { LabelComponent } from './label/label.component';
 import { LabelDialogComponent } from './label/label-dialog/label-dialog.component';
+import { ManageLabelsDialogComponent } from './comment/manage-labels-dialog/manage-labels-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
 	declarations: [
@@ -36,6 +38,7 @@ import { LabelDialogComponent } from './label/label-dialog/label-dialog.componen
 		NewProjectComponent,
 		LabelComponent,
 		LabelDialogComponent,
+		ManageLabelsDialogComponent,
 	],
 	imports: [
 		CommonModule,
@@ -55,6 +58,7 @@ import { LabelDialogComponent } from './label/label-dialog/label-dialog.componen
 		MatInputModule,
 		NgbDropdownModule,
 		ReactiveFormsModule,
+		MatCheckboxModule,
 	],
 })
 export class PagesModule {}
