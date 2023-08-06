@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
