@@ -3,6 +3,7 @@
 		<ul class="list-group">
 			<mat-checkbox class="list-group-item bg-transparent"
                     *ngFor="let label of projectLabels; index as i"
+                    (change)="detectChange()"
                     [formControlName]="i">
 				<li >
 					<p> <span [style.background-color]="label.colorHex"></span> {{ label.name }}</p>
@@ -11,5 +12,5 @@
 			</mat-checkbox>
 		</ul>
 	</div>
-	<button mat-button (click)="save()">Save</button>
+	<button mat-button [disabled]="isSaveButtonDisabled" (click)="save()">Save</button>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IIssue } from '../../../shared/models/issue.model';
 import { LabelService } from '../../../shared/services/label.service';
@@ -14,6 +14,8 @@ export class ManageLabelsDialogComponent implements OnInit {
 	labelsForm!: FormGroup;
 	issue: IIssue;
 	projectLabels!: ILabel[];
+	isSaveButtonDisabled = true;
+	private initialLabelValues!: boolean[];
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: { issue: IIssue },
@@ -35,11 +37,12 @@ export class ManageLabelsDialogComponent implements OnInit {
 					)
 				),
 			});
+			this.initialLabelValues = this.labelsForm.value.labels;
 		});
 	}
 
 	save(): void {
-		const labelsUpdated = this.detectChanges(this.projectLabels, this.labelsForm.value.labels);
+		const labelsUpdated = this.setLabelsForUpdate(this.projectLabels, this.labelsForm.value.labels);
 		this.labelService.updateLabelsForIssue(this.issue.id, labelsUpdated).subscribe(() => {
 			for (const labelID of labelsUpdated.addLabelsWithID) {
 				const pushLabel = this.projectLabels.find((label) => label.id === labelID);
@@ -57,7 +60,7 @@ export class ManageLabelsDialogComponent implements OnInit {
 		});
 	}
 
-	detectChanges(labelsArray: ILabel[], controlValuesArray: boolean[]): ILabelUpdateIssue {
+	setLabelsForUpdate(labelsArray: ILabel[], controlValuesArray: boolean[]): ILabelUpdateIssue {
 		const addLabelsWithID: number[] = [];
 		const removeLabelsWithID: number[] = [];
 
@@ -68,18 +71,20 @@ export class ManageLabelsDialogComponent implements OnInit {
 				removeLabelsWithID.push(labelsArray[i].id);
 			}
 		}
-		/*const result =
-			selectedValues.length === this.issue.labels.length &&
-			this.issue.labels.every((e) => {
-				return selectedValues.some((es) => {
-					return e.id === es.id;
-				});
-			});
-		if (result) {
-			console.log('labels NOT changed!');
-		} else {
-			console.log('labels changed!');
-		}*/
 		return { addLabelsWithID, removeLabelsWithID };
+	}
+
+	detectChange() {
+		this.isSaveButtonDisabled = this.labelsForm.value.labels.every((e: boolean, i: number) => {
+			return e === this.initialLabelValues[i];
+		});
+
+		/*const result =
+    selectedValues.length === this.issue.labels.length &&
+    this.issue.labels.every((e) => {
+      return selectedValues.some((es) => {
+        return e.id === es.id;
+      });
+    });*/
 	}
 }
