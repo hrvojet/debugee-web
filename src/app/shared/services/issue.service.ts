@@ -8,40 +8,40 @@ import { IPage } from '../models/page/page.model';
 	providedIn: 'root',
 })
 export class IssueService {
-	constructor(private http: HttpClient) {}
+	private readonly issueUrl = environment.protocol + environment.debugeeDomain;
 
-	getIssues(projectId: number) {
-		// TODO add pagination params
-		return this.http.get<IPage<IIssue>>(
-			environment.protocol + environment.debugeeDomain + '/issues?projectId=' + projectId
-		);
-	}
+	constructor(private http: HttpClient) {}
 
 	getIssuesPage(projectId: number, id: string, order: string, page: number, size: number) {
 		const params = 'projectId=' + projectId + '&page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
 		// TODO add pagination params
-		return this.http.get<IPage<IIssue>>(environment.protocol + environment.debugeeDomain + '/issues?' + params);
+		return this.http.get<IPage<IIssue>>(this.issueUrl + '/issues?' + params);
 	}
 
 	searchIssue(title: string, projectId: number, id: string, order: string, page: number, size: number) {
 		const params =
 			'projectId=' + projectId + '&page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id + '&labelID=';
-		return this.http.post<IPage<IIssue>>(
-			environment.protocol + environment.debugeeDomain + '/issues/search?' + params,
-			{
-				title,
-			}
-		);
+		return this.http.post<IPage<IIssue>>(this.issueUrl + '/issues/search?' + params, {
+			title,
+		});
 	}
 
 	getIssueById(issueId: number) {
-		return this.http.get<IIssue>(environment.protocol + environment.debugeeDomain + '/issues/' + issueId);
+		return this.http.get<IIssue>(this.issueUrl + `/issues/${issueId}`);
 	}
 
 	postNewIssue(projectId: number, title: string, firstComment: string) {
-		return this.http.post<IIssue>(environment.protocol + environment.debugeeDomain + '/issues/' + projectId, {
+		return this.http.post<IIssue>(this.issueUrl + `/issues/${projectId}`, {
 			title,
 			firstComment,
 		});
+	}
+
+	patchIssue(issueID: number, title: string | null, isOpened: boolean | null) {
+		return this.http.patch(this.issueUrl + '/issues', { title, isOpened });
+	}
+
+	deleteIssue(issueID: number) {
+		return this.http.delete(this.issueUrl + `/issues/${issueID}`);
 	}
 }

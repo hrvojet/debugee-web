@@ -10,3 +10,8 @@ export interface IProject {
 	closedIssues: number;
 	owner: IUser;
 }
+
+export interface IProjectPost {
+	title: string;
+	description: string;
+}

@@ -8,17 +8,23 @@ import { Observable } from 'rxjs';
 	providedIn: 'root',
 })
 export class CommentService {
+	private readonly commentUrl = environment.protocol + environment.debugeeDomain;
+
 	constructor(private http: HttpClient) {}
 
 	getCommentsForSpecificIssue(issueID: number) {
-		return this.http.get<any>(environment.protocol + environment.debugeeDomain + '/comments?issueId=' + issueID);
+		return this.http.get<IComment[]>(this.commentUrl + `/comments?issueId=${issueID}`);
 	}
 
 	postComment(issueId: number, text: string) {
-		return this.http.post<IComment>(environment.protocol + environment.debugeeDomain + '/comments', { issueId, text });
+		return this.http.post<IComment>(this.commentUrl + '/comments', { issueId, text });
 	}
 
-	deleteComment(commentId: number) {
-		return this.http.delete<void>(environment.protocol + environment.debugeeDomain + '/comments/' + commentId);
+	deleteComment(commentID: number) {
+		return this.http.delete<void>(this.commentUrl + `/comments/${commentID}`);
+	}
+
+	updateComment(commentID: number, text: string) {
+		return this.http.patch<IComment>(this.commentUrl + `/comments/${commentID}`, { text });
 	}
 }
