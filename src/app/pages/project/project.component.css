@@ -45,6 +45,7 @@ table {
 table td.mat-cell {
   color: white;
   background-color: #333339;
+  border-bottom-width: 0;
 }
 
 tr.mat-row {
