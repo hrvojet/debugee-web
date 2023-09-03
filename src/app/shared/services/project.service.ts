@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { IProject, IProjectPost } from '../models/project.model';
 import { IPage } from '../models/page/page.model';
+import { FormControl, ɵFormGroupValue, ɵTypedOrUntyped } from '@angular/forms';
 
 @Injectable({
 	providedIn: 'root',
@@ -30,7 +31,7 @@ export class ProjectService {
 	}
 
 	postNewProject(body: IProjectPost) {
-		return this.http.post<IProjectPost>(this.projectsUrl, body);
+		return this.http.post<IProjectPost>(this.projectsUrl + '/projects', body);
 	}
 
 	patchExistingProject(projectID: number, title: string) {

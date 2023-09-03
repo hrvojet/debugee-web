@@ -1,1 +1,18 @@
-<p>new-project works!</p>
+<h1>Add new project</h1>
+<p>Name your project <s>or import a project form GitLab</s></p>
+
+<form [formGroup]="projectForm" (ngSubmit)="saveNewProject()">
+  <label for="title">Title
+    <input id="title" type="text" formControlName="title">
+  </label>
+  <br>
+
+  <label for="description" class="description" >Description
+    <input id="description" type="text" formControlName="description">
+  </label>
+  <br>
+  <button class="submit-button"
+          mat-raised-button color="accent"
+          type="submit"
+          [disabled]="!projectForm.valid">Create new project</button>
+</form>
