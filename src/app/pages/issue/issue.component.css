@@ -3,6 +3,7 @@
   display: block;
   margin: 36px auto 0;
   overflow: auto;
+  min-height: 380px;
 }
 
 h2 {
