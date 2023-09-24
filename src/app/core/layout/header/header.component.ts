@@ -52,4 +52,12 @@ export class HeaderComponent implements OnChanges, OnInit, AfterViewInit {
 	goToNewProject() {
 		void this.router.navigate(['projects/new']);
 	}
+
+	goToHome() {
+		if (this.sessionService.isUserLoggedIn()) {
+			void this.router.navigate(['/projects']);
+		} else {
+			void this.router.navigate(['/welcome']);
+		}
+	}
 }

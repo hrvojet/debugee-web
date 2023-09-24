@@ -2,7 +2,9 @@
 	<mat-toolbar-row>
 		<header>
 			<div class="left">
-				<button mat-icon-button color="primary"><mat-icon>home</mat-icon> <span class="home-button">debugee</span> </button>
+				<button mat-icon-button
+                (click)="goToHome()"
+                color="primary"><mat-icon>home</mat-icon> <span class="home-button">debugee</span> </button>
 			</div>
 			<div class="right">
         <button *ngIf="!isUserLogged; else loggedIn" mat-raised-button color="accent" (click)="login()">
