@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map, merge, Observable, startWith, switchMap } from 'rxjs';
+import { UserService } from '../../shared/services/user.service';
+import { IUser } from '../../shared/models/user.model';
 
 @Component({
 	selector: 'app-project',
@@ -14,6 +16,7 @@ import { map, merge, Observable, startWith, switchMap } from 'rxjs';
 export class ProjectComponent implements OnInit, AfterViewInit {
 	resultsLength = 0;
 	displayedColumns: string[] = ['title'];
+	currentUser?: IUser;
 
 	flag$!: Observable<boolean>;
 
@@ -21,11 +24,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	@ViewChild(MatSort) sort!: MatSort;
 
-	constructor(private projectService: ProjectService) {}
+	constructor(private projectService: ProjectService, private userService: UserService) {}
 
 	ngOnInit(): void {
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
+		this.currentUser = this.userService.getCurrentUser();
 	}
 
 	ngAfterViewInit(): void {
