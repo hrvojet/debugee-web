@@ -33,6 +33,7 @@
               <!--<img src="{{currentUser?.avatar_url}}" alt="{{currentUser?.username}}">-->
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button disabled ngbDropdownItem class="username">{{currentUser?.username}}</button>
               <button ngbDropdownItem>
                 <span>Settings</span>
               </button>

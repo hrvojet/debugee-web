@@ -20,6 +20,11 @@ header {
   background-position: center center;
 }
 
+.username {
+  color: white;
+  border-bottom: 1px solid var(--item-light-background-color);
+}
+
 .logout-button {
   color: #fc7272 !important;
 }
