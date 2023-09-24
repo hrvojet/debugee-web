@@ -3,12 +3,15 @@ import { IssueService } from '../../shared/services/issue.service';
 import { ActivatedRoute } from '@angular/router';
 import { IProject } from '../../shared/models/project.model';
 import { ProjectService } from '../../shared/services/project.service';
-import { forkJoin, map, merge, startWith, switchMap } from 'rxjs';
+import { map, merge, startWith, switchMap } from 'rxjs';
 import { IIssue } from '../../shared/models/issue.model';
-import { IPage } from '../../shared/models/page/page.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from '../../shared/services/user.service';
+import { IUser } from '../../shared/models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { EditProjectDialogComponent } from '../project/edit-project-dialog/edit-project-dialog.component';
 
 @Component({
 	selector: 'app-issue',
@@ -17,6 +20,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	project?: IProject;
+	currentUser?: IUser;
 
 	resultsLength = 0;
 	projectID!: number;
@@ -30,12 +34,15 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	constructor(
 		private issueService: IssueService,
 		private route: ActivatedRoute,
-		private projectService: ProjectService
+		private projectService: ProjectService,
+		private userService: UserService,
+		private dialog: MatDialog
 	) {}
 
 	ngOnInit() {
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
+		this.currentUser = this.userService.getCurrentUser();
 	}
 
 	ngAfterViewInit(): void {
@@ -93,5 +100,15 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 				this.resultsLength = data.totalElements;
 				this.dataSource.data = data.content;
 			});
+	}
+
+	editParentProject() {
+		this.dialog.open(EditProjectDialogComponent, {
+			data: {
+				project: this.project,
+			},
+			panelClass: 'label-dialog-class',
+			minWidth: '330px',
+		});
 	}
 }

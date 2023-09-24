@@ -1,0 +1,15 @@
+<form [formGroup]="projectForm" (ngSubmit)="updateProject()">
+  <label for="title">Title
+    <input id="title" type="text" formControlName="title" (input)="checkIfBothUpdated()">
+  </label>
+  <br>
+
+  <label for="description" class="description" >Description
+    <input id="description" type="text" formControlName="description" (input)="checkIfBothUpdated()">
+  </label>
+  <br>
+  <button class="submit-button"
+          mat-raised-button color="accent"
+          type="submit"
+          [disabled]="!updatable || !projectForm.valid">Update project</button>
+</form>

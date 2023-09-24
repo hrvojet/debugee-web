@@ -26,6 +26,7 @@ import { LabelComponent } from './label/label.component';
 import { LabelDialogComponent } from './label/label-dialog/label-dialog.component';
 import { ManageLabelsDialogComponent } from './comment/manage-labels-dialog/manage-labels-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { EditProjectDialogComponent } from './project/edit-project-dialog/edit-project-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -39,6 +40,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 		LabelComponent,
 		LabelDialogComponent,
 		ManageLabelsDialogComponent,
+		EditProjectDialogComponent,
 	],
 	imports: [
 		CommonModule,
