@@ -33,7 +33,7 @@ export class ProjectService {
 		return this.http.post<IProjectPost>(this.projectsUrl + '/projects', body);
 	}
 
-	patchExistingProject(projectID: number, title: string) {
-		return this.http.patch(this.projectsUrl + `/projects/${projectID}`, { title });
+	patchExistingProject(projectID: number, body: IProjectPost) {
+		return this.http.patch(this.projectsUrl + `/projects/${projectID}`, body);
 	}
 }

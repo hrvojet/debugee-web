@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IProject } from '../../../shared/models/project.model';
+import { IProject, IProjectPost } from '../../../shared/models/project.model';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ProjectService } from '../../../shared/services/project.service';
 
@@ -37,14 +37,15 @@ export class EditProjectDialogComponent implements OnInit, OnDestroy {
 		this.projectForm.get('description')?.valueChanges.subscribe((newDesc) => {
 			this.descUpdated = newDesc !== this.project.description;
 		});
-		console.log('initial updateable', this.updatable);
 	}
 
 	ngOnDestroy() {}
 
 	updateProject() {
-		//this.dialogRef.close();
-		console.log(this.updatable);
+		this.projectService.patchExistingProject(this.project.id, this.projectForm.value as IProjectPost).subscribe(() => {
+			this.dialogRef.close();
+			window.location.reload();
+		});
 	}
 
 	checkIfBothUpdated() {
