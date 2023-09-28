@@ -1,7 +1,7 @@
 <h1 class="main-header">
   {{issue?.title}} <span class="fade-color"> #{{issue?.id}}</span>
 <p class="fade-color">
-  {{issue?.originalPoster?.username}} opened this issue on<!-- TODO i18n --> {{comments?.[0]?.created | date}} &#x2022; {{comments?.length}} comments
+  {{issue?.originalPoster?.username}} opened this issue on<!-- TODO i18n --> {{issue?.created | date}} &#x2022; {{comments?.length}} comments
 </p>
 </h1>
 <main>

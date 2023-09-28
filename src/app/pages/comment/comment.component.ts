@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
@@ -15,7 +15,7 @@ import { ManageLabelsDialogComponent } from './manage-labels-dialog/manage-label
 	templateUrl: './comment.component.html',
 	styleUrls: ['./comment.component.css'],
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent implements OnInit, AfterViewInit {
 	issue?: IIssue;
 	comments?: IComment[];
 	markdown?: string;
@@ -36,9 +36,11 @@ export class CommentComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		const id = Number(this.route.snapshot.paramMap.get('issueId'));
 		this.currentUser = this.userService.getCurrentUser();
+	}
 
+	ngAfterViewInit() {
+		const id = Number(this.route.snapshot.paramMap.get('issueId'));
 		forkJoin([this.issueService.getIssueById(id), this.commentService.getCommentsForSpecificIssue(id)]).subscribe(
 			(res) => {
 				this.issue = res[0];
