@@ -1,4 +1,5 @@
-<button mat-button
+<button *ngIf="isLabelEditableByCurrentUser"
+        mat-button
         class="new-label-button"
         (click)="showNewLabelDIV = !showNewLabelDIV">New label</button>
 <div *ngIf="showNewLabelDIV"
@@ -61,14 +62,16 @@
     <ng-container matColumnDef="expand">
       <td mat-cell *matCellDef="let label" aria-label="expand row">
         <div class="shown-buttons">
-          <button mat-button
+          <button *ngIf="isLabelEditableByCurrentUser"
+                  mat-button
                   style="background-color: var(--main-green-color)"
                   [ngStyle]="{'visibility': expandedLabel !== label ? 'visible' : 'hidden'}"
                   aria-label="expand row"
                   (click)="(expandedLabel = expandedLabel === label ? null : label); setCurrentlyEditingLabel(label); $event.stopPropagation()"
           >Edit label
           </button>
-          <button mat-button
+          <button *ngIf="isLabelEditableByCurrentUser"
+                  mat-button
                   style="background-color: var(--main-purple-color)"
                   (click)="deleteRow(label)">Delete</button>
         </div>

@@ -29,6 +29,8 @@ export class LabelComponent implements OnInit, AfterViewInit {
 
 	showNewLabelDIV = false;
 
+	isLabelEditableByCurrentUser!: boolean;
+
 	@ViewChild(MatTable) table!: MatTable<ILabel>;
 	labels: ILabel[] | undefined;
 	displayedColumns: string[] = ['name', 'description'];
@@ -47,6 +49,8 @@ export class LabelComponent implements OnInit, AfterViewInit {
 			newDescription: [''],
 			newColorHex: ['', [Validators.required]],
 		});
+
+		this.isLabelEditableByCurrentUser = localStorage.getItem('ilebcu') === 'y';
 	}
 
 	ngOnInit(): void {}

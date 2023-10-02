@@ -53,6 +53,7 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		this.projectService.getProjectById(this.projectID).subscribe((res) => {
 			this.project = res;
+			localStorage.setItem('ilebcu', res.owner.id === this.userService.getCurrentUser().id ? 'y' : 'n');
 		});
 
 		merge(this.sort.sortChange, this.paginator.page)
