@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
@@ -16,6 +16,7 @@ import { ManageLabelsDialogComponent } from './manage-labels-dialog/manage-label
 	styleUrls: ['./comment.component.css'],
 })
 export class CommentComponent implements OnInit, AfterViewInit {
+	@ViewChild('markdownFocus') markdownFocus!: ElementRef;
 	issue?: IIssue;
 	comments?: IComment[];
 	markdown?: string;
@@ -74,7 +75,15 @@ export class CommentComponent implements OnInit, AfterViewInit {
 	}
 
 	quoteComment(comment: IComment): void {
-		this.markdown = '> ' + comment.text;
+		this.markdown = undefined;
+		/*const text = comment.text;
+
+		const arr = text.split('\n');
+		console.log(text);
+		console.log(arr);*/
+
+		this.markdown = '> ' + comment.text + '\n\n';
+		this.markdownFocus.nativeElement.focus();
 	}
 
 	private mapDistinctUsers(comments: IComment[]): Set<IUser> {

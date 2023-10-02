@@ -141,6 +141,13 @@ textarea {
   margin: 12px 4px 12px 0;
 }
 
+
+:host ::ng-deep markdown blockquote {
+  border-left: 2px solid var(--main-green-color);
+  font-style: italic;
+  padding-left: 12px;
+}
+
 .submit-button {
   float:right;
   margin: 8px !important;
