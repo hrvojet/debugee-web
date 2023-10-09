@@ -12,4 +12,14 @@
           mat-raised-button color="accent"
           type="submit"
           [disabled]="!updatable || !projectForm.valid">Update project</button>
+
 </form>
+<div class="danger-zone">
+  <p>To delete the project, input project name and press delete</p>
+  <input (paste)="(false)" type="text" [formControl]="deleteProjectInput">
+  <button mat-raised-button
+          color="accent"
+          class="danger-button"
+          [disabled]="!deleteProjectInput.valid"
+          (click)="deleteProject()">Delete project</button>
+</div>

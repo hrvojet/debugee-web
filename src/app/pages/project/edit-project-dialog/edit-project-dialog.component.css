@@ -7,7 +7,10 @@ input {
   color: white;
   text-indent: 4px;
   width: 99%;
-  margin-bottom: 16px;
+}
+
+label {
+  display: block;
 }
 
 input:focus {
@@ -15,4 +18,20 @@ input:focus {
   text-indent: 3px;
   border: 2px solid var(--main-green-color);
   outline: none;
+}
+
+.danger-zone {
+  border: 1px solid #de3d3d;
+  border-radius: 6px;
+  margin: 32px 0 16px;
+  padding: 24px;
+}
+
+.danger-zone label {
+  margin-bottom: 4px;
+}
+
+.danger-zone .danger-button {
+  background-color: #de3d3d;
+  margin-top: 16px;
 }

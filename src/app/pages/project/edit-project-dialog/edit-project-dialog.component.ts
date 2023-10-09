@@ -11,6 +11,8 @@ import { ProjectService } from '../../../shared/services/project.service';
 })
 export class EditProjectDialogComponent implements OnInit, OnDestroy {
 	projectForm: FormGroup;
+	deleteProjectInput: FormControl;
+
 	project: IProject;
 	updatable = false;
 
@@ -27,6 +29,8 @@ export class EditProjectDialogComponent implements OnInit, OnDestroy {
 			title: new FormControl(data.project.title, [Validators.required]),
 			description: new FormControl(data.project.description, [Validators.required]),
 		});
+
+		this.deleteProjectInput = new FormControl('', [this.validateDeleteButton()]);
 	}
 
 	ngOnInit(): void {
@@ -50,5 +54,19 @@ export class EditProjectDialogComponent implements OnInit, OnDestroy {
 
 	checkIfBothUpdated() {
 		this.updatable = this.titleUpdated || this.descUpdated;
+	}
+
+	deleteProject() {
+		this.projectService.deleteProject(this.project.id).subscribe(() => {
+			window.location.href = window.location.origin;
+		});
+	}
+
+	private validateDeleteButton(): ValidatorFn {
+		return (control: AbstractControl): ValidationErrors | null => {
+			const input = control.value;
+
+			return input === this.project.title ? null : { error: true };
+		};
 	}
 }

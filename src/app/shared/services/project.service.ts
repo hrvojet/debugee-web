@@ -36,4 +36,8 @@ export class ProjectService {
 	patchExistingProject(projectID: number, body: IProjectPost) {
 		return this.http.patch(this.projectsUrl + `/projects/${projectID}`, body);
 	}
+
+	deleteProject(projectID: number) {
+		return this.http.delete(this.projectsUrl + `/projects/${projectID}`);
+	}
 }
