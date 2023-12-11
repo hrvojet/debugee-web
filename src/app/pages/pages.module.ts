@@ -27,6 +27,7 @@ import { LabelDialogComponent } from './label/label-dialog/label-dialog.componen
 import { ManageLabelsDialogComponent } from './comment/manage-labels-dialog/manage-labels-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EditProjectDialogComponent } from './project/edit-project-dialog/edit-project-dialog.component';
+import { InputCommentComponent } from './comment/input-comment/input-comment.component';
 
 @NgModule({
 	declarations: [
@@ -41,6 +42,7 @@ import { EditProjectDialogComponent } from './project/edit-project-dialog/edit-p
 		LabelDialogComponent,
 		ManageLabelsDialogComponent,
 		EditProjectDialogComponent,
+		InputCommentComponent,
 	],
 	imports: [
 		CommonModule,

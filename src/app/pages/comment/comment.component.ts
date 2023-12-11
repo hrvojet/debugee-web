@@ -16,13 +16,17 @@ import { ManageLabelsDialogComponent } from './manage-labels-dialog/manage-label
 	styleUrls: ['./comment.component.css'],
 })
 export class CommentComponent implements OnInit, AfterViewInit {
-	@ViewChild('markdownFocus') markdownFocus!: ElementRef;
 	issue?: IIssue;
 	comments?: IComment[];
-	markdown?: string;
-	currentUser?: IUser;
-	participants?: Set<IUser>;
+	editingCommentIndex: number | null = null;
+
 	containsLabels!: boolean;
+
+	markdown?: string;
+	@ViewChild('markdownFocus') markdownFocus!: ElementRef;
+
+	currentUser!: IUser;
+	participants?: Set<IUser>;
 	usersHooverInfo: Map<number, IUser>;
 
 	constructor(
@@ -65,6 +69,17 @@ export class CommentComponent implements OnInit, AfterViewInit {
 				this.comments?.push(res);
 				this.markdown = '';
 			});
+	}
+
+	editComment(commentIndex: number) {
+		this.editingCommentIndex = commentIndex;
+	}
+
+	updateComment(updatedComment: IComment) {
+		this.commentService.updateComment(updatedComment.id, updatedComment.text).subscribe((res) => {
+			this.editingCommentIndex = null;
+			this.comments![this.comments!.findIndex((comment) => comment.id === res.id)] = res; // updates whole comment inplace
+		});
 	}
 
 	deleteOwnComment(comment: IComment): void {

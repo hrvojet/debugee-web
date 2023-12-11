@@ -1,0 +1,27 @@
+<div class="text-wrapper">
+  <mat-tab-group animationDuration="0ms" dynamicHeight color="transparent">
+    <mat-tab label="Write">
+          <textarea
+            [(ngModel)]="markdown"
+            placeholder="Write a comment"
+            #markdownFocus>
+          </textarea>
+    </mat-tab>
+    <mat-tab label="Preview">
+      <ng-template matTabContent>
+        <markdown
+          [data]="markdown"
+        >
+          Nothing to preview
+        </markdown>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <!-- TODO cancel and edit button instead submit for editing existing comment -->
+  <button class="submit-button"
+          mat-raised-button
+          color="accent"
+          (click)="updateComment(markdown)"
+          [disabled]="!markdown"
+  >Submit</button>
+</div>

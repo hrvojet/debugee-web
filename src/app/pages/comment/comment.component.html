@@ -5,7 +5,7 @@
 </p>
 </h1>
 <main>
-  <article *ngFor="let comment of comments" class="comment">
+  <article *ngFor="let comment of comments; index as i" class="comment">
     <span
       (mouseover)="getUserInfo(comment.author)"
       matTooltip="{{usersHooverInfo.get(comment.author.id) ? usersHooverInfo.get(comment.author.id)?.username : 'user'}}"
@@ -37,6 +37,7 @@
             <ng-container *ngIf="currentUser?.id === comment?.author?.id">
               <button
                 ngbDropdownItem
+                (click)="editComment(i)"
               >
                 <span>Edit</span>
               </button>
@@ -51,12 +52,18 @@
           </div>
         </div>
       </h3>
-      <markdown [data]="comment?.text">
-      </markdown>
+        <app-input-comment
+          *ngIf="editingCommentIndex && editingCommentIndex === i; else preview"
+          (updatedComment)="updateComment($event)"
+          [comment]="comment">
+        </app-input-comment>
+        <ng-template #preview>
+          <markdown [data]="comment?.text"></markdown>
+        </ng-template>
     </div>
   </article>
   <article class="userInput">
-    <img src="{{currentUser?.avatar_url}}" alt="username">
+    <img src="{{currentUser.avatar_url}}" alt="username">
     <div class="text-wrapper">
       <mat-tab-group animationDuration="0ms" dynamicHeight color="transparent">
         <mat-tab label="Write">

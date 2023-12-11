@@ -1,0 +1,29 @@
+.mat-tab-group {
+  display: block;
+}
+
+textarea {
+  background-color: #151515;
+  color: white;
+  border-radius: 4px;
+  width: 98%;
+  min-height: 100px;
+  box-sizing: border-box;
+  margin: 6px 0 0 1%;
+  border: 1px solid var(--main-green-color);
+  resize: vertical;
+  overflow: auto;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+.submit-button {
+  float:right;
+  margin: 8px !important;
+}
+
+.submit-button:disabled {
+  color: white !important;
+  background-color: var(--main-purple-color) !important;
+  opacity: 0.3 !important;
+}
