@@ -55,6 +55,7 @@
         <app-input-comment
           *ngIf="editingCommentIndex && editingCommentIndex === i; else preview"
           (updatedComment)="updateComment($event)"
+          [commentType]="inputCommentType.editing"
           [comment]="comment">
         </app-input-comment>
         <ng-template #preview>
@@ -65,30 +66,10 @@
   <article class="userInput">
     <img src="{{currentUser.avatar_url}}" alt="username">
     <div class="text-wrapper">
-      <mat-tab-group animationDuration="0ms" dynamicHeight color="transparent">
-        <mat-tab label="Write">
-          <textarea
-            [(ngModel)]="markdown"
-            placeholder="Write a comment"
-            #markdownFocus>
-          </textarea>
-        </mat-tab>
-        <mat-tab label="Preview">
-          <ng-template matTabContent>
-            <markdown
-              [data]="markdown"
-            >
-              Nothing to preview
-            </markdown>
-          </ng-template>
-        </mat-tab>
-      </mat-tab-group>
-    <button class="submit-button"
-      mat-raised-button
-      color="accent"
-      (click)="saveComment()"
-      [disabled]="!markdown"
-    >Submit</button>
+      <app-input-comment
+        (saveNewComment)="saveComment($event)"
+        [commentType]="inputCommentType.commenting">
+      </app-input-comment>
     </div>
   </article>
 </main>

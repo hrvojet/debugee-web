@@ -1,14 +1,16 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
-import { catchError, forkJoin } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { IComment } from '../../shared/models/comment.model';
 import { IIssue } from '../../shared/models/issue.model';
 import { UserService } from '../../shared/services/user.service';
 import { IUser } from '../../shared/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ManageLabelsDialogComponent } from './manage-labels-dialog/manage-labels-dialog.component';
+import { InputCommentTypeEnum } from './types/InputCommentType.enum';
+import { InputCommentComponent } from './input-comment/input-comment.component';
 
 @Component({
 	selector: 'app-comment',
@@ -19,11 +21,11 @@ export class CommentComponent implements OnInit, AfterViewInit {
 	issue?: IIssue;
 	comments?: IComment[];
 	editingCommentIndex: number | null = null;
+	inputCommentType = InputCommentTypeEnum;
 
 	containsLabels!: boolean;
 
-	markdown?: string;
-	@ViewChild('markdownFocus') markdownFocus!: ElementRef;
+	@ViewChild(InputCommentComponent) inputCommentRef!: InputCommentComponent;
 
 	currentUser!: IUser;
 	participants?: Set<IUser>;
@@ -61,14 +63,10 @@ export class CommentComponent implements OnInit, AfterViewInit {
 		);
 	}
 
-	saveComment() {
-		this.commentService
-			.postComment(Number(this.route.snapshot.paramMap.get('issueId')), this.markdown!)
-			.subscribe((res) => {
-				console.log(this.markdown + ' has been saved');
-				this.comments?.push(res);
-				this.markdown = '';
-			});
+	saveComment(markdown: string) {
+		this.commentService.postComment(Number(this.route.snapshot.paramMap.get('issueId')), markdown!).subscribe((res) => {
+			this.comments?.push(res);
+		});
 	}
 
 	editComment(commentIndex: number) {
@@ -76,10 +74,12 @@ export class CommentComponent implements OnInit, AfterViewInit {
 	}
 
 	updateComment(updatedComment: IComment) {
-		this.commentService.updateComment(updatedComment.id, updatedComment.text).subscribe((res) => {
-			this.editingCommentIndex = null;
-			this.comments![this.comments!.findIndex((comment) => comment.id === res.id)] = res; // updates whole comment inplace
-		});
+		if (updatedComment) {
+			this.commentService.updateComment(updatedComment.id, updatedComment.text).subscribe((res) => {
+				this.comments![this.comments!.findIndex((comment) => comment.id === res.id)] = res;
+			});
+		}
+		this.editingCommentIndex = null;
 	}
 
 	deleteOwnComment(comment: IComment): void {
@@ -90,15 +90,14 @@ export class CommentComponent implements OnInit, AfterViewInit {
 	}
 
 	quoteComment(comment: IComment): void {
-		this.markdown = undefined;
 		/*const text = comment.text;
 
 		const arr = text.split('\n');
 		console.log(text);
 		console.log(arr);*/
 
-		this.markdown = '> ' + comment.text + '\n\n';
-		this.markdownFocus.nativeElement.focus();
+		this.inputCommentRef.markdown = '> ' + comment.text + '\n\n';
+		this.inputCommentRef.markdownFocus.nativeElement.focus();
 	}
 
 	private mapDistinctUsers(comments: IComment[]): Set<IUser> {

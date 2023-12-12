@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IComment } from '../../../shared/models/comment.model';
+import { InputCommentTypeEnum } from '../types/InputCommentType.enum';
 
 @Component({
 	selector: 'app-input-comment',
@@ -7,12 +8,15 @@ import { IComment } from '../../../shared/models/comment.model';
 	styleUrls: ['./input-comment.component.css'],
 })
 export class InputCommentComponent implements OnInit {
-	@Input() isEditing!: boolean; // TODO maybe enum flag for editing/posting new
+	inputCommentType = InputCommentTypeEnum;
+	@Input() commentType!: InputCommentTypeEnum; // TODO maybe enum flag for editing/posting new
 	@Input() comment: IComment | undefined;
 
 	@Output() updatedComment = new EventEmitter<IComment>();
-	// https://angular.io/guide/inputs-outputs#sending-data-to-a-parent-component
+	@Output() saveNewComment = new EventEmitter<string>();
+
 	markdown!: string;
+	@ViewChild('markdownFocus') markdownFocus!: ElementRef;
 
 	constructor() {}
 
@@ -25,5 +29,14 @@ export class InputCommentComponent implements OnInit {
 	updateComment(value: string) {
 		this.comment!.text = value;
 		this.updatedComment.emit(this.comment);
+	}
+
+	cancelCommentUpdate() {
+		this.updatedComment.emit(undefined);
+	}
+
+	saveComment(markdown: string) {
+		this.saveNewComment.emit(markdown);
+		this.markdown = '';
 	}
 }
