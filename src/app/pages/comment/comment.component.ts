@@ -70,6 +70,7 @@ export class CommentComponent implements OnInit, AfterViewInit {
 	}
 
 	editComment(commentIndex: number) {
+		debugger;
 		this.editingCommentIndex = commentIndex;
 	}
 

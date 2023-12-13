@@ -53,7 +53,7 @@
         </div>
       </h3>
         <app-input-comment
-          *ngIf="editingCommentIndex && editingCommentIndex === i; else preview"
+          *ngIf="editingCommentIndex !== null && editingCommentIndex === i; else preview"
           (updatedComment)="updateComment($event)"
           [commentType]="inputCommentType.editing"
           [comment]="comment">
