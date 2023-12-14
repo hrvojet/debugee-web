@@ -28,6 +28,7 @@ import { ManageLabelsDialogComponent } from './comments/manage-labels-dialog/man
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EditProjectDialogComponent } from './projects/edit-project-dialog/edit-project-dialog.component';
 import { InputCommentComponent } from './comments/input-comment/input-comment.component';
+import { DeleteIssueComponent } from './issues/delete-issue/delete-issue.component';
 
 @NgModule({
 	declarations: [
@@ -43,6 +44,7 @@ import { InputCommentComponent } from './comments/input-comment/input-comment.co
 		ManageLabelsDialogComponent,
 		EditProjectDialogComponent,
 		InputCommentComponent,
+  DeleteIssueComponent,
 	],
 	imports: [
 		CommonModule,

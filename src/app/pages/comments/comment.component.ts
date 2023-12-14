@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ManageLabelsDialogComponent } from './manage-labels-dialog/manage-labels-dialog.component';
 import { InputCommentTypeEnum } from './types/InputCommentType.enum';
 import { InputCommentComponent } from './input-comment/input-comment.component';
+import {DeleteIssueComponent} from "../issues/delete-issue/delete-issue.component";
 
 @Component({
 	selector: 'app-comment',
@@ -128,4 +129,14 @@ export class CommentComponent implements OnInit, AfterViewInit {
 			minWidth: '330px',
 		});
 	}
+
+  openDeleteDialog() {
+    this.dialog.open(DeleteIssueComponent , {
+      data: {
+        issue: this.issue
+      },
+      panelClass: 'label-dialog-class',
+      minWidth: '330px',
+    });
+  }
 }
