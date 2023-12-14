@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from '../../shared/services/user.service';
 import { IUser } from '../../shared/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
-import { EditProjectDialogComponent } from '../project/edit-project-dialog/edit-project-dialog.component';
+import { EditProjectDialogComponent } from '../projects/edit-project-dialog/edit-project-dialog.component';
 
 @Component({
 	selector: 'app-issue',

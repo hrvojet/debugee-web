@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeScreenComponent } from './core/layout/welcome-screen/welcome-screen.component';
 import { PageNotFoundComponent } from './core/layout/page-not-found/page-not-found.component';
-import { ProjectComponent } from './pages/project/project.component';
-import { IssueComponent } from './pages/issue/issue.component';
+import { ProjectComponent } from './pages/projects/project.component';
+import { IssueComponent } from './pages/issues/issue.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { CommentComponent } from './pages/comment/comment.component';
-import { NewIssueComponent } from './pages/issue/new-issue/new-issue.component';
-import { NewProjectComponent } from './pages/project/new-project/new-project.component';
-import { LabelComponent } from './pages/label/label.component';
+import { CommentComponent } from './pages/comments/comment.component';
+import { NewIssueComponent } from './pages/issues/new-issue/new-issue.component';
+import { NewProjectComponent } from './pages/projects/new-project/new-project.component';
+import { LabelComponent } from './pages/labels/label.component';
 
 const routes: Routes = [
 	{
