@@ -16,6 +16,45 @@
   font-size: 14px;
 }
 
+.title-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-button {
+  height: 30px;
+  line-height: 30px;
+  background-color: var(--item-light-background-color);
+  color: white !important;
+}
+
+.edit-button:hover:enabled {
+  background-color: var(--main-green-color);
+}
+
+.edit-button:disabled {
+  opacity: 0.3 !important;
+}
+
+.main-header input {
+  height: 30px;
+  flex: 1;
+  border: 1px solid var(--main-green-color);
+  margin-right: 2%;
+  border-radius: 4px;
+  background-color: var(--item-background-color);
+  color: white;
+  text-indent: 18px;
+  margin-bottom: 2px;
+}
+
+.main-header input:focus {
+  height: 30px;
+  border: 2px solid var(--main-green-color);
+  outline: none;
+}
+
 main {
   /* TODO comments are wrapped in main, set aside for additional content (two columns)*/
   width: 70%;
@@ -147,17 +186,6 @@ textarea {
   border-left: 2px solid var(--main-green-color);
   font-style: italic;
   padding-left: 12px;
-}
-
-.submit-button {
-  float:right;
-  margin: 8px !important;
-}
-
-.submit-button:disabled {
-  color: white !important;
-  background-color: var(--main-purple-color) !important;
-  opacity: 0.3 !important;
 }
 
 .more-horiz {

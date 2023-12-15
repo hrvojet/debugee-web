@@ -38,7 +38,7 @@ export class IssueService {
 	}
 
 	patchIssue(issueID: number, title: string | null, isOpened: boolean | null) {
-		return this.http.patch(this.issueUrl + '/issues', { title, isOpened });
+		return this.http.patch<IIssue>(this.issueUrl + `/issues/${issueID}`, { title, isOpened });
 	}
 
 	deleteIssue(issueID: number) {

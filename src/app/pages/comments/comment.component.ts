@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
@@ -19,6 +19,10 @@ import {DeleteIssueComponent} from "../issues/delete-issue/delete-issue.componen
 	styleUrls: ['./comment.component.css'],
 })
 export class CommentComponent implements OnInit, AfterViewInit {
+
+  title!: string;
+  editingTitle: boolean = false;
+
 	issue?: IIssue;
 	comments?: IComment[];
 	editingCommentIndex: number | null = null;
@@ -52,6 +56,7 @@ export class CommentComponent implements OnInit, AfterViewInit {
 		forkJoin([this.issueService.getIssueById(id), this.commentService.getCommentsForSpecificIssue(id)]).subscribe(
 			(res) => {
 				this.issue = res[0];
+        this.title = this.issue?.title;
 				this.comments = res[1];
 				this.participants = this.mapDistinctUsers(this.comments!);
 				if (this.issue) {
@@ -138,5 +143,23 @@ export class CommentComponent implements OnInit, AfterViewInit {
       panelClass: 'label-dialog-class',
       minWidth: '330px',
     });
+  }
+
+  editTitle() {
+    this.editingTitle = true;
+
+  }
+
+  updateTitle() {
+    this.issueService.patchIssue(this.issue!.id, this.title, null)
+      .subscribe(updatedIssue => {
+        this.issue = updatedIssue;
+        this.editingTitle = false;
+      });
+  }
+
+  cancelTitleEdit() {
+    this.editingTitle = false;
+    this.title = this.issue!.title;
   }
 }

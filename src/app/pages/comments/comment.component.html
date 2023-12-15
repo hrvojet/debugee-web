@@ -1,5 +1,33 @@
 <h1 class="main-header">
-  {{issue?.title}} <span class="fade-color"> #{{issue?.id}}</span>
+  <div *ngIf="!editingTitle; else edit">
+    <div class="title-flex">
+      <div>
+        <span class="fade-color"> #{{issue?.id}}</span> {{issue?.title}}
+      </div>
+        <button mat-button
+                *ngIf="issue && currentUser.id === issue.originalPoster.id"
+                color="primary"
+                class="edit-button"
+                (click)="editTitle()">Edit</button>
+    </div>
+  </div>
+  <ng-template #edit >
+    <div class="title-flex">
+      <input focusAfterRender
+             style="font-size: 14px;"
+             [(ngModel)]="title">
+      <button mat-button
+              color="primary"
+              class="edit-button"
+              style="margin-right: 4px"
+              [disabled]="title === issue?.title"
+              (click)="updateTitle()">Update</button>
+      <button mat-button
+              color="primary"
+              class="edit-button"
+              (click)="cancelTitleEdit()">Cancel</button>
+    </div>
+  </ng-template>
 <p class="fade-color">
   {{issue?.originalPoster?.username}} opened this issue on<!-- TODO i18n --> {{issue?.created | date}} &#x2022; {{comments?.length}} comments
 </p>
