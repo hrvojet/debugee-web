@@ -121,7 +121,7 @@
       <th mat-header-cell *matHeaderCellDef>Title</th>
       <td mat-cell *matCellDef="let row">
         <a routerLink="{{row.id}}" class="hoover-effect">
-          {{row.title}}
+          {{row.title}} <span *ngIf="!row.opened"><mat-icon>lock</mat-icon></span>
         </a>
         <br>
         <span class="fade-color">

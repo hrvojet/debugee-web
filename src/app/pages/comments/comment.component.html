@@ -91,7 +91,7 @@
         </ng-template>
     </div>
   </article>
-  <article class="userInput">
+  <article *ngIf="issue && issue.opened" class="userInput">
     <img src="{{currentUser.avatar_url}}" alt="username">
     <div class="text-wrapper">
       <app-input-comment
@@ -129,9 +129,19 @@
     </span>
   </div>
   <hr>
+  <ng-container *ngIf="issue && (issue.originalPoster.id === currentUser.id || project.owner.id === currentUser.id)">
   <div>
-    <span
-      class="hoover-effect" (click)="openDeleteDialog()"> <mat-icon style="font-size: 22px">delete_outlined</mat-icon> Delete</span>
+    <span class="hoover-effect" (click)="openDeleteDialog()"> <mat-icon style="font-size: 22px">delete_outlined</mat-icon> Delete</span>
   </div>
+  <div>
+    <span class="hoover-effect"
+          (click)="openCloseIssueDialog()">
+      <span *ngIf="issue?.opened; else open"><mat-icon style="font-size: 22px">lock_outlined</mat-icon> Close issue</span>
+      <ng-template #open>
+        <span ><mat-icon style="font-size: 22px">lock_open_right</mat-icon> Open issue</span>
+      </ng-template>
+    </span>
+  </div>
+  </ng-container>
 </aside>
 <div class="clear"></div>

@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
 import { forkJoin } from 'rxjs';
 import { IComment } from '../../shared/models/comment.model';
@@ -12,6 +12,9 @@ import { ManageLabelsDialogComponent } from './manage-labels-dialog/manage-label
 import { InputCommentTypeEnum } from './types/InputCommentType.enum';
 import { InputCommentComponent } from './input-comment/input-comment.component';
 import {DeleteIssueComponent} from "../issues/delete-issue/delete-issue.component";
+import {LockIssueComponent} from "../issues/lock-issue/lock-issue.component";
+import {ProjectService} from "../../shared/services/project.service";
+import {IProject} from "../../shared/models/project.model";
 
 @Component({
 	selector: 'app-comment',
@@ -28,6 +31,8 @@ export class CommentComponent implements OnInit, AfterViewInit {
 	editingCommentIndex: number | null = null;
 	inputCommentType = InputCommentTypeEnum;
 
+  project!: IProject;
+
 	containsLabels!: boolean;
 
 	@ViewChild(InputCommentComponent) inputCommentRef!: InputCommentComponent;
@@ -39,8 +44,8 @@ export class CommentComponent implements OnInit, AfterViewInit {
 	constructor(
 		private commentService: CommentService,
 		private route: ActivatedRoute,
-		private router: Router,
 		private issueService: IssueService,
+    private projectService: ProjectService,
 		private userService: UserService,
 		private dialog: MatDialog
 	) {
@@ -52,12 +57,18 @@ export class CommentComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		const id = Number(this.route.snapshot.paramMap.get('issueId'));
-		forkJoin([this.issueService.getIssueById(id), this.commentService.getCommentsForSpecificIssue(id)]).subscribe(
+		const issueID = Number(this.route.snapshot.paramMap.get('issueId'));
+		const projectID = Number(this.route.snapshot.paramMap.get('projectId'));
+		forkJoin([
+      this.issueService.getIssueById(issueID),
+      this.commentService.getCommentsForSpecificIssue(issueID),
+      this.projectService.getProjectById(projectID)
+    ]).subscribe(
 			(res) => {
 				this.issue = res[0];
         this.title = this.issue?.title;
 				this.comments = res[1];
+        this.project = res[2];
 				this.participants = this.mapDistinctUsers(this.comments!);
 				if (this.issue) {
 					this.containsLabels = res[0].labels.length === 0;
@@ -142,6 +153,22 @@ export class CommentComponent implements OnInit, AfterViewInit {
       },
       panelClass: 'label-dialog-class',
       minWidth: '330px',
+    });
+  }
+
+  openCloseIssueDialog() {
+    const dialogRef = this.dialog.open(LockIssueComponent, {
+      data: {
+        issue: this.issue
+      },
+      panelClass: 'label-dialog-class',
+      minWidth: '330px',
+    });
+
+    dialogRef.afterClosed().subscribe(updatedIssue => {
+      if (updatedIssue) {
+        this.issue = updatedIssue;
+      }
     });
   }
 

@@ -1,0 +1,22 @@
+<ng-container *ngIf="issue.opened; else unlock">
+<h3>Are you sure you want to close this issue?</h3>
+<ul>
+  <li>Users won't be able to comment on this issue.</li>
+  <li>You can unlock this issue in the future.</li>
+</ul>
+<button mat-button
+        class="button-delete"
+        (click)="lockIssue()"
+        style="width: 100%">Lock issue</button>
+</ng-container>
+<ng-template #unlock>
+  <h3>Are you sure you want to unlock this issue?</h3>
+  <ul>
+    <li>Everyone will be able to comment again on this issue.</li>
+    <li>You can lock this issue in the future.</li>
+  </ul>
+  <button mat-button
+          class="button-delete"
+          (click)="unlockIssue()"
+          style="width: 100%">Unlock issue</button>
+</ng-template>

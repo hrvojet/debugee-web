@@ -30,6 +30,7 @@ import { EditProjectDialogComponent } from './projects/edit-project-dialog/edit-
 import { InputCommentComponent } from './comments/input-comment/input-comment.component';
 import { DeleteIssueComponent } from './issues/delete-issue/delete-issue.component';
 import { FocusAfterRenderDirective } from "../shared/directives/focus-after-render.directive";
+import { LockIssueComponent } from './issues/lock-issue/lock-issue.component';
 
 @NgModule({
 	declarations: [
@@ -46,6 +47,7 @@ import { FocusAfterRenderDirective } from "../shared/directives/focus-after-rend
 		EditProjectDialogComponent,
 		InputCommentComponent,
     DeleteIssueComponent,
+    LockIssueComponent,
     FocusAfterRenderDirective,
 	],
 	imports: [
