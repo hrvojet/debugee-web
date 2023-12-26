@@ -29,8 +29,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EditProjectDialogComponent } from './projects/edit-project-dialog/edit-project-dialog.component';
 import { InputCommentComponent } from './comments/input-comment/input-comment.component';
 import { DeleteIssueComponent } from './issues/delete-issue/delete-issue.component';
-import { FocusAfterRenderDirective } from "../shared/directives/focus-after-render.directive";
+import { FocusAfterRenderDirective } from '../shared/directives/focus-after-render.directive';
 import { LockIssueComponent } from './issues/lock-issue/lock-issue.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
 	declarations: [
@@ -46,9 +47,9 @@ import { LockIssueComponent } from './issues/lock-issue/lock-issue.component';
 		ManageLabelsDialogComponent,
 		EditProjectDialogComponent,
 		InputCommentComponent,
-    DeleteIssueComponent,
-    LockIssueComponent,
-    FocusAfterRenderDirective,
+		DeleteIssueComponent,
+		LockIssueComponent,
+		FocusAfterRenderDirective,
 	],
 	imports: [
 		CommonModule,
@@ -69,6 +70,7 @@ import { LockIssueComponent } from './issues/lock-issue/lock-issue.component';
 		NgbDropdownModule,
 		ReactiveFormsModule,
 		MatCheckboxModule,
+		MatToolbarModule,
 	],
 })
 export class PagesModule {}

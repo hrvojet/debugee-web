@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { CommentService } from '../../shared/services/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { IssueService } from '../../shared/services/issue.service';
@@ -11,10 +11,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ManageLabelsDialogComponent } from './manage-labels-dialog/manage-labels-dialog.component';
 import { InputCommentTypeEnum } from './types/InputCommentType.enum';
 import { InputCommentComponent } from './input-comment/input-comment.component';
-import {DeleteIssueComponent} from "../issues/delete-issue/delete-issue.component";
-import {LockIssueComponent} from "../issues/lock-issue/lock-issue.component";
-import {ProjectService} from "../../shared/services/project.service";
-import {IProject} from "../../shared/models/project.model";
+import { DeleteIssueComponent } from '../issues/delete-issue/delete-issue.component';
+import { LockIssueComponent } from '../issues/lock-issue/lock-issue.component';
+import { ProjectService } from '../../shared/services/project.service';
+import { IProject } from '../../shared/models/project.model';
 
 @Component({
 	selector: 'app-comment',
@@ -22,16 +22,16 @@ import {IProject} from "../../shared/models/project.model";
 	styleUrls: ['./comment.component.css'],
 })
 export class CommentComponent implements OnInit, AfterViewInit {
-
-  title!: string;
-  editingTitle: boolean = false;
+	title!: string;
+	editingTitle: boolean = false;
+	projectID!: number;
 
 	issue?: IIssue;
 	comments?: IComment[];
 	editingCommentIndex: number | null = null;
 	inputCommentType = InputCommentTypeEnum;
 
-  project!: IProject;
+	project!: IProject;
 
 	containsLabels!: boolean;
 
@@ -45,11 +45,12 @@ export class CommentComponent implements OnInit, AfterViewInit {
 		private commentService: CommentService,
 		private route: ActivatedRoute,
 		private issueService: IssueService,
-    private projectService: ProjectService,
+		private projectService: ProjectService,
 		private userService: UserService,
 		private dialog: MatDialog
 	) {
 		this.usersHooverInfo = new Map<number, IUser>();
+		this.projectID = Number(this.route.snapshot.paramMap.get('projectId'));
 	}
 
 	ngOnInit(): void {
@@ -58,17 +59,16 @@ export class CommentComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit() {
 		const issueID = Number(this.route.snapshot.paramMap.get('issueId'));
-		const projectID = Number(this.route.snapshot.paramMap.get('projectId'));
 		forkJoin([
-      this.issueService.getIssueById(issueID),
-      this.commentService.getCommentsForSpecificIssue(issueID),
-      this.projectService.getProjectById(projectID)
-    ]).subscribe(
+			this.issueService.getIssueById(issueID),
+			this.commentService.getCommentsForSpecificIssue(issueID),
+			this.projectService.getProjectById(this.projectID),
+		]).subscribe(
 			(res) => {
 				this.issue = res[0];
-        this.title = this.issue?.title;
+				this.title = this.issue?.title;
 				this.comments = res[1];
-        this.project = res[2];
+				this.project = res[2];
 				this.participants = this.mapDistinctUsers(this.comments!);
 				if (this.issue) {
 					this.containsLabels = res[0].labels.length === 0;
@@ -146,47 +146,45 @@ export class CommentComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-  openDeleteDialog() {
-    this.dialog.open(DeleteIssueComponent , {
-      data: {
-        issue: this.issue
-      },
-      panelClass: 'label-dialog-class',
-      minWidth: '330px',
-    });
-  }
+	openDeleteDialog() {
+		this.dialog.open(DeleteIssueComponent, {
+			data: {
+				issue: this.issue,
+			},
+			panelClass: 'label-dialog-class',
+			minWidth: '330px',
+		});
+	}
 
-  openCloseIssueDialog() {
-    const dialogRef = this.dialog.open(LockIssueComponent, {
-      data: {
-        issue: this.issue
-      },
-      panelClass: 'label-dialog-class',
-      minWidth: '330px',
-    });
+	openCloseIssueDialog() {
+		const dialogRef = this.dialog.open(LockIssueComponent, {
+			data: {
+				issue: this.issue,
+			},
+			panelClass: 'label-dialog-class',
+			minWidth: '330px',
+		});
 
-    dialogRef.afterClosed().subscribe(updatedIssue => {
-      if (updatedIssue) {
-        this.issue = updatedIssue;
-      }
-    });
-  }
+		dialogRef.afterClosed().subscribe((updatedIssue) => {
+			if (updatedIssue) {
+				this.issue = updatedIssue;
+			}
+		});
+	}
 
-  editTitle() {
-    this.editingTitle = true;
+	editTitle() {
+		this.editingTitle = true;
+	}
 
-  }
+	updateTitle() {
+		this.issueService.patchIssue(this.issue!.id, this.title, null).subscribe((updatedIssue) => {
+			this.issue = updatedIssue;
+			this.editingTitle = false;
+		});
+	}
 
-  updateTitle() {
-    this.issueService.patchIssue(this.issue!.id, this.title, null)
-      .subscribe(updatedIssue => {
-        this.issue = updatedIssue;
-        this.editingTitle = false;
-      });
-  }
-
-  cancelTitleEdit() {
-    this.editingTitle = false;
-    this.title = this.issue!.title;
-  }
+	cancelTitleEdit() {
+		this.editingTitle = false;
+		this.title = this.issue!.title;
+	}
 }

@@ -62,8 +62,11 @@ td.mat-cell {
 table .mat-row:hover > .mat-cell {
   background-color: var(--item-background-color);
 }
+.mat-toolbar-row {
+  justify-content: space-between;
+}
 
-.mat-paginator {
+.mat-toolbar {
   background-color: #37373c;
   color: white;
   border-bottom: 1px solid var(--main-green-color);
@@ -71,6 +74,12 @@ table .mat-row:hover > .mat-cell {
   border-right: 1px solid var(--main-green-color);
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
+}
+
+.mat-paginator {
+  background-color: #37373c;
+  color: white;
+
 }
 
 a {
@@ -83,6 +92,7 @@ a {
   color: var(--main-green-color);
   cursor: pointer;
 }
+
 
 @media only screen and (max-width: 1280px) {
   :host(app-issue) {

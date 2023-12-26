@@ -29,7 +29,7 @@
     </div>
   </ng-template>
 <p class="fade-color">
-  {{issue?.originalPoster?.username}} opened this issue on<!-- TODO i18n --> {{issue?.created | date}} &#x2022; {{comments?.length}} comments
+  {{issue?.originalPoster?.username}} opened this <a class="previous-item-link" routerLink="/projects/{{projectID}}">issue</a> on<!-- TODO i18n --> {{issue?.created | date}} &#x2022; {{comments?.length}} comments
 </p>
 </h1>
 <main>

@@ -47,6 +47,15 @@ a {
   color: #ffffff;
 }
 
+a.previous-item-link {
+  text-decoration: underline !important;
+  color: var(--text-focus-color);
+}
+
+a.previous-item-link:hover {
+  color: var(--main-green-color);
+}
+
 .clear { clear: both; height: 70px; }
 
 .mat-menu-content {
