@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 	providedIn: 'root',
 })
 export class CommentService {
-	private readonly commentUrl = environment.protocol + environment.debugeeDomain;
+	private readonly commentUrl = environment.protocol + environment.debugeeDomain + '/api';
 
 	constructor(private http: HttpClient) {}
 

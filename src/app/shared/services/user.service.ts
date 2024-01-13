@@ -22,6 +22,6 @@ export class UserService {
 	}
 
 	public getUserByID(id: number) {
-		return this.http.get<IUser>(environment.protocol + environment.debugeeDomain + '/user/' + id);
+		return this.http.get<IUser>(environment.protocol + environment.debugeeDomain + '/api' + '/user/' + id);
 	}
 }

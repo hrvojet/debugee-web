@@ -8,7 +8,7 @@ import { IPage } from '../models/page/page.model';
 	providedIn: 'root',
 })
 export class ProjectService {
-	private readonly projectsUrl = environment.protocol + environment.debugeeDomain;
+	private readonly projectsUrl = environment.protocol + environment.debugeeDomain + '/api';
 
 	constructor(private http: HttpClient) {}
 

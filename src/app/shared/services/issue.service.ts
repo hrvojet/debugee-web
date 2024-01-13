@@ -8,7 +8,7 @@ import { IPage } from '../models/page/page.model';
 	providedIn: 'root',
 })
 export class IssueService {
-	private readonly issueUrl = environment.protocol + environment.debugeeDomain;
+	private readonly issueUrl = environment.protocol + environment.debugeeDomain + '/api';
 
 	constructor(private http: HttpClient) {}
 

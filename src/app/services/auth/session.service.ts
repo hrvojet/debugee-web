@@ -13,7 +13,7 @@ export class SessionService {
 	constructor(private router: Router) {}
 
 	login(): void {
-		window.location.href = `${environment.protocol}${environment.gitLabDomain}${environment.gitLabTokenApi}?client_id=${environment.clientId}&redirect_uri=http://192.168.0.212:8080/callback/gitlab&response_type=code&scope=openid profile email read_api`;
+		window.location.href = `${environment.protocol}${environment.gitLabDomain}${environment.gitLabTokenApi}?client_id=${environment.clientId}&redirect_uri=${environment.protocol}${environment.redirectUri}&response_type=code&scope=openid profile email read_api`;
 	}
 
 	isUserLoggedIn(): boolean {
