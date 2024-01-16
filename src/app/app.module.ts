@@ -18,6 +18,7 @@ import { PagesModule } from './pages/pages.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgOptimizedImage } from '@angular/common';
 
 export function tokenGetter() {
 	return localStorage.getItem('access_token');
@@ -44,6 +45,7 @@ export function tokenGetter() {
 		MarkdownModule.forRoot(),
 		NgbModule,
 		MatDialogModule,
+		NgOptimizedImage,
 	],
 	bootstrap: [AppComponent],
 })

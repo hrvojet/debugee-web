@@ -1,0 +1,19 @@
+main {
+  margin: 9% auto;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align-last: center;
+  color: var(--text-focus-color);
+}
+
+img {
+  margin-top: 14px;
+}
+
+button {
+  margin-top: 44px;
+  background-color: var(--main-purple-color) !important;
+}
