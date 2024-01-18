@@ -82,3 +82,8 @@ span {
   background-color: var(--item-light-background-color);
 }
 
+.span-debugee {
+  background-color: var(--main-green-color);
+  font-weight: bolder;
+}
+
