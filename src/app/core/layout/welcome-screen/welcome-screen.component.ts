@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../../../services/auth/session.service';
 
 @Component({
 	selector: 'app-welcome-screen',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./welcome-screen.component.css'],
 })
 export class WelcomeScreenComponent implements OnInit {
-	constructor() {}
+	constructor(private sessionService: SessionService) {}
 
 	ngOnInit(): void {}
+
+	login() {
+		this.sessionService.login();
+	}
 }
