@@ -1,6 +1,18 @@
-build_web:
+stages:
+  - build
+  - deploy
+
+build-web:
+  stage: build
   script:
     - echo 'yarn-offline-mirror "/glcache/yarn/"' >> .yarnrc
     - yarn install --frozen-lockfile
     - yarn run build:prod
+  artifacts:
+    paths:
+      - ./dist/
+
+deploy-web:
+  stage: deploy
+  script:
     - ./deploy-artifact-to-server.sh
