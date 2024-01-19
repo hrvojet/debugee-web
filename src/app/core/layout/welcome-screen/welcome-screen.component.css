@@ -5,6 +5,24 @@ article {
   justify-content: space-between;
 }
 
+/* Title animation */
+.title-effect-green:hover {
+  animation: color-change-green 2s infinite;
+}
+@keyframes color-change-green {
+  0% { color: var(--text-focus-color); }
+  50% { color: var(--main-green-color); }
+  100% { color: var(--text-focus-color); }
+}
+.title-effect-purple:hover {
+  animation: color-change-purple 2s infinite;
+}
+@keyframes color-change-purple {
+  0% { color: var(--text-fade-color); }
+  50% { color: var(--main-purple-color); }
+  100% { color: var(--text-fade-color); }
+}
+
 .flex-container {
   display: flex;
   align-items: center;

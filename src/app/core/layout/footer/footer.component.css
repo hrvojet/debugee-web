@@ -5,6 +5,7 @@
 footer {
   color: var(--text-fade-color);
   font-weight: lighter;
+  font-size: 18px;
 }
 
 app-footer {
@@ -15,4 +16,10 @@ app-footer {
 
 .footer-copyright {
   margin-top: 8px;
+}
+
+@media (max-width: 792px) {
+  footer {
+    font-size: 14px;
+  }
 }
