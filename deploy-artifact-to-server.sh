@@ -34,4 +34,3 @@ ssh hrvoje@20.82.136.123 "/home/hrvoje/web-deploy.sh"
 #delete local tar
 rm web-debugee.tar.gz
 cd "$ROOT_WORK_DIR" || echo "This really should not have failed..."
-pwd
