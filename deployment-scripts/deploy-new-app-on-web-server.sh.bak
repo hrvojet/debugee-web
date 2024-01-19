@@ -1,0 +1,34 @@
+#!/bin/bash
+
+## This script deploys debugee-web to nginx serve path
+# 
+# It is used by GitLab CI/CD and it should be located in
+# home directory on a web server of a user running it
+#
+
+# Change working dir
+echo "Changing work dir to '.web-deploy'"
+cd ".web-deploy" || echo "Failed to cd to '.web-deploy'"
+
+# Untar latest web
+echo "Untaring 'web-debugee.tar.gz'"
+sudo tar -xzf web-debugee.tar.gz || echo "Failed to untar!"
+
+# Make a backup copy to "backup" dir
+echo "Making a backup of current tar.gz"
+mv web-debugee.tar.gz backup/web-debugee-"$(date +%FT%R)"@T.tar.gz
+
+# Delete content in nginx serve path
+echo "Deleting all content in /var/www/debugee_web/html/*"
+rm -rf /var/www/debugee_web/html/* || echo "Failed to delete existing assets in 'html' dir"
+
+# Copy new web to nginx serve path
+echo "Deploying new web to nginx path"
+cp -a debugee-web/. /var/www/debugee_web/html/ || echo "Failed to copy new assets to 'html' dir"
+
+# Remove debugee-web dir because this needs to be clean
+echo "Removing debugee-web dir"
+rm -rf debugee-web || echo "Failed to remove 'debugee_web'"
+
+# Finish
+echo "Finish web deployment"
