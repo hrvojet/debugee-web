@@ -87,3 +87,30 @@ span {
   font-weight: bolder;
 }
 
+@media (max-width: 792px) {
+
+  h1 {
+    font-size: 34px;
+    letter-spacing: -2px;
+  }
+
+  h2 {
+    font-size: x-large;
+    font-weight: lighter;
+    letter-spacing: -1px;
+  }
+
+  p {
+    max-width: 18rem;
+    font-size: large;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .img-radius {
+    max-width: 90%;
+    height: auto;
+  }
+
+}
+
