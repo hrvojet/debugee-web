@@ -16,7 +16,7 @@ sudo tar -xzf web-debugee.tar.gz || echo "Failed to untar!"
 
 # Make a backup copy to "backup" dir
 echo "Making a backup of current tar.gz"
-mv web-debugee.tar.gz backup/web-debugee-"$(date +%FT%R)"@T.tar.gz
+mv web-debugee.tar.gz "backup/web-debugee-$(date +%FT%R)@time.tar.gz"
 
 # Delete content in nginx serve path
 echo "Deleting all content in /var/www/debugee_web/html/*"
