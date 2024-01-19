@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## This script deploys debugee-web to nginx serve path
-# 
+#
 # It is used by GitLab CI/CD and it should be located in
 # home directory on a web server of a user running it
 #
@@ -28,7 +28,7 @@ cp -a debugee-web/. /var/www/debugee_web/html/ || echo "Failed to copy new asset
 
 # Remove debugee-web dir because this needs to be clean
 echo "Removing debugee-web dir"
-rm -rf debugee-web || echo "Failed to remove 'debugee_web'"
+sudo rm -rf debugee-web || echo "Failed to remove 'debugee_web'"
 
 # Finish
 echo "Finish web deployment"
