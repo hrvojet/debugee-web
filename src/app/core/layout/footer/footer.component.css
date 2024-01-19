@@ -2,8 +2,17 @@
   height: 69px;
 }
 
+footer {
+  color: var(--text-fade-color);
+  font-weight: lighter;
+}
+
 app-footer {
   width: 100%;
   bottom: 0;
   position: absolute;
+}
+
+.footer-copyright {
+  margin-top: 8px;
 }
