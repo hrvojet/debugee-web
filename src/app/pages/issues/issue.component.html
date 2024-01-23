@@ -58,7 +58,7 @@
         </button>
       </div>
     </div>
-    <div ngbDropdown>
+    <div ngbDropdown *ngIf="(labels$ | async)?.length !== 0">
       <button
         ngbDropdownToggle
         mat-button
@@ -68,15 +68,8 @@
         <mat-icon class="expand_more">expand_more</mat-icon>
       </button>
       <div ngbDropdownMenu>
-        <button
-          ngbDropdownItem
-        >
-          <span>Bug</span>
-        </button>
-        <button
-          ngbDropdownItem
-        >
-          <span>Issue</span>
+        <button ngbDropdownItem *ngFor="let label of labels$ | async">
+          {{label.name}}
         </button>
       </div>
     </div>

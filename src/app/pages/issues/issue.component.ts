@@ -3,7 +3,7 @@ import { IssueService } from '../../shared/services/issue.service';
 import { ActivatedRoute } from '@angular/router';
 import { IProject } from '../../shared/models/project.model';
 import { ProjectService } from '../../shared/services/project.service';
-import { map, merge, startWith, switchMap } from 'rxjs';
+import { map, merge, Observable, shareReplay, startWith, switchMap } from 'rxjs';
 import { IIssue } from '../../shared/models/issue.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,6 +12,8 @@ import { UserService } from '../../shared/services/user.service';
 import { IUser } from '../../shared/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProjectDialogComponent } from '../projects/edit-project-dialog/edit-project-dialog.component';
+import { LabelService } from '../../shared/services/label.service';
+import { ILabel } from '../../shared/models/label.model';
 
 @Component({
 	selector: 'app-issue',
@@ -25,6 +27,8 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	resultsLength = 0;
 	projectID!: number;
 
+	labels$: Observable<ILabel[] | null> | null = null;
+
 	displayedColumns: string[] = ['title', 'commentNumber'];
 
 	dataSource = new MatTableDataSource<IIssue>();
@@ -36,7 +40,8 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 		private route: ActivatedRoute,
 		private projectService: ProjectService,
 		private userService: UserService,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		private labelService: LabelService
 	) {}
 
 	ngOnInit() {
@@ -55,6 +60,8 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.project = res;
 			localStorage.setItem('ilebcu', res.owner.id === this.userService.getCurrentUser().id ? 'y' : 'n');
 		});
+
+		this.labels$ = this.labelService.getAllLabelsForProject(this.projectID).pipe(shareReplay()); //
 
 		merge(this.sort.sortChange, this.paginator.page)
 			.pipe(
@@ -101,6 +108,10 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 				this.resultsLength = data.totalElements;
 				this.dataSource.data = data.content;
 			});
+	}
+
+	filterByIssue($event: { issue: number }) {
+		console.log($event.issue);
 	}
 
 	editParentProject() {
