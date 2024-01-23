@@ -78,8 +78,19 @@ table .mat-row:hover > .mat-cell {
 
 .mat-paginator {
   background-color: #37373c;
-  color: white;
+  color: var(--text-focus-color);
+}
 
+:host ::ng-deep .mat-toolbar .mat-select-value {
+  color: var(--text-focus-color);
+}
+
+:host ::ng-deep .mat-select-arrow-wrapper, .mat-paginator-icon {
+  color: var(--text-focus-color);
+}
+
+:host ::ng-deep .mat-icon-button.mat-button-disabled.mat-button-disabled {
+  color: var(--item-light-background-color);
 }
 
 a {
