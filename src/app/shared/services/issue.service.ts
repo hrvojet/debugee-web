@@ -18,9 +18,28 @@ export class IssueService {
 		return this.http.get<IPage<IIssue>>(this.issueUrl + '/issues?' + params);
 	}
 
-	searchIssue(title: string, projectId: number, id: string, order: string, page: number, size: number) {
+	searchIssue(
+		title: string,
+		projectId: number,
+		id: string,
+		order: string,
+		page: number,
+		size: number,
+		labelId?: number
+	) {
 		const params =
-			'projectId=' + projectId + '&page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id + '&labelID=';
+			'projectId=' +
+			projectId +
+			'&page=' +
+			page +
+			'&size=' +
+			size +
+			'&sortBy=' +
+			order +
+			'&id=' +
+			id +
+			'&labelID=' +
+			(labelId ? labelId : '');
 		return this.http.post<IPage<IIssue>>(this.issueUrl + '/issues/search?' + params, {
 			title,
 		});

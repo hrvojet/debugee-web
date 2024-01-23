@@ -31,6 +31,9 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	displayedColumns: string[] = ['title', 'commentNumber'];
 
+	searchString: string = '';
+	filterLabel: number = NaN;
+
 	dataSource = new MatTableDataSource<IIssue>();
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	@ViewChild(MatSort) sort!: MatSort;
@@ -102,16 +105,43 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	onSearchKeyPressed($event: { title: string }) {
+		this.searchString = $event.title;
 		this.issueService
-			.searchIssue($event.title, this.projectID, this.sort.active, this.sort.direction, 0, this.paginator.pageSize)
+			.searchIssue(
+				this.searchString,
+				this.projectID,
+				this.sort.active,
+				this.sort.direction,
+				0,
+				this.paginator.pageSize,
+				this.filterLabel
+			)
 			.subscribe((data) => {
 				this.resultsLength = data.totalElements;
 				this.dataSource.data = data.content;
 			});
 	}
 
-	filterByIssue($event: { issue: number }) {
-		console.log($event.issue);
+	filterByIssue(label: ILabel) {
+		if (this.filterLabel === label.id) {
+			this.filterLabel = NaN;
+		} else {
+			this.filterLabel = label.id;
+		}
+		this.issueService
+			.searchIssue(
+				this.searchString,
+				this.projectID,
+				this.sort.active,
+				this.sort.direction,
+				0,
+				this.paginator.pageSize,
+				this.filterLabel
+			)
+			.subscribe((data) => {
+				this.resultsLength = data.totalElements;
+				this.dataSource.data = data.content;
+			});
 	}
 
 	editParentProject() {

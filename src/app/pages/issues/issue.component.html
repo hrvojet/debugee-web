@@ -68,8 +68,13 @@
         <mat-icon class="expand_more">expand_more</mat-icon>
       </button>
       <div ngbDropdownMenu>
-        <button ngbDropdownItem *ngFor="let label of labels$ | async">
-          {{label.name}}
+        <button
+          *ngFor="let label of labels$ | async"
+          ngbDropdownItem
+          (click)="filterByIssue(label)"
+          [ngClass]="filterLabel === label.id ? 'bold-text' : ''"
+        >
+          {{ label.name }}
         </button>
       </div>
     </div>

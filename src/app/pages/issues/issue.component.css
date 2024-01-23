@@ -93,6 +93,10 @@ a {
   cursor: pointer;
 }
 
+.bold-text {
+  color: var(--main-green-color);
+  font-weight: bold;
+}
 
 @media only screen and (max-width: 1280px) {
   :host(app-issue) {
