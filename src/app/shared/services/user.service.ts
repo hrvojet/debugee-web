@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 	providedIn: 'root',
 })
 export class UserService {
+	private readonly projectsUrl = environment.protocol + environment.debugeeDomain + '/api';
+
 	constructor(private jwtService: JwtService, private http: HttpClient) {}
 
 	public getCurrentUser(): IUser {
@@ -22,6 +24,10 @@ export class UserService {
 	}
 
 	public getUserByID(id: number) {
-		return this.http.get<IUser>(environment.protocol + environment.debugeeDomain + '/api' + '/user/' + id);
+		return this.http.get<IUser>(this.projectsUrl + '/user/' + id);
+	}
+
+	public getUsersByProject(id: number) {
+		return this.http.get<IUser[]>(this.projectsUrl + '/user/project/' + id);
 	}
 }

@@ -25,7 +25,8 @@ export class IssueService {
 		order: string,
 		page: number,
 		size: number,
-		labelId?: number
+		labelId?: number,
+		userId?: number
 	) {
 		const params =
 			'projectId=' +
@@ -39,7 +40,9 @@ export class IssueService {
 			'&id=' +
 			id +
 			'&labelID=' +
-			(labelId ? labelId : '');
+			(labelId ? labelId : '') +
+			'&userId=' +
+			(userId ? userId : '');
 		return this.http.post<IPage<IIssue>>(this.issueUrl + '/issues/search?' + params, {
 			title,
 		});

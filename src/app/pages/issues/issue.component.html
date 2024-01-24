@@ -74,11 +74,11 @@
           (click)="filterByIssue(label)"
           [ngClass]="filterLabel === label.id ? 'bold-text' : ''"
         >
-          {{ label.name }}
+         <span> {{ label.name }} </span>
         </button>
       </div>
     </div>
-    <div ngbDropdown>
+    <div ngbDropdown *ngIf="(users$ | async)?.length !== 0">
       <button
         ngbDropdownToggle
         mat-button
@@ -89,6 +89,14 @@
       </button>
       <div ngbDropdownMenu>
         <button
+          *ngFor="let user of users$ | async"
+          ngbDropdownItem
+          (click)="filterByUser(user)"
+          [ngClass]="filterUser === user.id ? 'bold-text' : ''"
+        >
+          <span> {{ user.username }} </span>
+        </button>
+        <!--<button
           ngbDropdownItem
         >
           <span>hrvojet</span>
@@ -97,7 +105,7 @@
           ngbDropdownItem
         >
           <span>htrcak</span>
-        </button>
+        </button>-->
       </div>
     </div>
   </div>

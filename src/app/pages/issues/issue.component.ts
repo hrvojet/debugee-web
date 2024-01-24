@@ -28,11 +28,13 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 	projectID!: number;
 
 	labels$: Observable<ILabel[] | null> | null = null;
+	users$: Observable<IUser[] | null> | null = null;
 
 	displayedColumns: string[] = ['title', 'commentNumber'];
 
 	searchString: string = '';
 	filterLabel: number = NaN;
+	filterUser: number = NaN;
 
 	dataSource = new MatTableDataSource<IIssue>();
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -64,7 +66,8 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 			localStorage.setItem('ilebcu', res.owner.id === this.userService.getCurrentUser().id ? 'y' : 'n');
 		});
 
-		this.labels$ = this.labelService.getAllLabelsForProject(this.projectID).pipe(shareReplay()); //
+		this.labels$ = this.labelService.getAllLabelsForProject(this.projectID).pipe(shareReplay());
+		this.users$ = this.userService.getUsersByProject(this.projectID).pipe(shareReplay());
 
 		merge(this.sort.sortChange, this.paginator.page)
 			.pipe(
@@ -106,20 +109,7 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	onSearchKeyPressed($event: { title: string }) {
 		this.searchString = $event.title;
-		this.issueService
-			.searchIssue(
-				this.searchString,
-				this.projectID,
-				this.sort.active,
-				this.sort.direction,
-				0,
-				this.paginator.pageSize,
-				this.filterLabel
-			)
-			.subscribe((data) => {
-				this.resultsLength = data.totalElements;
-				this.dataSource.data = data.content;
-			});
+		this.applyFilter();
 	}
 
 	filterByIssue(label: ILabel) {
@@ -128,6 +118,20 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 		} else {
 			this.filterLabel = label.id;
 		}
+		this.applyFilter();
+	}
+
+	filterByUser(user: IUser) {
+		console.log(user);
+		if (this.filterUser === user.id) {
+			this.filterUser = NaN;
+		} else {
+			this.filterUser = user.id;
+		}
+		this.applyFilter();
+	}
+
+	private applyFilter() {
 		this.issueService
 			.searchIssue(
 				this.searchString,
@@ -136,7 +140,8 @@ export class IssueComponent implements OnInit, AfterViewInit, OnDestroy {
 				this.sort.direction,
 				0,
 				this.paginator.pageSize,
-				this.filterLabel
+				this.filterLabel,
+				this.filterUser
 			)
 			.subscribe((data) => {
 				this.resultsLength = data.totalElements;
