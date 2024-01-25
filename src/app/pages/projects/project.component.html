@@ -37,7 +37,8 @@
 <div>
   <mat-paginator
     [length]="resultsLength"
-    hidePageSize
+    [hidePageSize]="true"
+    [pageSize]="15"
     aria-label="Select page"
   ></mat-paginator><!-- TODO hide when resultsLength is less than 50 -->
 </div>

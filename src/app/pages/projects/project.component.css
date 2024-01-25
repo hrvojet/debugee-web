@@ -65,8 +65,12 @@ mat-icon {
   color: white;
 }
 
-:host ::ng-deep .mat-paginator-icon {
+:host ::ng-deep .mat-icon-button {
   color: var(--main-green-color);
+}
+
+:host ::ng-deep .mat-button-disabled {
+  color: #313136 !important;
 }
 
 :host ::ng-deep .mat-paginator-container {
