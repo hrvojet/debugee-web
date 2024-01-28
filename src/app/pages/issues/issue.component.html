@@ -3,13 +3,13 @@
 <h2>
   <div class="left">
   {{project?.title}} issues
-  </div>
-  <div class="right">
     <button mat-button (click)="editParentProject()">
       <ng-container *ngIf="project?.owner?.id === currentUser?.id">
         <mat-icon>settings</mat-icon>
       </ng-container>
     </button>
+  </div>
+  <div class="right">
     <div ngbDropdown>
       <button
         ngbDropdownToggle
