@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SessionService } from './services/auth/session.service';
 
 @Component({
 	selector: 'app-root',
@@ -8,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 	title = 'debugee-web';
 
-	constructor() {}
+	constructor(private sessionService: SessionService, private router: Router) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		if (this.sessionService.isUserLoggedIn()) {
+			void this.router.navigate(['/projects']);
+		}
+	}
 }
