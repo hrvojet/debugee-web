@@ -20,7 +20,7 @@
       <h2>
         <a routerLink="/projects/{{row.id}}"> {{row.title}}</a>
         <ng-container *ngIf="!favouritesTab">
-          <mat-icon *ngIf="row.favourite; else unstar" (click)="removeFromFavourites(row.id, i)" fontIcon="star"></mat-icon> <!-- <mat-icon fontIcon="star"></mat-icon> -->
+          <mat-icon *ngIf="row.favourite; else unstar" (click)="removeFromFavourites(row.id, i)" fontIcon="star" style="color: var(--main-green-color)"></mat-icon> <!-- <mat-icon fontIcon="star"></mat-icon> -->
           <ng-template #unstar>
             <mat-icon fontIcon="star_outlined" (click)="addToFavourite(row.id, i)"></mat-icon>
           </ng-template>
