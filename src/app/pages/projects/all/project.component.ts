@@ -107,17 +107,15 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 			});
 	}
 
-	addToFavourite(id: number) {
+	addToFavourite(id: number, index: number) {
 		this.projectService.addProjectToFavourites(id).subscribe((res) => {
-			const indexToUpdate = this.dataSource.data.findIndex((project) => project.id === id);
-			this.dataSource.data[indexToUpdate].favourite = true;
+			this.dataSource.data[index].favourite = true;
 		});
 	}
 
-	removeFromFavourites(id: number) {
+	removeFromFavourites(id: number, index: number) {
 		this.projectService.removeProjectToFavourites(id).subscribe((res) => {
-			const indexToUpdate = this.dataSource.data.findIndex((project) => project.id === id);
-			this.dataSource.data[indexToUpdate].favourite = false;
+			this.dataSource.data[index].favourite = false;
 		});
 	}
 }
