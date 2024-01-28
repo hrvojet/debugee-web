@@ -1,0 +1,16 @@
+:host(app-project-tabs) {
+  max-width: 1220px;
+  display: block;
+  margin: 46px auto 0;
+  overflow: auto;
+}
+
+:host ::ng-deep .mat-tab-label {
+  color: var(--main-green-color);
+}
+
+@media only screen and (max-width: 1280px) {
+  :host(app-project-tabs) {
+    width: 96%;
+  }
+}

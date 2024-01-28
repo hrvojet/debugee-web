@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeScreenComponent } from './core/layout/welcome-screen/welcome-screen.component';
 import { PageNotFoundComponent } from './core/layout/page-not-found/page-not-found.component';
-import { ProjectComponent } from './pages/projects/project.component';
+import { ProjectComponent } from './pages/projects/all/project.component';
 import { IssueComponent } from './pages/issues/issue.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { CommentComponent } from './pages/comments/comment.component';
 import { NewIssueComponent } from './pages/issues/new-issue/new-issue.component';
 import { NewProjectComponent } from './pages/projects/new-project/new-project.component';
 import { LabelComponent } from './pages/labels/label.component';
+import { ProjectTabsComponent } from './pages/projects/project-tabs.component';
 
 const routes: Routes = [
 	{
@@ -22,7 +23,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'projects',
-		component: ProjectComponent,
+		component: ProjectTabsComponent,
 		canActivate: [AuthenticationGuard],
 	},
 	{

@@ -9,6 +9,7 @@ export interface IProject {
 	openedIssues: number;
 	closedIssues: number;
 	owner: IUser;
+	favourite: boolean;
 }
 
 export interface IProjectPost {

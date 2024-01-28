@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectComponent } from './projects/project.component';
+import { ProjectComponent } from './projects/all/project.component';
 import { IssueComponent } from './issues/issue.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,6 +32,7 @@ import { DeleteIssueComponent } from './issues/delete-issue/delete-issue.compone
 import { FocusAfterRenderDirective } from '../shared/directives/focus-after-render.directive';
 import { LockIssueComponent } from './issues/lock-issue/lock-issue.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ProjectTabsComponent } from './projects/project-tabs.component';
 
 @NgModule({
 	declarations: [
@@ -50,6 +51,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 		DeleteIssueComponent,
 		LockIssueComponent,
 		FocusAfterRenderDirective,
+		ProjectTabsComponent,
 	],
 	imports: [
 		CommonModule,

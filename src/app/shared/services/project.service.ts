@@ -25,6 +25,11 @@ export class ProjectService {
 		return this.http.get<IPage<IProject>>(this.projectsUrl + '/projects' + params);
 	}
 
+	getFavouritesProjectsPage(id: string, order: string, page: number, size: number) {
+		const params = '?page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
+		return this.http.get<IPage<IProject>>(this.projectsUrl + '/projects/favourites' + params);
+	}
+
 	getProjectById(projectID: number) {
 		return this.http.get<IProject>(this.projectsUrl + `/projects/${projectID}`);
 	}
@@ -39,5 +44,13 @@ export class ProjectService {
 
 	deleteProject(projectID: number) {
 		return this.http.delete(this.projectsUrl + `/projects/${projectID}`);
+	}
+
+	addProjectToFavourites(projectId: number) {
+		return this.http.post(this.projectsUrl + `/projects/favourite/${projectId}`, null);
+	}
+
+	removeProjectToFavourites(projectId: number) {
+		return this.http.delete(this.projectsUrl + `/projects/favourite/${projectId}`);
 	}
 }
