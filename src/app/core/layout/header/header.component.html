@@ -14,19 +14,6 @@
           <div ngbDropdown>
             <button
               ngbDropdownToggle
-              class="new-menu"
-              mat-mini-fab>
-              <mat-icon>add</mat-icon>
-            </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button ngbDropdownItem (click)="goToNewProject()">
-                New project
-              </button>
-            </div>
-          </div>
-          <div ngbDropdown>
-            <button
-              ngbDropdownToggle
               class="user-menu"
               mat-mini-fab
               [style.background-image]="'url(' + currentUser?.avatar_url + ')'">

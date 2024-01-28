@@ -4,9 +4,10 @@ import { IProject } from '../../../shared/models/project.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { concat, forkJoin, map, merge, mergeMap, Observable, startWith, switchMap, tap } from 'rxjs';
+import { forkJoin, map, merge, Observable, startWith, switchMap } from 'rxjs';
 import { UserService } from '../../../shared/services/user.service';
 import { IUser } from '../../../shared/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-project',
@@ -15,6 +16,8 @@ import { IUser } from '../../../shared/models/user.model';
 })
 export class ProjectComponent implements OnInit, AfterViewInit {
 	@Input() favouritesTab!: boolean;
+
+	searchPlaceholder!: string;
 
 	resultsLength = 0;
 	displayedColumns: string[] = ['title'];
@@ -26,9 +29,10 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	@ViewChild(MatSort) sort!: MatSort;
 
-	constructor(private projectService: ProjectService, private userService: UserService) {}
+	constructor(private projectService: ProjectService, private userService: UserService, private router: Router) {}
 
 	ngOnInit(): void {
+		this.searchPlaceholder = this.favouritesTab ? 'Search favourite projects...' : 'Search projects...';
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
 		this.currentUser = this.userService.getCurrentUser();
@@ -38,13 +42,13 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 		this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
 		if (this.favouritesTab) {
-			this.getFavouriteProjects();
+			this.getFavouriteProjects('');
 		} else {
-			this.getAllProjects();
+			this.getAllProjects('');
 		}
 	}
 
-	private getAllProjects(): void {
+	private getAllProjects(titleSearch: string): void {
 		merge(this.sort.sortChange, this.paginator.page)
 			.pipe(
 				startWith({}),
@@ -54,13 +58,15 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 							this.sort.active,
 							'DESC',
 							this.paginator.pageIndex,
-							this.paginator.pageSize
+							this.paginator.pageSize,
+							titleSearch
 						),
 						this.projectService.getFavouritesProjectsPage(
 							this.sort.active,
 							'DESC',
 							this.paginator.pageIndex,
-							this.paginator.pageSize
+							this.paginator.pageSize,
+							titleSearch
 						),
 					]);
 				}),
@@ -82,7 +88,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 			});
 	}
 
-	private getFavouriteProjects(): void {
+	private getFavouriteProjects(titleSearch: string): void {
 		merge(this.sort.sortChange, this.paginator.page)
 			.pipe(
 				startWith({}),
@@ -91,7 +97,8 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 						this.sort.active,
 						'DESC',
 						this.paginator.pageIndex,
-						this.paginator.pageSize
+						this.paginator.pageSize,
+						titleSearch
 					);
 				}),
 				map((data) => {
@@ -117,5 +124,21 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 		this.projectService.removeProjectToFavourites(id).subscribe((res) => {
 			this.dataSource.data[index].favourite = false;
 		});
+	}
+
+	searchByProjectName(string: any) {
+		console.log('searchByProjectName');
+		const titleSearch = string.target.value ? string.target.value : '';
+
+		if (this.favouritesTab) {
+			this.getFavouriteProjects(titleSearch);
+		} else {
+			this.getAllProjects(titleSearch);
+		}
+	}
+
+	goToNewProject() {
+		console.log('new project');
+		void this.router.navigate(['projects/new']);
 	}
 }

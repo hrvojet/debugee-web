@@ -20,13 +20,15 @@ export class ProjectService {
 		return this.http.get(this.projectsUrl + `/projects/${projectID}`);
 	}
 
-	getProjectsPage(id: string, order: string, page: number, size: number) {
-		const params = '?page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
+	getProjectsPage(id: string, order: string, page: number, size: number, searchByTitle: string) {
+		const params =
+			'?page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id + '&projectTitle=' + searchByTitle;
 		return this.http.get<IPage<IProject>>(this.projectsUrl + '/projects' + params);
 	}
 
-	getFavouritesProjectsPage(id: string, order: string, page: number, size: number) {
-		const params = '?page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id;
+	getFavouritesProjectsPage(id: string, order: string, page: number, size: number, searchByTitle: string) {
+		const params =
+			'?page=' + page + '&size=' + size + '&sortBy=' + order + '&id=' + id + '&projectTitle=' + searchByTitle;
 		return this.http.get<IPage<IProject>>(this.projectsUrl + '/projects/favourites' + params);
 	}
 

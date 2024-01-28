@@ -1,10 +1,13 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      search...
-    </mat-card-title>
-  </mat-card-header>
-</mat-card>
+<div class="search-input">
+  <input
+    placeholder="{{searchPlaceholder}}"
+    (keyup.enter)="searchByProjectName($event)"
+  >
+  <button
+    mat-button
+    (click)="goToNewProject()"
+  >New project</button>
+</div>
 <table
   mat-table
   [dataSource]="dataSource"
