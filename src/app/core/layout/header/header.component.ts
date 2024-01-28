@@ -18,7 +18,6 @@ export class HeaderComponent implements OnChanges, OnInit, AfterViewInit {
 	constructor(private sessionService: SessionService, private router: Router, private userService: UserService) {}
 
 	ngOnInit(): void {
-		//debugger;
 		this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
 			const params = this.router.parseUrl(this.router.url).queryParams;
 			if (params[`access_token`]) {

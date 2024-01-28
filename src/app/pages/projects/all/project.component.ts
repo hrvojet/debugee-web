@@ -78,7 +78,6 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 				})
 			)
 			.subscribe((data) => {
-				debugger;
 				this.dataSource.data = data;
 			});
 	}
