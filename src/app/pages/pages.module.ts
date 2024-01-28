@@ -21,7 +21,7 @@ import { IssueHeaderComponent } from './issues/issue-header/issue-header.compone
 import { NewIssueComponent } from './issues/new-issue/new-issue.component';
 import { MatInputModule } from '@angular/material/input';
 import { NewProjectComponent } from './projects/new-project/new-project.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { LabelComponent } from './labels/label.component';
 import { LabelDialogComponent } from './labels/label-dialog/label-dialog.component';
 import { ManageLabelsDialogComponent } from './comments/manage-labels-dialog/manage-labels-dialog.component';
@@ -33,6 +33,7 @@ import { FocusAfterRenderDirective } from '../shared/directives/focus-after-rend
 import { LockIssueComponent } from './issues/lock-issue/lock-issue.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProjectTabsComponent } from './projects/project-tabs.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
 	declarations: [
@@ -70,9 +71,11 @@ import { ProjectTabsComponent } from './projects/project-tabs.component';
 		MatSortModule,
 		MatInputModule,
 		NgbDropdownModule,
+		NgbPopoverModule,
 		ReactiveFormsModule,
 		MatCheckboxModule,
 		MatToolbarModule,
+		ClipboardModule,
 	],
 })
 export class PagesModule {}

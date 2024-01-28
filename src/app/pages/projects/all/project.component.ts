@@ -8,6 +8,7 @@ import { forkJoin, map, merge, Observable, startWith, switchMap } from 'rxjs';
 import { UserService } from '../../../shared/services/user.service';
 import { IUser } from '../../../shared/models/user.model';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
 	selector: 'app-project',
@@ -28,6 +29,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
 	dataSource = new MatTableDataSource<IProject>();
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	@ViewChild(MatSort) sort!: MatSort;
+
+	readonly popoverDelay: number = 3;
+	readonly badgeLink = environment.protocol + environment.debugeeDomain + '/api/projects/badge/';
 
 	constructor(private projectService: ProjectService, private userService: UserService, private router: Router) {}
 

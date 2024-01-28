@@ -97,6 +97,34 @@ mat-icon {
   color: white;
 }
 
+/* Popover */
+
+:host ::ng-deep .popover-body, .popover-arrow {
+
+  box-shadow: 0 0 2px var(--main-green-color);
+  background-color: var(--item-background-color);
+  color: var(--text-focus-color);
+  border: 1px solid var(--main-green-color);
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.pop {
+  color: white;
+}
+
+.pop span {
+  color: var(--text-focus-color);
+}
+
+.more-info {
+  margin-right: 14px;
+}
+
+.more-info:hover {
+  color: var(--main-purple-color);
+}
+
 :host ::ng-deep .mat-icon-button {
   color: var(--main-green-color);
 }

@@ -18,7 +18,10 @@
     <th mat-header-cell *matHeaderCellDef>Title</th>
     <td mat-cell *matCellDef="let row; let i = index">
       <h2>
-        <a routerLink="/projects/{{row.id}}"> {{row.title}}</a>
+        <a
+          routerLink="/projects/{{row.id}}">
+          {{row.title}}
+        </a>
         <ng-container *ngIf="!favouritesTab">
           <mat-icon *ngIf="row.favourite; else unstar" (click)="removeFromFavourites(row.id, i)" fontIcon="star" style="color: var(--main-green-color)"></mat-icon> <!-- <mat-icon fontIcon="star"></mat-icon> -->
           <ng-template #unstar>
@@ -29,6 +32,41 @@
       <div class="fade-color">
         <p style="margin-bottom: 14px">{{row.description}}</p>
         <p>
+          <ng-template #popTitle>
+
+          </ng-template>
+          <ng-template #popContent>
+            <div class="pop">
+              <p>
+                <span>More information</span>
+              </p>
+              <hr style="margin: 2px 0 2px">
+              <p>
+                <span>Username:</span> {{ row.owner.username }}
+              </p>
+              <p>
+                <span>Email:</span> <a href="mailto:{{row.owner.email}}"> {{row.owner.email}} </a>
+              </p>
+              <hr style="margin: 4px 0 14px">
+              <p>
+                <span>Badge link:</span><span>
+                <button
+                  mat-raised-button
+                  [cdkCopyToClipboard]="badgeLink + row.id"
+                  title="Copy badge link url to clipboard"
+                >
+                  <mat-icon>file_copy</mat-icon> badge link
+                </button></span>
+              </p>
+            </div>
+
+          </ng-template>
+          <span
+            [ngbPopover]="popContent"
+            class="more-info"
+          >
+            <mat-icon>info_outlined</mat-icon>
+          </span>
           <mat-icon title="Opened issues">archive</mat-icon>{{row.openedIssues}}&nbsp;&nbsp;
           <mat-icon title="Closed issues">inventory_2</mat-icon>{{row.closedIssues}}&nbsp;&nbsp;
           <span title="{{row!.edited | date: 'dd/MM/YYYY, HH:mm'}}">
