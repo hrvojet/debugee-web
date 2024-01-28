@@ -1,5 +1,7 @@
 # DebugeeWeb
 
+![debugee-web-badge](http://20.82.136.123/api/projects/badge/1.svg)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.10.
 
 ## Development server
