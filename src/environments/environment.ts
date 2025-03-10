@@ -8,7 +8,7 @@ export const environment = {
 	protocol: 'http://',
 	debugeeDomain: '127.0.0.1:8080',
 	redirectUri: '192.168.0.212:8080/callback/gitlab',
-	gitLabDomain: '192.168.99.101',
+	gitLabDomain: '192.168.0.101',
 	gitLabTokenApi: '/oauth/authorize',
 };
 
