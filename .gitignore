@@ -11,6 +11,13 @@
 npm-debug.log
 yarn-error.log
 
+# Ignore Yarn build state and extracted dependencies
+.yarn/build-state.yml
+.yarn/unplugged/
+
+# Ignore logs
+.yarn/install-state.gz
+
 # IDEs and editors
 .idea/
 .project
